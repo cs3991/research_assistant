@@ -84,12 +84,12 @@ class NavigationBody extends StatelessWidget {
       child: Builder(
         builder: (context) {
           if (index == 0) {
-            return NewsFeed();
+            return const NewsFeed();
           }
           if (index == 1) {
-            return Collection();
+            return const Collection();
           } else {
-            return Container(
+            return ColoredBox(
               color: Theme.of(context).colorScheme.surface,
               child: const Text('Unknown'),
             );

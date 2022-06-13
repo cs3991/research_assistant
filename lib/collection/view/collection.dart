@@ -7,7 +7,7 @@ class Collection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Theme.of(context).colorScheme.surface,
       child: const Text('Collection'),
     );

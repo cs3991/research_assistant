@@ -13,7 +13,7 @@ void main() {
   group('NavigationPage', () {
     testWidgets('renders NavigationBar', (WidgetTester tester) async {
       tester.binding.renderView.configuration =
-          TestViewConfiguration(size: Size(800, 1100));
+          TestViewConfiguration(size: const Size(800, 1100));
       await tester.pumpApp(const NavigationPage());
       expect(find.byType(NavigationBar), findsOneWidget);
       expect(find.byType(NavigationRail), findsNothing);
@@ -21,7 +21,7 @@ void main() {
 
     testWidgets('renders NavigationRail', (WidgetTester tester) async {
       tester.binding.renderView.configuration =
-          TestViewConfiguration(size: Size(1000, 1100));
+          TestViewConfiguration(size: const Size(1000, 1100));
       await tester.pumpApp(const NavigationPage());
       expect(find.byType(NavigationRail), findsOneWidget);
       expect(find.byType(NavigationBar), findsNothing);
@@ -29,8 +29,8 @@ void main() {
 
     testWidgets('renders Collection when selected (rail)',
         (WidgetTester tester) async {
-      tester.binding.renderView.configuration =
-          TestViewConfiguration(size: Size(1000, 1100));
+          tester.binding.renderView.configuration =
+          TestViewConfiguration(size: const Size(1000, 1100));
       await tester.pumpApp(const NavigationPage());
       await tester.tap(find.byIcon(Icons.library_books_rounded));
       await tester.pump();
@@ -39,8 +39,8 @@ void main() {
 
     testWidgets('renders Collection when selected (bar)',
         (WidgetTester tester) async {
-      tester.binding.renderView.configuration =
-          TestViewConfiguration(size: Size(900, 1100));
+          tester.binding.renderView.configuration =
+          TestViewConfiguration(size: const Size(900, 1100));
       await tester.pumpApp(const NavigationPage());
       await tester.tap(find.byIcon(Icons.library_books_rounded));
       await tester.pump();
@@ -49,8 +49,8 @@ void main() {
 
     testWidgets('renders NewsFeed when selected (rail)',
         (WidgetTester tester) async {
-      tester.binding.renderView.configuration =
-          TestViewConfiguration(size: Size(1000, 1100));
+          tester.binding.renderView.configuration =
+          TestViewConfiguration(size: const Size(1000, 1100));
       await tester.pumpApp(const NavigationPage());
       await tester.tap(find.byIcon(Icons.rss_feed_rounded));
       await tester.pump();
@@ -59,8 +59,8 @@ void main() {
 
     testWidgets('renders NewsFeed when selected (bar)',
         (WidgetTester tester) async {
-      tester.binding.renderView.configuration =
-          TestViewConfiguration(size: Size(900, 1100));
+          tester.binding.renderView.configuration =
+          TestViewConfiguration(size: const Size(900, 1100));
       await tester.pumpApp(const NavigationPage());
       await tester.tap(find.byIcon(Icons.rss_feed_rounded));
       await tester.pump();
