@@ -2,65 +2,36 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'work.g.dart';
 
-// @JsonSerializable()
-// class Work {
-//   Work({
-//     required this.title,
-//   });
-//
-//   final String title;
-//
-//   factory Work.fromJson(Map<String, dynamic> json) => _$WorkFromJson(json);
-// }
-
 @JsonEnum(fieldRename: FieldRename.kebab)
 enum WorkType {
-  // @JsonValue('book-section')
   bookSection,
   monograph,
   report,
-  // @JsonValue('peer-review')
   peerReview,
-  // @JsonValue('book-track')
   bookTrack,
-  // @JsonValue('book-article')
   journalArticle,
-  // @JsonValue('book-part')
   bookPart,
   other,
   book,
-  // @JsonValue('journal-volume')
   journalVolume,
-  // @JsonValue('book-set')
   bookSet,
-  // @JsonValue('reference-entry')
   referenceEntry,
-  // @JsonValue('proceedings-article')
   proceedingsArticle,
   journal,
   component,
-  // @JsonValue('book-chapter')
   bookChapter,
-  // @JsonValue('proceedings-series')
   proceedingsSeries,
-  // @JsonValue('report-series')
   reportSeries,
   proceedings,
   standard,
-  // @JsonValue('reference-book')
   referenceBook,
-  // @JsonValue('posted-content')
   postedContent,
-  // @JsonValue('journal-issue')
   journalIssue,
   dissertation,
   grant,
   dataset,
-  // @JsonValue('book-series')
   bookSeries,
-  // @JsonValue('edited-book')
   editedBook,
-  // @JsonValue('standard-series')
   standardSeries,
 }
 
@@ -95,7 +66,7 @@ class Work {
   final DateTime publicationDate;
 
   // Open access
-  static Object? _readOpenAccess(Map<dynamic, dynamic> json, String key) =>
+  static Object _readOpenAccess(Map<dynamic, dynamic> json, String key) =>
       json['open_access'][key];
   @JsonKey(readValue: _readOpenAccess, name: 'is_oa')
   final bool isOpenAccess;
@@ -144,6 +115,7 @@ class Work {
     this.magId,
     this.pmidId,
     this.pmcId,
+    this.openAccessUrl,
     required this.type,
     required this.title,
     required this.displayName,
@@ -152,7 +124,6 @@ class Work {
     required this.citedByCount,
     required this.isOpenAccess,
     required this.openAccessStatus,
-    this.openAccessUrl,
     required this.isRetracted,
     required this.isParatext,
     required this.citedByApiUrl,

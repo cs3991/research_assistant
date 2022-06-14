@@ -34,6 +34,11 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
             (v) => v as String?,
             readValue: Work._readId,
           ),
+          openAccessUrl: $checkedConvert(
+            'oa_url',
+            (v) => v as String?,
+            readValue: Work._readOpenAccess,
+          ),
           type:
               $checkedConvert('type', (v) => $enumDecode(_$WorkTypeEnumMap, v)),
           title: $checkedConvert('title', (v) => v as String),
@@ -50,11 +55,6 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
           openAccessStatus: $checkedConvert(
             'oa_status',
             (v) => $enumDecode(_$OpenAccessStatusEnumMap, v),
-            readValue: Work._readOpenAccess,
-          ),
-          openAccessUrl: $checkedConvert(
-            'oa_url',
-            (v) => v as String?,
             readValue: Work._readOpenAccess,
           ),
           isRetracted: $checkedConvert('is_retracted', (v) => v as bool),
@@ -76,13 +76,13 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
         'magId': 'mag',
         'pmidId': 'pmid',
         'pmcId': 'pmcid',
+        'openAccessUrl': 'oa_url',
         'displayName': 'display_name',
         'publicationYear': 'publication_year',
         'publicationDate': 'publication_date',
         'citedByCount': 'cited_by_count',
         'isOpenAccess': 'is_oa',
         'openAccessStatus': 'oa_status',
-        'openAccessUrl': 'oa_url',
         'isRetracted': 'is_retracted',
         'isParatext': 'is_paratext',
         'citedByApiUrl': 'cited_by_api_url',
@@ -91,6 +91,29 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
         'createdDate': 'created_date'
       },
     );
+
+Map<String, dynamic> _$WorkToJson(Work instance) => <String, dynamic>{
+      'id': instance.openAlexId,
+      'doi': instance.doiId,
+      'mag': instance.magId,
+      'pmid': instance.pmidId,
+      'pmcid': instance.pmcId,
+      'type': _$WorkTypeEnumMap[instance.type],
+      'title': instance.title,
+      'display_name': instance.displayName,
+      'publication_year': instance.publicationYear,
+      'publication_date': instance.publicationDate.toIso8601String(),
+      'is_oa': instance.isOpenAccess,
+      'oa_status': _$OpenAccessStatusEnumMap[instance.openAccessStatus],
+      'oa_url': instance.openAccessUrl,
+      'cited_by_count': instance.citedByCount,
+      'cited_by_api_url': instance.citedByApiUrl,
+      'counts_by_year': Work._writeCountsByYear(instance.citedByCountsByYear),
+      'is_retracted': instance.isRetracted,
+      'is_paratext': instance.isParatext,
+      'updated_date': instance.updatedDate.toIso8601String(),
+      'created_date': instance.createdDate.toIso8601String(),
+    };
 
 const _$WorkTypeEnumMap = {
   WorkType.bookSection: 'book-section',
