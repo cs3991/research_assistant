@@ -84,9 +84,10 @@ class Work {
       toJson: _writeCountsByYear)
   final Map<int, int> citedByCountsByYear;
 
-  static Map<int, int> _readCountsByYear(List<Map<dynamic, dynamic>> list) {
+  static Map<int, int> _readCountsByYear(List list) {
     final Map<int, int> result = {};
-    for (final element in list) {
+    for (var element in list) {
+      element = element as Map<dynamic, dynamic>;
       result[element['year']] = element['cited_by_count'];
     }
     return result;

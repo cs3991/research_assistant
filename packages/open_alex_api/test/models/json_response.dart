@@ -1,4 +1,4 @@
-const jsonResponse = <String, dynamic>{
+const jsonResponse = '''{
   "id": "https://openalex.org/W2741809807",
   "doi": "https://doi.org/10.7717/peerj.4375",
   "title":
@@ -580,4 +580,4 @@ const jsonResponse = <String, dynamic>{
   ],
   "updated_date": "2022-05-27",
   "created_date": "2017-08-08"
-};
+}''';

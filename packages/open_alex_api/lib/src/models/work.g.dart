@@ -61,8 +61,8 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
           isParatext: $checkedConvert('is_paratext', (v) => v as bool),
           citedByApiUrl:
               $checkedConvert('cited_by_api_url', (v) => v as String),
-          citedByCountsByYear: $checkedConvert('counts_by_year',
-              (v) => Work._readCountsByYear(v as List<Map<dynamic, dynamic>>)),
+          citedByCountsByYear: $checkedConvert(
+              'counts_by_year', (v) => Work._readCountsByYear(v as List)),
           updatedDate: $checkedConvert(
               'updated_date', (v) => DateTime.parse(v as String)),
           createdDate: $checkedConvert(
