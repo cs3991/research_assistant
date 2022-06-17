@@ -162,5 +162,115 @@ void main() {
         );
       });
     });
+    group('getAuthor', () {
+      const authorId = 'https://openalex.org/A1969205032';
+
+      test('makes correct http request', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        try {
+          await metaWorkApiClient.getAuthor(authorId);
+        } catch (_) {}
+        verify(
+          () => httpClient.get(
+            Uri.parse(authorId),
+          ),
+        ).called(1);
+      });
+
+      test('throws AuthorRequestFailure on non-200 response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(400);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        expect(
+          () async => await metaWorkApiClient.getAuthor(authorId),
+          throwsA(isA<AuthorRequestFailure>()),
+        );
+      });
+
+      test('throws AuthorNotFoundFailure on 404 response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(404);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        expect(
+          () async => await metaWorkApiClient.getAuthor(authorId),
+          throwsA(isA<AuthorNotFoundFailure>()),
+        );
+      });
+
+      test('returns author on valid response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn(authorJsonResponse);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        final actual = await metaWorkApiClient.getAuthor(authorId);
+        expect(
+            actual,
+            isA<Author>()
+                .having(
+                  (author) => author.id,
+                  'openAlexId',
+                  'https://openalex.org/A1969205032',
+                )
+                .having(
+                  (author) => author.orcidId,
+                  'orcid',
+                  'https://orcid.org/0000-0003-1613-5981',
+                )
+                .having(
+                  (author) => author.displayName,
+                  'displayName',
+                  'Heather A. Piwowar',
+                )
+                .having(
+                  (author) => author.displayNameAlternatives,
+                  'displayNameAlternatives',
+                  [],
+                )
+                .having(
+                  (author) => author.worksCount,
+                  'worksCount',
+                  50,
+                )
+                .having(
+                  (author) => author.citedByCount,
+                  'citedByCount',
+                  2691,
+                )
+                .having(
+                  (author) => author.magId,
+                  'mag',
+                  '1969205032',
+                )
+                .having(
+                  (author) => author.twitterId,
+                  'twitter',
+                  'http://twitter.com/researchremix',
+                )
+                .having(
+                  (author) => author.scopusId,
+                  'scopus',
+                  'http://www.scopus.com/inward/authorDetails.url?authorID=25122628200&partnerID=MN8TOARS',
+                )
+                .having(
+                  (author) => author.worksApiUrl,
+                  'worksApiUrl',
+                  'https://api.openalex.org/works?filter=author.id:A1969205032',
+                )
+                .having(
+                  (author) => author.updatedDate,
+                  'updatedDate',
+                  DateTime(2022, 03, 09),
+                )
+                .having(
+                  (author) => author.createdDate,
+                  'createdDate',
+                  DateTime(2016, 06, 24),
+                ));
+      });
+    });
   });
 }

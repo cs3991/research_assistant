@@ -123,5 +123,4 @@ class Work {
   });
 
   factory Work.fromJson(Map<String, dynamic> json) => _$WorkFromJson(json);
-
 }

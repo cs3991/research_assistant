@@ -29,7 +29,7 @@ void main() {
 
     testWidgets('renders Collection when selected (rail)',
         (WidgetTester tester) async {
-          tester.binding.renderView.configuration =
+      tester.binding.renderView.configuration =
           TestViewConfiguration(size: const Size(1000, 1100));
       await tester.pumpApp(const NavigationPage());
       await tester.tap(find.byIcon(Icons.library_books_rounded));
@@ -39,7 +39,7 @@ void main() {
 
     testWidgets('renders Collection when selected (bar)',
         (WidgetTester tester) async {
-          tester.binding.renderView.configuration =
+      tester.binding.renderView.configuration =
           TestViewConfiguration(size: const Size(900, 1100));
       await tester.pumpApp(const NavigationPage());
       await tester.tap(find.byIcon(Icons.library_books_rounded));
@@ -49,7 +49,7 @@ void main() {
 
     testWidgets('renders NewsFeed when selected (rail)',
         (WidgetTester tester) async {
-          tester.binding.renderView.configuration =
+      tester.binding.renderView.configuration =
           TestViewConfiguration(size: const Size(1000, 1100));
       await tester.pumpApp(const NavigationPage());
       await tester.tap(find.byIcon(Icons.rss_feed_rounded));
@@ -59,7 +59,7 @@ void main() {
 
     testWidgets('renders NewsFeed when selected (bar)',
         (WidgetTester tester) async {
-          tester.binding.renderView.configuration =
+      tester.binding.renderView.configuration =
           TestViewConfiguration(size: const Size(900, 1100));
       await tester.pumpApp(const NavigationPage());
       await tester.tap(find.byIcon(Icons.rss_feed_rounded));
@@ -67,52 +67,4 @@ void main() {
       expect(find.byType(NewsFeed), findsOneWidget);
     });
   });
-
-  // group('NavigationView', () {
-  //   late NavigationCubit navigationCubit;
-  //
-  //   setUp(() {
-  //     navigationCubit = MockNavigationCubit();
-  //   });
-  //
-  //   testWidgets('renders current count', (tester) async {
-  //     const state = 42;
-  //     when(() => navigationCubit.state).thenReturn(state);
-  //     await tester.pumpApp(
-  //       BlocProvider.value(
-  //         value: navigationCubit,
-  //         child: const NavigationPage(),
-  //       ),
-  //     );
-  //     expect(find.text('$state'), findsOneWidget);
-  //   });
-  //
-  //   testWidgets('calls increment when increment button is tapped',
-  //           (tester) async {
-  //         when(() => navigationCubit.state).thenReturn(0);
-  //         when(() => navigationCubit.increment()).thenReturn(null);
-  //         await tester.pumpApp(
-  //           BlocProvider.value(
-  //             value: navigationCubit,
-  //             child: const NavigationView(),
-  //           ),
-  //         );
-  //         await tester.tap(find.byIcon(Icons.add));
-  //         verify(() => navigationCubit.increment()).called(1);
-  //       });
-  //
-  //   testWidgets('calls decrement when decrement button is tapped',
-  //           (tester) async {
-  //         when(() => navigationCubit.state).thenReturn(0);
-  //         when(() => navigationCubit.decrement()).thenReturn(null);
-  //         await tester.pumpApp(
-  //           BlocProvider.value(
-  //             value: navigationCubit,
-  //             child: const NavigationView(),
-  //           ),
-  //         );
-  //         await tester.tap(find.byIcon(Icons.remove));
-  //         verify(() => navigationCubit.decrement()).called(1);
-  //       });
-  // });
 }
