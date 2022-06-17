@@ -20,7 +20,10 @@ Author _$AuthorFromJson(Map<String, dynamic> json) => $checkedCreate(
           worksCount: $checkedConvert('works_count', (v) => v as int),
           citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
           countsByYear: $checkedConvert(
-              'counts_by_year', (v) => Author._readCountsByYear(v as List)),
+              'counts_by_year',
+              (v) => (v as List<dynamic>)
+                  .map((e) => YearAuthor.fromJson(e as Map<String, dynamic>))
+                  .toList()),
           worksApiUrl: $checkedConvert('works_api_url', (v) => v as String),
           updatedDate: $checkedConvert(
               'updated_date', (v) => DateTime.parse(v as String)),
@@ -68,5 +71,22 @@ Author _$AuthorFromJson(Map<String, dynamic> json) => $checkedCreate(
         'twitterId': 'twitter',
         'wikipediaId': 'wikipedia',
         'scopusId': 'scopus'
+      },
+    );
+
+YearAuthor _$YearAuthorFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'YearAuthor',
+      json,
+      ($checkedConvert) {
+        final val = YearAuthor(
+          year: $checkedConvert('year', (v) => v as int),
+          citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
+          worksCount: $checkedConvert('works_count', (v) => v as int),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'citedByCount': 'cited_by_count',
+        'worksCount': 'works_count'
       },
     );

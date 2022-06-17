@@ -40,11 +40,8 @@ class Author {
   @JsonKey(readValue: _readId, name: 'scopus')
   final String? scopusId;
 
-  @JsonKey(
-    name: 'counts_by_year',
-    fromJson: _readCountsByYear,
-  )
-  final Map<int, int> countsByYear;
+  @JsonKey(name: 'counts_by_year')
+  final List<YearAuthor> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
   final DateTime createdDate;
@@ -52,14 +49,21 @@ class Author {
   static Object? _readId(Map<dynamic, dynamic> json, String key) =>
       json['ids'][key];
 
-  static Map<int, int> _readCountsByYear(List list) {
-    final Map<int, int> result = {};
-    for (var element in list) {
-      element = element as Map<dynamic, dynamic>;
-      result[element['year']] = element['cited_by_count'];
-    }
-    return result;
-  }
-
   factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class YearAuthor {
+  final int year;
+  final int citedByCount;
+  final int worksCount;
+
+  YearAuthor({
+    required this.year,
+    required this.citedByCount,
+    required this.worksCount,
+  });
+
+  factory YearAuthor.fromJson(Map<String, dynamic> json) =>
+      _$YearAuthorFromJson(json);
 }

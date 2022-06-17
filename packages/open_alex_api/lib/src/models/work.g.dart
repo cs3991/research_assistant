@@ -37,7 +37,10 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
           citedByApiUrl:
               $checkedConvert('cited_by_api_url', (v) => v as String),
           countsByYear: $checkedConvert(
-              'counts_by_year', (v) => Work._readCountsByYear(v as List)),
+              'counts_by_year',
+              (v) => (v as List<dynamic>)
+                  .map((e) => YearWork.fromJson(e as Map<String, dynamic>))
+                  .toList()),
           updatedDate: $checkedConvert(
               'updated_date', (v) => DateTime.parse(v as String)),
           createdDate: $checkedConvert(
@@ -130,3 +133,16 @@ const _$OpenAccessStatusEnumMap = {
   OpenAccessStatus.bronze: 'bronze',
   OpenAccessStatus.closed: 'closed',
 };
+
+YearWork _$YearWorkFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'YearWork',
+      json,
+      ($checkedConvert) {
+        final val = YearWork(
+          year: $checkedConvert('year', (v) => v as int),
+          citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'citedByCount': 'cited_by_count'},
+    );

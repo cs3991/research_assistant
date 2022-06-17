@@ -18,11 +18,12 @@ class OpenAlexApiClient {
   final http.Client _httpClient;
 
   // TODO: change id to url parameter only
-  //  static const String _baseUrl = 'api.openalex.org/';
+  static const String _baseUrl = 'api.openalex.org';
 
   /// Fetches a [Work] by its OpenAlex ID.
   Future<Work> getWork(String id) async {
-    final workResponse = await _httpClient.get(Uri.parse(id));
+    final workResponse =
+        await _httpClient.get(Uri.https(_baseUrl, 'works/$id'));
     if (workResponse.statusCode == 200) {
       return Work.fromJson(jsonDecode(workResponse.body));
     } else if (workResponse.statusCode == 404) {
@@ -34,7 +35,8 @@ class OpenAlexApiClient {
 
   /// Fetches a [Author] by its OpenAlex ID.
   Future<Author> getAuthor(String id) async {
-    final authorResponse = await _httpClient.get(Uri.parse(id));
+    final authorResponse =
+        await _httpClient.get(Uri.https(_baseUrl, 'authors/$id'));
     if (authorResponse.statusCode == 200) {
       return Author.fromJson(jsonDecode(authorResponse.body));
     } else if (authorResponse.statusCode == 404) {

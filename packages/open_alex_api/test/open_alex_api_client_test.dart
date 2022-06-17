@@ -44,7 +44,10 @@ void main() {
         } catch (_) {}
         verify(
           () => httpClient.get(
-            Uri.parse(workId),
+            Uri.https(
+              'api.openalex.org',
+              'works/$workId',
+            ),
           ),
         ).called(1);
       });
@@ -147,7 +150,26 @@ void main() {
               .having(
                 (work) => work.countsByYear,
                 'citedByCountsByYear',
-                {2022: 13, 2021: 108, 2020: 126, 2019: 97, 2018: 47, 2017: 6},
+                [
+                  isA<YearWork>()
+                      .having((year) => year.year, 'year', 2022)
+                      .having((year) => year.citedByCount, 'citedByCount', 13),
+                  isA<YearWork>()
+                      .having((year) => year.year, 'year', 2021)
+                      .having((year) => year.citedByCount, 'citedByCount', 108),
+                  isA<YearWork>()
+                      .having((year) => year.year, 'year', 2020)
+                      .having((year) => year.citedByCount, 'citedByCount', 126),
+                  isA<YearWork>()
+                      .having((year) => year.year, 'year', 2019)
+                      .having((year) => year.citedByCount, 'citedByCount', 97),
+                  isA<YearWork>()
+                      .having((year) => year.year, 'year', 2018)
+                      .having((year) => year.citedByCount, 'citedByCount', 47),
+                  isA<YearWork>()
+                      .having((year) => year.year, 'year', 2017)
+                      .having((year) => year.citedByCount, 'citedByCount', 6),
+                ],
               )
               .having(
                 (work) => work.updatedDate,
@@ -175,7 +197,10 @@ void main() {
         } catch (_) {}
         verify(
           () => httpClient.get(
-            Uri.parse(authorId),
+            Uri.https(
+              'api.openalex.org',
+              'authors/$authorId',
+            ),
           ),
         ).called(1);
       });
@@ -208,68 +233,115 @@ void main() {
         when(() => httpClient.get(any())).thenAnswer((_) async => response);
         final actual = await metaWorkApiClient.getAuthor(authorId);
         expect(
-            actual,
-            isA<Author>()
-                .having(
-                  (author) => author.id,
-                  'openAlexId',
-                  'https://openalex.org/A1969205032',
-                )
-                .having(
-                  (author) => author.orcidId,
-                  'orcid',
-                  'https://orcid.org/0000-0003-1613-5981',
-                )
-                .having(
-                  (author) => author.displayName,
-                  'displayName',
-                  'Heather A. Piwowar',
-                )
-                .having(
-                  (author) => author.displayNameAlternatives,
-                  'displayNameAlternatives',
-                  [],
-                )
-                .having(
-                  (author) => author.worksCount,
-                  'worksCount',
-                  50,
-                )
-                .having(
-                  (author) => author.citedByCount,
-                  'citedByCount',
-                  2691,
-                )
-                .having(
-                  (author) => author.magId,
-                  'mag',
-                  '1969205032',
-                )
-                .having(
-                  (author) => author.twitterId,
-                  'twitter',
-                  'http://twitter.com/researchremix',
-                )
-                .having(
-                  (author) => author.scopusId,
-                  'scopus',
-                  'http://www.scopus.com/inward/authorDetails.url?authorID=25122628200&partnerID=MN8TOARS',
-                )
-                .having(
-                  (author) => author.worksApiUrl,
-                  'worksApiUrl',
-                  'https://api.openalex.org/works?filter=author.id:A1969205032',
-                )
-                .having(
-                  (author) => author.updatedDate,
-                  'updatedDate',
-                  DateTime(2022, 03, 09),
-                )
-                .having(
-                  (author) => author.createdDate,
-                  'createdDate',
-                  DateTime(2016, 06, 24),
-                ));
+          actual,
+          isA<Author>()
+              .having(
+                (author) => author.id,
+                'openAlexId',
+                'https://openalex.org/A1969205032',
+              )
+              .having(
+                (author) => author.orcidId,
+                'orcid',
+                'https://orcid.org/0000-0003-1613-5981',
+              )
+              .having(
+                (author) => author.displayName,
+                'displayName',
+                'Heather A. Piwowar',
+              )
+              .having(
+                (author) => author.displayNameAlternatives,
+                'displayNameAlternatives',
+                [],
+              )
+              .having(
+                (author) => author.worksCount,
+                'worksCount',
+                50,
+              )
+              .having(
+                (author) => author.citedByCount,
+                'citedByCount',
+                2691,
+              )
+              .having(
+                (author) => author.magId,
+                'mag',
+                '1969205032',
+              )
+              .having(
+                (author) => author.twitterId,
+                'twitter',
+                'http://twitter.com/researchremix',
+              )
+              .having(
+                (author) => author.scopusId,
+                'scopus',
+                'http://www.scopus.com/inward/authorDetails.url?authorID=25122628200&partnerID=MN8TOARS',
+              )
+              .having(
+                (author) => author.worksApiUrl,
+                'worksApiUrl',
+                'https://api.openalex.org/works?filter=author.id:A1969205032',
+              )
+              .having(
+                (author) => author.updatedDate,
+                'updatedDate',
+                DateTime(2022, 03, 09),
+              )
+              .having(
+                (author) => author.createdDate,
+                'createdDate',
+                DateTime(2016, 06, 24),
+              )
+              .having((author) => author.countsByYear, 'citedByCountsByYear', [
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2022)
+                    .having((year) => year.worksCount, 'worksCount', 0)
+                    .having((year) => year.citedByCount, 'citedByCount', 52),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2021)
+                    .having((year) => year.worksCount, 'worksCount', 1)
+                    .having((year) => year.citedByCount, 'citedByCount', 299),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2020)
+                    .having((year) => year.worksCount, 'worksCount', 2)
+                    .having((year) => year.citedByCount, 'citedByCount', 367),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2019)
+                    .having((year) => year.worksCount, 'worksCount', 2)
+                    .having((year) => year.citedByCount, 'citedByCount', 291),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2018)
+                    .having((year) => year.worksCount, 'worksCount', 3)
+                    .having((year) => year.citedByCount, 'citedByCount', 265),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2017)
+                    .having((year) => year.worksCount, 'worksCount', 2)
+                    .having((year) => year.citedByCount, 'citedByCount', 227),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2016)
+                    .having((year) => year.worksCount, 'worksCount', 1)
+                    .having((year) => year.citedByCount, 'citedByCount', 230),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2015)
+                    .having((year) => year.worksCount, 'worksCount', 0)
+                    .having((year) => year.citedByCount, 'citedByCount', 273),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2014)
+                    .having((year) => year.worksCount, 'worksCount', 1)
+                    .having((year) => year.citedByCount, 'citedByCount', 212),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2013)
+                    .having((year) => year.worksCount, 'worksCount', 9)
+                    .having((year) => year.citedByCount, 'citedByCount', 223),
+                isA<YearAuthor>()
+                    .having((year) => year.year, 'year', 2012)
+                    .having((year) => year.worksCount, 'worksCount', 2)
+                    .having((year) => year.citedByCount, 'citedByCount', 99),
+              ]),
+        );
       });
     });
   });

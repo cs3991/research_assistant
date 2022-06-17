@@ -78,20 +78,8 @@ class Work {
   // Citations
   final int citedByCount;
   final String citedByApiUrl;
-  @JsonKey(
-    name: 'counts_by_year',
-    fromJson: _readCountsByYear,
-  )
-  final Map<int, int> countsByYear;
-
-  static Map<int, int> _readCountsByYear(List list) {
-    final Map<int, int> result = {};
-    for (var element in list) {
-      element = element as Map<dynamic, dynamic>;
-      result[element['year']] = element['cited_by_count'];
-    }
-    return result;
-  }
+  @JsonKey(name: 'counts_by_year')
+  final List<YearWork> countsByYear;
 
   final bool isRetracted;
   final bool isParatext;
@@ -123,4 +111,18 @@ class Work {
   });
 
   factory Work.fromJson(Map<String, dynamic> json) => _$WorkFromJson(json);
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class YearWork {
+  final int year;
+  final int citedByCount;
+
+  YearWork({
+    required this.year,
+    required this.citedByCount,
+  });
+
+  factory YearWork.fromJson(Map<String, dynamic> json) =>
+      _$YearWorkFromJson(json);
 }
