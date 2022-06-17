@@ -1,4 +1,4 @@
-const jsonResponse = '''{
+const workJsonResponse = '''{
   "id": "https://openalex.org/W2741809807",
   "doi": "https://doi.org/10.7717/peerj.4375",
   "title":
@@ -580,4 +580,138 @@ const jsonResponse = '''{
   ],
   "updated_date": "2022-05-27",
   "created_date": "2017-08-08"
+}''';
+
+const authorJsonResponse = '''{
+  "id": "https://openalex.org/A1969205032",
+  "orcid": "https://orcid.org/0000-0003-1613-5981",
+  "display_name": "Heather A. Piwowar",
+  "display_name_alternatives": [],
+  "works_count": 50,
+  "cited_by_count": 2691,
+  "ids": {
+    "openalex": "https://openalex.org/A1969205032",
+    "orcid": "https://orcid.org/0000-0003-1613-5981",
+    "mag": "1969205032",
+    "twitter": "http://twitter.com/researchremix",
+    "scopus":
+        "http://www.scopus.com/inward/authorDetails.url?authorID=25122628200&partnerID=MN8TOARS"
+  },
+  "last_known_institution": {
+    "id": "https://openalex.org/I4200000001",
+    "ror": "https://ror.org/02nr0ka47",
+    "display_name": "Our Research",
+    "country_code": "CA",
+    "type": "nonprofit"
+  },
+  "x_concepts": [
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 88.0
+    },
+    {
+      "id": "https://openalex.org/C2522767166",
+      "wikidata": "https://www.wikidata.org/wiki/Q2374463",
+      "display_name": "Data science",
+      "level": 1,
+      "score": 64.0
+    },
+    {
+      "id": "https://openalex.org/C136764020",
+      "wikidata": "https://www.wikidata.org/wiki/Q466",
+      "display_name": "World Wide Web",
+      "level": 1,
+      "score": 56.0
+    },
+    {
+      "id": "https://openalex.org/C17744445",
+      "wikidata": "https://www.wikidata.org/wiki/Q36442",
+      "display_name": "Political science",
+      "level": 0,
+      "score": 54.0
+    },
+    {
+      "id": "https://openalex.org/C199539241",
+      "wikidata": "https://www.wikidata.org/wiki/Q7748",
+      "display_name": "Law",
+      "level": 1,
+      "score": 54.0
+    },
+    {
+      "id": "https://openalex.org/C161191863",
+      "wikidata": "https://www.wikidata.org/wiki/Q199655",
+      "display_name": "Library science",
+      "level": 1,
+      "score": 44.0
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 30.0
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 26.0
+    },
+    {
+      "id": "https://openalex.org/C124101348",
+      "wikidata": "https://www.wikidata.org/wiki/Q172491",
+      "display_name": "Data mining",
+      "level": 1,
+      "score": 24.0
+    },
+    {
+      "id": "https://openalex.org/C2778407487",
+      "wikidata": "https://www.wikidata.org/wiki/Q14565201",
+      "display_name": "Altmetrics",
+      "level": 2,
+      "score": 24.0
+    },
+    {
+      "id": "https://openalex.org/C23123220",
+      "wikidata": "https://www.wikidata.org/wiki/Q816826",
+      "display_name": "Information retrieval",
+      "level": 1,
+      "score": 22.0
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 22.0
+    },
+    {
+      "id": "https://openalex.org/C2778805511",
+      "wikidata": "https://www.wikidata.org/wiki/Q1713",
+      "display_name": "Citation",
+      "level": 2,
+      "score": 22.0
+    }
+  ],
+  "counts_by_year": [
+    {"year": 2022, "works_count": 0, "cited_by_count": 52},
+    {"year": 2021, "works_count": 1, "cited_by_count": 299},
+    {"year": 2020, "works_count": 2, "cited_by_count": 367},
+    {"year": 2019, "works_count": 2, "cited_by_count": 291},
+    {"year": 2018, "works_count": 3, "cited_by_count": 265},
+    {"year": 2017, "works_count": 2, "cited_by_count": 227},
+    {"year": 2016, "works_count": 1, "cited_by_count": 230},
+    {"year": 2015, "works_count": 0, "cited_by_count": 273},
+    {"year": 2014, "works_count": 1, "cited_by_count": 212},
+    {"year": 2013, "works_count": 9, "cited_by_count": 223},
+    {"year": 2012, "works_count": 2, "cited_by_count": 99}
+  ],
+  "works_api_url":
+      "https://api.openalex.org/works?filter=author.id:A1969205032",
+  "updated_date": "2022-03-09",
+  "created_date": "2016-06-24"
 }''';

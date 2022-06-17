@@ -49,7 +49,7 @@ class Work {
   static Object? _readId(Map<dynamic, dynamic> json, String key) =>
       json['ids'][key];
   @JsonKey(name: 'id')
-  final String? openAlexId;
+  final String id;
   @JsonKey(readValue: _readId, name: 'doi')
   final String? doiId;
   @JsonKey(readValue: _readId, name: 'mag')
@@ -79,27 +79,16 @@ class Work {
   final int citedByCount;
   final String citedByApiUrl;
   @JsonKey(
-      name: 'counts_by_year',
-      fromJson: _readCountsByYear,
-      toJson: _writeCountsByYear)
-  final Map<int, int> citedByCountsByYear;
+    name: 'counts_by_year',
+    fromJson: _readCountsByYear,
+  )
+  final Map<int, int> countsByYear;
 
   static Map<int, int> _readCountsByYear(List list) {
     final Map<int, int> result = {};
     for (var element in list) {
       element = element as Map<dynamic, dynamic>;
       result[element['year']] = element['cited_by_count'];
-    }
-    return result;
-  }
-
-  static List<Map<dynamic, dynamic>> _writeCountsByYear(Map<int, int> map) {
-    final List<Map<dynamic, dynamic>> result = [];
-    for (final element in map.entries) {
-      result.add({
-        'year': element.key,
-        'cited_by_count': element.value,
-      });
     }
     return result;
   }
@@ -111,12 +100,7 @@ class Work {
   final DateTime createdDate;
 
   Work({
-    this.openAlexId,
-    this.doiId,
-    this.magId,
-    this.pmidId,
-    this.pmcId,
-    this.openAccessUrl,
+    required this.id,
     required this.type,
     required this.title,
     required this.displayName,
@@ -128,9 +112,14 @@ class Work {
     required this.isRetracted,
     required this.isParatext,
     required this.citedByApiUrl,
-    required this.citedByCountsByYear,
+    required this.countsByYear,
     required this.updatedDate,
     required this.createdDate,
+    this.doiId,
+    this.magId,
+    this.pmidId,
+    this.pmcId,
+    this.openAccessUrl,
   });
 
   factory Work.fromJson(Map<String, dynamic> json) => _$WorkFromJson(json);

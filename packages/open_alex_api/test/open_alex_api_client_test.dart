@@ -73,14 +73,14 @@ void main() {
       test('returns work on valid response', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn(jsonResponse);
+        when(() => response.body).thenReturn(workJsonResponse);
         when(() => httpClient.get(any())).thenAnswer((_) async => response);
         final actual = await metaWorkApiClient.getWork(workId);
         expect(
           actual,
           isA<Work>()
               .having(
-                (work) => work.openAlexId,
+                (work) => work.id,
                 'openAlexId',
                 'https://openalex.org/W2741809807',
               )
@@ -145,7 +145,7 @@ void main() {
                 'https://api.openalex.org/works?filter=cites:W2741809807',
               )
               .having(
-                (work) => work.citedByCountsByYear,
+                (work) => work.countsByYear,
                 'citedByCountsByYear',
                 {2022: 13, 2021: 108, 2020: 126, 2019: 97, 2018: 47, 2017: 6},
               )
