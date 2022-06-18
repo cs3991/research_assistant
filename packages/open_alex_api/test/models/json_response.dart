@@ -715,3 +715,138 @@ const authorJsonResponse = '''{
   "updated_date": "2022-03-09",
   "created_date": "2016-06-24"
 }''';
+
+const String venueJsonResponse = '''{
+  "id": "https://openalex.org/V1983995261",
+  "issn_l": "2167-8359",
+  "issn": ["2167-8359"],
+  "display_name": "PeerJ",
+  "publisher": "PeerJ",
+  "works_count": 21215,
+  "cited_by_count": 153850,
+  "is_oa": true,
+  "is_in_doaj": true,
+  "homepage_url": "http://www.peerj.com/",
+  "ids": {
+    "openalex": "https://openalex.org/V1983995261",
+    "issn_l": "2167-8359",
+    "mag": "1983995261",
+    "issn": ["2167-8359"]
+  },
+  "x_concepts": [
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 82.4
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 46.5
+    },
+    {
+      "id": "https://openalex.org/C185592680",
+      "wikidata": "https://www.wikidata.org/wiki/Q2329",
+      "display_name": "Chemistry",
+      "level": 0,
+      "score": 44.4
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 40.7
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 37.9
+    },
+    {
+      "id": "https://openalex.org/C18903297",
+      "wikidata": "https://www.wikidata.org/wiki/Q7150",
+      "display_name": "Ecology",
+      "level": 1,
+      "score": 37.7
+    },
+    {
+      "id": "https://openalex.org/C127313418",
+      "wikidata": "https://www.wikidata.org/wiki/Q1069",
+      "display_name": "Geology",
+      "level": 0,
+      "score": 32.5
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 27.0
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 25.3
+    },
+    {
+      "id": "https://openalex.org/C126322002",
+      "wikidata": "https://www.wikidata.org/wiki/Q11180",
+      "display_name": "Internal medicine",
+      "level": 1,
+      "score": 25.0
+    },
+    {
+      "id": "https://openalex.org/C151730666",
+      "wikidata": "https://www.wikidata.org/wiki/Q7205",
+      "display_name": "Paleontology",
+      "level": 1,
+      "score": 24.8
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 21.0
+    },
+    {
+      "id": "https://openalex.org/C59822182",
+      "wikidata": "https://www.wikidata.org/wiki/Q441",
+      "display_name": "Botany",
+      "level": 1,
+      "score": 20.9
+    },
+    {
+      "id": "https://openalex.org/C205649164",
+      "wikidata": "https://www.wikidata.org/wiki/Q1071",
+      "display_name": "Geography",
+      "level": 0,
+      "score": 20.8
+    }
+  ],
+  "counts_by_year": [
+    {"year": 2022, "works_count": 883, "cited_by_count": 18439},
+    {"year": 2021, "works_count": 4325, "cited_by_count": 46571},
+    {"year": 2020, "works_count": 4364, "cited_by_count": 33225},
+    {"year": 2019, "works_count": 3857, "cited_by_count": 22303},
+    {"year": 2018, "works_count": 3081, "cited_by_count": 14254},
+    {"year": 2017, "works_count": 1497, "cited_by_count": 9754},
+    {"year": 2016, "works_count": 1522, "cited_by_count": 5424},
+    {"year": 2015, "works_count": 942, "cited_by_count": 2603},
+    {"year": 2014, "works_count": 492, "cited_by_count": 1050},
+    {"year": 2013, "works_count": 238, "cited_by_count": 198},
+    {"year": 2012, "works_count": 0, "cited_by_count": 9}
+  ],
+  "works_api_url": "https://api.openalex.org/works?filter=host_venue.id:V1983995261",
+  "updated_date": "2022-06-18",
+  "created_date": "2016-06-24"
+}''';
