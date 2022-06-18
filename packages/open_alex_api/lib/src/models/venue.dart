@@ -87,7 +87,6 @@ class Venue {
   factory Venue.fromJson(Map<String, dynamic> json) => _$VenueFromJson(json);
 }
 
-
 @JsonSerializable(fieldRename: FieldRename.snake)
 class YearVenue {
   final int year;
@@ -100,5 +99,6 @@ class YearVenue {
     required this.citedByCount,
   });
 
-  factory YearVenue.fromJson(Map<String, dynamic> json) => _$YearVenueFromJson(json);
+  factory YearVenue.fromJson(Map<String, dynamic> json) =>
+      _$YearVenueFromJson(json);
 }

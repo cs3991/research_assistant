@@ -11,6 +11,10 @@ class AuthorRequestFailure {}
 
 class AuthorNotFoundFailure {}
 
+class VenueRequestFailure implements Exception {}
+
+class VenueNotFoundFailure implements Exception {}
+
 class OpenAlexApiClient {
   OpenAlexApiClient({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
@@ -43,6 +47,19 @@ class OpenAlexApiClient {
       throw AuthorNotFoundFailure();
     } else {
       throw AuthorRequestFailure();
+    }
+  }
+
+  /// Fetches a [Venue] by its OpenAlex ID.
+  Future<Venue> getVenue(String id) async {
+    final venueResponse =
+        await _httpClient.get(Uri.https(_baseUrl, 'venues/$id'));
+    if (venueResponse.statusCode == 200) {
+      return Venue.fromJson(jsonDecode(venueResponse.body));
+    } else if (venueResponse.statusCode == 404) {
+      throw VenueNotFoundFailure();
+    } else {
+      throw VenueRequestFailure();
     }
   }
 }

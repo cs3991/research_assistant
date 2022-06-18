@@ -344,5 +344,236 @@ void main() {
         );
       });
     });
+    group('getVenue', () {
+      const venueId = 'https://openalex.org/V1983995261';
+
+      test('makes correct http request', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        try {
+          await metaWorkApiClient.getVenue(venueId);
+        } catch (_) {}
+        verify(
+          () => httpClient.get(
+            Uri.https(
+              'api.openalex.org',
+              'venues/$venueId',
+            ),
+          ),
+        ).called(1);
+      });
+
+      test('throws VenueRequestFailure on non-200 response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(400);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        expect(
+          () async => await metaWorkApiClient.getVenue(venueId),
+          throwsA(isA<VenueRequestFailure>()),
+        );
+      });
+
+      test('throws VenueNotFoundFailure on 404 response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(404);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        expect(
+          () async => await metaWorkApiClient.getVenue(venueId),
+          throwsA(isA<VenueNotFoundFailure>()),
+        );
+      });
+
+      // example of json model of a Venue:
+      // {
+      //   "id": "https://openalex.org/V1983995261",
+      //   "issn_l": "2167-8359",
+      //   "issn": ["2167-8359"],
+      //   "display_name": "PeerJ",
+      //   "publisher": "PeerJ",
+      //   "works_count": 21215,
+      //   "cited_by_count": 153850,
+      //   "is_oa": true,
+      //   "is_in_doaj": true,
+      //   "homepage_url": "http://www.peerj.com/",
+      //   "ids": {
+      //     "openalex": "https://openalex.org/V1983995261",
+      //     "issn_l": "2167-8359",
+      //     "mag": "1983995261",
+      //     "issn": ["2167-8359"]
+      //   },
+      //   "counts_by_year": [
+      //     {"year": 2022, "works_count": 883, "cited_by_count": 18439},
+      //     {"year": 2021, "works_count": 4325, "cited_by_count": 46571},
+      //     {"year": 2020, "works_count": 4364, "cited_by_count": 33225},
+      //     {"year": 2019, "works_count": 3857, "cited_by_count": 22303},
+      //     {"year": 2018, "works_count": 3081, "cited_by_count": 14254},
+      //     {"year": 2017, "works_count": 1497, "cited_by_count": 9754},
+      //     {"year": 2016, "works_count": 1522, "cited_by_count": 5424},
+      //     {"year": 2015, "works_count": 942, "cited_by_count": 2603},
+      //     {"year": 2014, "works_count": 492, "cited_by_count": 1050},
+      //     {"year": 2013, "works_count": 238, "cited_by_count": 198},
+      //     {"year": 2012, "works_count": 0, "cited_by_count": 9}
+      //   ],
+      //   "works_api_url": "https://api.openalex.org/works?filter=host_venue.id:V1983995261",
+      //   "updated_date": "2022-06-18",
+      //   "created_date": "2016-06-24"
+      // }
+
+      test('returns venue on valid response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn(venueJsonResponse);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        final actual = await metaWorkApiClient.getVenue(venueId);
+        expect(
+            actual,
+            isA<Venue>()
+                .having(
+                  (venue) => venue.id,
+                  'openAlexId',
+                  'https://openalex.org/V1983995261',
+                )
+                .having(
+                  (venue) => venue.linkingIssn,
+                  'linkingIssn',
+                  '2167-8359',
+                )
+                .having(
+                  (venue) => venue.issn,
+                  'issn',
+                  ['2167-8359'],
+                )
+                .having(
+                  (venue) => venue.displayName,
+                  'displayName',
+                  'PeerJ',
+                )
+                .having(
+                  (venue) => venue.publisher,
+                  'publisher',
+                  'PeerJ',
+                )
+                .having(
+                  (venue) => venue.worksCount,
+                  'worksCount',
+                  21215,
+                )
+                .having(
+                  (venue) => venue.citedByCount,
+                  'citedByCount',
+                  153850,
+                )
+                .having(
+                  (venue) => venue.isOa,
+                  'isOa',
+                  true,
+                )
+                .having(
+                  (venue) => venue.isInDoaj,
+                  'isInDoaj',
+                  true,
+                )
+                .having(
+                  (venue) => venue.homepageUrl,
+                  'homepageUrl',
+                  'http://www.peerj.com/',
+                )
+                .having(
+                  (venue) => venue.magId,
+                  'magId',
+                  '1983995261',
+                )
+                .having(
+                  (venue) => venue.worksApiUrl,
+                  'worksApiUrl',
+                  'https://api.openalex.org/works?filter=host_venue.id:V1983995261',
+                )
+                .having(
+                  (venue) => venue.updatedDate,
+                  'updatedDate',
+                  DateTime.parse('2022-06-18'),
+                )
+                .having(
+                  (venue) => venue.createdDate,
+                  'createdDate',
+                  DateTime.parse('2016-06-24'),
+                )
+                .having(
+                  (venue) => venue.countsByYear,
+                  'countsByYear',
+                  [
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2022)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 883)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 18439),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2021)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 4325)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 46571),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2020)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 4364)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 33225),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2019)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 3857)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 22303),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2018)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 3081)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 14254),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2017)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 1497)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 9754),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2016)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 1522)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 5424),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2015)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 942)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 2603),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2014)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 492)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 1050),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2013)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 238)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 198),
+                    isA<YearVenue>()
+                        .having((yearVenue) => yearVenue.year, 'year', 2012)
+                        .having((yearVenue) => yearVenue.worksCount,
+                            'worksCount', 0)
+                        .having((yearVenue) => yearVenue.citedByCount,
+                            'citedByCount', 9),
+                  ],
+                ));
+      });
+    });
   });
 }
