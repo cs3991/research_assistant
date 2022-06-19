@@ -45,9 +45,8 @@ enum OpenAccessStatus {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Work {
-  // ids
-  static Object? _readId(Map<dynamic, dynamic> json, String key) =>
-      json['ids'][key];
+  factory Work.fromJson(Map<String, dynamic> json) => _$WorkFromJson(json);
+
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(readValue: _readId, name: 'doi')
@@ -66,8 +65,6 @@ class Work {
   final DateTime publicationDate;
 
   // Open access
-  static Object _readOpenAccess(Map<dynamic, dynamic> json, String key) =>
-      json['open_access'][key];
   @JsonKey(readValue: _readOpenAccess, name: 'is_oa')
   final bool isOpenAccess;
   @JsonKey(readValue: _readOpenAccess, name: 'oa_status')
@@ -110,7 +107,11 @@ class Work {
     this.openAccessUrl,
   });
 
-  factory Work.fromJson(Map<String, dynamic> json) => _$WorkFromJson(json);
+  static Object? _readId(Map<dynamic, dynamic> json, String key) =>
+      json['ids'][key];
+
+  static Object? _readOpenAccess(Map<dynamic, dynamic> json, String key) =>
+      json['open_access'][key];
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)

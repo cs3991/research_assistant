@@ -850,3 +850,59 @@ const String venueJsonResponse = '''{
   "updated_date": "2022-06-18",
   "created_date": "2016-06-24"
 }''';
+
+
+const String institutionJsonResponse = '''{
+  "id": "https://openalex.org/I114027177",
+  "ror": "https://ror.org/0130frc33",
+  "display_name": "University of North Carolina at Chapel Hill",
+  "country_code": "US",
+  "type": "education",
+  "homepage_url": "http://www.unc.edu/",
+  "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/University_of_North_Carolina_at_Chapel_Hill_seal.svg",
+  "image_thumbnail_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/University_of_North_Carolina_at_Chapel_Hill_seal.svg/100px-University_of_North_Carolina_at_Chapel_Hill_seal.svg.png",
+  "display_name_acronyms": ["UNC"],
+  "display_name_alternatives": ["UNC-Chapel Hill"],
+  "works_count": 200714,
+  "cited_by_count": 20698095,
+  "ids": {
+    "openalex": "https://openalex.org/I114027177",
+    "ror": "https://ror.org/0130frc33",
+    "mag": "114027177",
+    "grid": "grid.10698.36",
+    "wikipedia": "https://en.wikipedia.org/wiki/University%20of%20North%20Carolina%20at%20Chapel%20Hill",
+    "wikidata": "https://www.wikidata.org/wiki/Q192334"
+  },
+  "geo": {
+    "city": "Chapel Hill",
+    "geonames_city_id": "4460162",
+    "region": "North Carolina",
+    "country_code": "US",
+    "country": "United States",
+    "latitude": 35.905163,
+    "longitude": -79.04694
+  },
+  "international": {
+    "display_name": {
+      "ar": "\u062c\u0627\u0645\u0639\u0629 \u0646\u0648\u0631\u062b \u0643\u0627\u0631\u0648\u0644\u064a\u0646\u0627 \u0641\u064a \u062a\u0634\u0627\u0628\u0644 \u0647\u064a\u0644",
+      "arz": "\u062c\u0627\u0645\u0639\u0629 \u0646\u0648\u0631\u062b \u0643\u0627\u0631\u0648\u0644\u0627\u064a\u0646\u0627 \u0641\u0649 \u062a\u0634\u0627\u0628\u0644 \u0647\u064a\u0644"
+    }
+  },
+  "associated_institutions": [
+    {
+      "id": "https://openalex.org/I4210157879",
+      "ror": "https://ror.org/04q5n7269",
+      "display_name": "Carolina Institute for NanoMedicine",
+      "country_code": "US",
+      "type": "facility",
+      "relationship": "child"
+    }
+  ],
+  "counts_by_year": [
+    {"year": 2022, "works_count": 5518, "cited_by_count": 771027},
+    {"year": 2021, "works_count": 12787, "cited_by_count": 2119577}
+  ],
+  "works_api_url": "https://api.openalex.org/works?filter=institutions.id:I114027177",
+  "updated_date": "2022-06-18",
+  "created_date": "2016-06-24"
+}''';

@@ -56,6 +56,19 @@ void main() {
           }, throwsA(isA<CheckedFromJsonException>()));
         }
       });
+      test('returns Work when all required fields are present', () {
+        var validJson = Map<String, dynamic>.from(jsonResponseMap);
+        for (final field in [
+          'mag',
+          'doi',
+          'pmid',
+          'pmcid',
+        ]) {
+        expect(validJson['ids'].remove(field), isNotNull);
+        }
+        expect(validJson['open_access'].remove('oa_url'), isNotNull);
+        expect(Work.fromJson(validJson), isA<Work>());
+      });
     });
   });
 }
