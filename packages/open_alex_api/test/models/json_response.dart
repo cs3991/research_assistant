@@ -247,20 +247,6 @@ const workJsonResponse = '''{
       "display_name": "Bibliometrics",
       "level": 2,
       "score": "0.44480205"
-    },
-    {
-      "id": "https://openalex.org/C2777462167",
-      "wikidata": "https://www.wikidata.org/wiki/Q7432048",
-      "display_name": "Scholarly communication",
-      "level": 3,
-      "score": "0.44104964"
-    },
-    {
-      "id": "https://openalex.org/C525823164",
-      "wikidata": "https://www.wikidata.org/wiki/Q472342",
-      "display_name": "Scientometrics",
-      "level": 2,
-      "score": "0.43013373"
     }
   ],
   "mesh": [],
@@ -282,123 +268,15 @@ const workJsonResponse = '''{
       "is_oa": true,
       "version": "publishedVersion",
       "license": "cc-by"
-    },
-    {
-      "id": null,
-      "display_name": "PMC",
-      "type": "repository",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5815332",
-      "is_oa": true,
-      "version": "publishedVersion",
-      "license": null
-    },
-    {
-      "id": null,
-      "display_name": null,
-      "type": "repository",
-      "url":
-          "https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1143&context=scholcom",
-      "is_oa": true,
-      "version": "submittedVersion",
-      "license": "cc-by"
-    },
-    {
-      "id": null,
-      "display_name":
-          "Universit\u00e9 de Montr\u00e9al - Papyrus : Institutional Repository",
-      "type": "repository",
-      "url":
-          "https://papyrus.bib.umontreal.ca/xmlui/bitstream/1866/23242/1/peerj-06-4375.pdf",
-      "is_oa": true,
-      "version": "submittedVersion",
-      "license": "cc-by"
-    },
-    {
-      "id": null,
-      "display_name": "Simon Fraser University - Summit",
-      "type": "repository",
-      "url": "https://summit.sfu.ca/item/17691",
-      "is_oa": true,
-      "version": "submittedVersion",
-      "license": "cc-by"
-    },
-    {
-      "id": null,
-      "display_name": "Simon Fraser University - Summit",
-      "type": "repository",
-      "url": "http://summit.sfu.ca/system/files/iritems1/17691/peerj-4375.pdf",
-      "is_oa": true,
-      "version": "submittedVersion",
-      "license": "cc-by"
-    },
-    {
-      "id": null,
-      "display_name": "Semantic Scholar",
-      "type": "repository",
-      "url":
-          "http://pdfs.semanticscholar.org/bca1/531b0562c6d72e0c283c1ccb97eb5cb02117.pdf",
-      "is_oa": true,
-      "version": "submittedVersion",
-      "license": null
     }
   ],
   "referenced_works": [
     "https://openalex.org/W1560783210",
-    "https://openalex.org/W1724212071",
-    "https://openalex.org/W1767272795",
-    "https://openalex.org/W1917633107",
-    "https://openalex.org/W1957687230",
-    "https://openalex.org/W1989318653",
-    "https://openalex.org/W2003844967",
-    "https://openalex.org/W2016860460",
-    "https://openalex.org/W2020807482",
-    "https://openalex.org/W2029057325",
-    "https://openalex.org/W2031754690",
-    "https://openalex.org/W2048185449",
-    "https://openalex.org/W2078310052",
-    "https://openalex.org/W2089123513",
-    "https://openalex.org/W2115339903",
-    "https://openalex.org/W2140880926",
-    "https://openalex.org/W2160597895",
-    "https://openalex.org/W2231201268",
-    "https://openalex.org/W2306268324",
-    "https://openalex.org/W2322381034",
-    "https://openalex.org/W2343014812",
-    "https://openalex.org/W2345375849",
-    "https://openalex.org/W2463568293",
-    "https://openalex.org/W2511661767",
-    "https://openalex.org/W2520991028",
-    "https://openalex.org/W2563251083",
-    "https://openalex.org/W2566143661",
-    "https://openalex.org/W2587705861",
-    "https://openalex.org/W2588027260",
-    "https://openalex.org/W2753353163",
-    "https://openalex.org/W2762597540",
-    "https://openalex.org/W2785823074",
-    "https://openalex.org/W2953072907",
-    "https://openalex.org/W3121567788"
+    "https://openalex.org/W1724212071"
   ],
   "related_works": [
     "https://openalex.org/W1655306493",
-    "https://openalex.org/W1970217003",
-    "https://openalex.org/W1989318653",
-    "https://openalex.org/W1996515099",
-    "https://openalex.org/W2016860460",
-    "https://openalex.org/W2023783748",
-    "https://openalex.org/W2029057325",
-    "https://openalex.org/W2048185449",
-    "https://openalex.org/W2089123513",
-    "https://openalex.org/W2089604928",
-    "https://openalex.org/W2104772551",
-    "https://openalex.org/W2140880926",
-    "https://openalex.org/W2302501749",
-    "https://openalex.org/W2322381034",
-    "https://openalex.org/W2463568293",
-    "https://openalex.org/W2520991028",
-    "https://openalex.org/W2587705861",
-    "https://openalex.org/W2783957468",
-    "https://openalex.org/W2785823074",
-    "https://openalex.org/W2962868865"
+    "https://openalex.org/W1970217003"
   ],
   "abstract_inverted_index": {
     "Despite": [0],
@@ -572,11 +450,7 @@ const workJsonResponse = '''{
   "cited_by_api_url": "https://api.openalex.org/works?filter=cites:W2741809807",
   "counts_by_year": [
     {"year": 2022, "cited_by_count": 13},
-    {"year": 2021, "cited_by_count": 108},
-    {"year": 2020, "cited_by_count": 126},
-    {"year": 2019, "cited_by_count": 97},
-    {"year": 2018, "cited_by_count": 47},
-    {"year": 2017, "cited_by_count": 6}
+    {"year": 2021, "cited_by_count": 108}
   ],
   "updated_date": "2022-05-27",
   "created_date": "2017-08-08"
@@ -604,111 +478,9 @@ const authorJsonResponse = '''{
     "country_code": "CA",
     "type": "nonprofit"
   },
-  "x_concepts": [
-    {
-      "id": "https://openalex.org/C41008148",
-      "wikidata": "https://www.wikidata.org/wiki/Q21198",
-      "display_name": "Computer science",
-      "level": 0,
-      "score": 88.0
-    },
-    {
-      "id": "https://openalex.org/C2522767166",
-      "wikidata": "https://www.wikidata.org/wiki/Q2374463",
-      "display_name": "Data science",
-      "level": 1,
-      "score": 64.0
-    },
-    {
-      "id": "https://openalex.org/C136764020",
-      "wikidata": "https://www.wikidata.org/wiki/Q466",
-      "display_name": "World Wide Web",
-      "level": 1,
-      "score": 56.0
-    },
-    {
-      "id": "https://openalex.org/C17744445",
-      "wikidata": "https://www.wikidata.org/wiki/Q36442",
-      "display_name": "Political science",
-      "level": 0,
-      "score": 54.0
-    },
-    {
-      "id": "https://openalex.org/C199539241",
-      "wikidata": "https://www.wikidata.org/wiki/Q7748",
-      "display_name": "Law",
-      "level": 1,
-      "score": 54.0
-    },
-    {
-      "id": "https://openalex.org/C161191863",
-      "wikidata": "https://www.wikidata.org/wiki/Q199655",
-      "display_name": "Library science",
-      "level": 1,
-      "score": 44.0
-    },
-    {
-      "id": "https://openalex.org/C86803240",
-      "wikidata": "https://www.wikidata.org/wiki/Q420",
-      "display_name": "Biology",
-      "level": 0,
-      "score": 30.0
-    },
-    {
-      "id": "https://openalex.org/C71924100",
-      "wikidata": "https://www.wikidata.org/wiki/Q11190",
-      "display_name": "Medicine",
-      "level": 0,
-      "score": 26.0
-    },
-    {
-      "id": "https://openalex.org/C124101348",
-      "wikidata": "https://www.wikidata.org/wiki/Q172491",
-      "display_name": "Data mining",
-      "level": 1,
-      "score": 24.0
-    },
-    {
-      "id": "https://openalex.org/C2778407487",
-      "wikidata": "https://www.wikidata.org/wiki/Q14565201",
-      "display_name": "Altmetrics",
-      "level": 2,
-      "score": 24.0
-    },
-    {
-      "id": "https://openalex.org/C23123220",
-      "wikidata": "https://www.wikidata.org/wiki/Q816826",
-      "display_name": "Information retrieval",
-      "level": 1,
-      "score": 22.0
-    },
-    {
-      "id": "https://openalex.org/C121332964",
-      "wikidata": "https://www.wikidata.org/wiki/Q413",
-      "display_name": "Physics",
-      "level": 0,
-      "score": 22.0
-    },
-    {
-      "id": "https://openalex.org/C2778805511",
-      "wikidata": "https://www.wikidata.org/wiki/Q1713",
-      "display_name": "Citation",
-      "level": 2,
-      "score": 22.0
-    }
-  ],
   "counts_by_year": [
     {"year": 2022, "works_count": 0, "cited_by_count": 52},
-    {"year": 2021, "works_count": 1, "cited_by_count": 299},
-    {"year": 2020, "works_count": 2, "cited_by_count": 367},
-    {"year": 2019, "works_count": 2, "cited_by_count": 291},
-    {"year": 2018, "works_count": 3, "cited_by_count": 265},
-    {"year": 2017, "works_count": 2, "cited_by_count": 227},
-    {"year": 2016, "works_count": 1, "cited_by_count": 230},
-    {"year": 2015, "works_count": 0, "cited_by_count": 273},
-    {"year": 2014, "works_count": 1, "cited_by_count": 212},
-    {"year": 2013, "works_count": 9, "cited_by_count": 223},
-    {"year": 2012, "works_count": 2, "cited_by_count": 99}
+    {"year": 2021, "works_count": 1, "cited_by_count": 299}
   ],
   "works_api_url":
       "https://api.openalex.org/works?filter=author.id:A1969205032",
@@ -733,118 +505,9 @@ const String venueJsonResponse = '''{
     "mag": "1983995261",
     "issn": ["2167-8359"]
   },
-  "x_concepts": [
-    {
-      "id": "https://openalex.org/C86803240",
-      "wikidata": "https://www.wikidata.org/wiki/Q420",
-      "display_name": "Biology",
-      "level": 0,
-      "score": 82.4
-    },
-    {
-      "id": "https://openalex.org/C71924100",
-      "wikidata": "https://www.wikidata.org/wiki/Q11190",
-      "display_name": "Medicine",
-      "level": 0,
-      "score": 46.5
-    },
-    {
-      "id": "https://openalex.org/C185592680",
-      "wikidata": "https://www.wikidata.org/wiki/Q2329",
-      "display_name": "Chemistry",
-      "level": 0,
-      "score": 44.4
-    },
-    {
-      "id": "https://openalex.org/C54355233",
-      "wikidata": "https://www.wikidata.org/wiki/Q7162",
-      "display_name": "Genetics",
-      "level": 1,
-      "score": 40.7
-    },
-    {
-      "id": "https://openalex.org/C55493867",
-      "wikidata": "https://www.wikidata.org/wiki/Q7094",
-      "display_name": "Biochemistry",
-      "level": 1,
-      "score": 37.9
-    },
-    {
-      "id": "https://openalex.org/C18903297",
-      "wikidata": "https://www.wikidata.org/wiki/Q7150",
-      "display_name": "Ecology",
-      "level": 1,
-      "score": 37.7
-    },
-    {
-      "id": "https://openalex.org/C127313418",
-      "wikidata": "https://www.wikidata.org/wiki/Q1069",
-      "display_name": "Geology",
-      "level": 0,
-      "score": 32.5
-    },
-    {
-      "id": "https://openalex.org/C104317684",
-      "wikidata": "https://www.wikidata.org/wiki/Q7187",
-      "display_name": "Gene",
-      "level": 2,
-      "score": 27.0
-    },
-    {
-      "id": "https://openalex.org/C41008148",
-      "wikidata": "https://www.wikidata.org/wiki/Q21198",
-      "display_name": "Computer science",
-      "level": 0,
-      "score": 25.3
-    },
-    {
-      "id": "https://openalex.org/C126322002",
-      "wikidata": "https://www.wikidata.org/wiki/Q11180",
-      "display_name": "Internal medicine",
-      "level": 1,
-      "score": 25.0
-    },
-    {
-      "id": "https://openalex.org/C151730666",
-      "wikidata": "https://www.wikidata.org/wiki/Q7205",
-      "display_name": "Paleontology",
-      "level": 1,
-      "score": 24.8
-    },
-    {
-      "id": "https://openalex.org/C121332964",
-      "wikidata": "https://www.wikidata.org/wiki/Q413",
-      "display_name": "Physics",
-      "level": 0,
-      "score": 21.0
-    },
-    {
-      "id": "https://openalex.org/C59822182",
-      "wikidata": "https://www.wikidata.org/wiki/Q441",
-      "display_name": "Botany",
-      "level": 1,
-      "score": 20.9
-    },
-    {
-      "id": "https://openalex.org/C205649164",
-      "wikidata": "https://www.wikidata.org/wiki/Q1071",
-      "display_name": "Geography",
-      "level": 0,
-      "score": 20.8
-    }
-  ],
   "counts_by_year": [
     {"year": 2022, "works_count": 883, "cited_by_count": 18439},
-    {"year": 2021, "works_count": 4325, "cited_by_count": 46571},
-    {"year": 2020, "works_count": 4364, "cited_by_count": 33225},
-    {"year": 2019, "works_count": 3857, "cited_by_count": 22303},
-    {"year": 2018, "works_count": 3081, "cited_by_count": 14254},
-    {"year": 2017, "works_count": 1497, "cited_by_count": 9754},
-    {"year": 2016, "works_count": 1522, "cited_by_count": 5424},
-    {"year": 2015, "works_count": 942, "cited_by_count": 2603},
-    {"year": 2014, "works_count": 492, "cited_by_count": 1050},
-    {"year": 2013, "works_count": 238, "cited_by_count": 198},
-    {"year": 2012, "works_count": 0, "cited_by_count": 9}
+    {"year": 2021, "works_count": 4325, "cited_by_count": 46571}
   ],
   "works_api_url": "https://api.openalex.org/works?filter=host_venue.id:V1983995261",
   "updated_date": "2022-06-18",

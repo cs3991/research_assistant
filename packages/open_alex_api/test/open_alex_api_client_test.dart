@@ -157,18 +157,6 @@ void main() {
                   isA<YearWork>()
                       .having((year) => year.year, 'year', 2021)
                       .having((year) => year.citedByCount, 'citedByCount', 108),
-                  isA<YearWork>()
-                      .having((year) => year.year, 'year', 2020)
-                      .having((year) => year.citedByCount, 'citedByCount', 126),
-                  isA<YearWork>()
-                      .having((year) => year.year, 'year', 2019)
-                      .having((year) => year.citedByCount, 'citedByCount', 97),
-                  isA<YearWork>()
-                      .having((year) => year.year, 'year', 2018)
-                      .having((year) => year.citedByCount, 'citedByCount', 47),
-                  isA<YearWork>()
-                      .having((year) => year.year, 'year', 2017)
-                      .having((year) => year.citedByCount, 'citedByCount', 6),
                 ],
               )
               .having(
@@ -304,42 +292,6 @@ void main() {
                     .having((year) => year.year, 'year', 2021)
                     .having((year) => year.worksCount, 'worksCount', 1)
                     .having((year) => year.citedByCount, 'citedByCount', 299),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2020)
-                    .having((year) => year.worksCount, 'worksCount', 2)
-                    .having((year) => year.citedByCount, 'citedByCount', 367),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2019)
-                    .having((year) => year.worksCount, 'worksCount', 2)
-                    .having((year) => year.citedByCount, 'citedByCount', 291),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2018)
-                    .having((year) => year.worksCount, 'worksCount', 3)
-                    .having((year) => year.citedByCount, 'citedByCount', 265),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2017)
-                    .having((year) => year.worksCount, 'worksCount', 2)
-                    .having((year) => year.citedByCount, 'citedByCount', 227),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2016)
-                    .having((year) => year.worksCount, 'worksCount', 1)
-                    .having((year) => year.citedByCount, 'citedByCount', 230),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2015)
-                    .having((year) => year.worksCount, 'worksCount', 0)
-                    .having((year) => year.citedByCount, 'citedByCount', 273),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2014)
-                    .having((year) => year.worksCount, 'worksCount', 1)
-                    .having((year) => year.citedByCount, 'citedByCount', 212),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2013)
-                    .having((year) => year.worksCount, 'worksCount', 9)
-                    .having((year) => year.citedByCount, 'citedByCount', 223),
-                isA<YearAuthor>()
-                    .having((year) => year.year, 'year', 2012)
-                    .having((year) => year.worksCount, 'worksCount', 2)
-                    .having((year) => year.citedByCount, 'citedByCount', 99),
               ]),
         );
       });
@@ -385,43 +337,6 @@ void main() {
           throwsA(isA<VenueNotFoundFailure>()),
         );
       });
-
-      // example of json model of a Venue:
-      // {
-      //   "id": "https://openalex.org/V1983995261",
-      //   "issn_l": "2167-8359",
-      //   "issn": ["2167-8359"],
-      //   "display_name": "PeerJ",
-      //   "publisher": "PeerJ",
-      //   "works_count": 21215,
-      //   "cited_by_count": 153850,
-      //   "is_oa": true,
-      //   "is_in_doaj": true,
-      //   "homepage_url": "http://www.peerj.com/",
-      //   "ids": {
-      //     "openalex": "https://openalex.org/V1983995261",
-      //     "issn_l": "2167-8359",
-      //     "mag": "1983995261",
-      //     "issn": ["2167-8359"]
-      //   },
-      //   "counts_by_year": [
-      //     {"year": 2022, "works_count": 883, "cited_by_count": 18439},
-      //     {"year": 2021, "works_count": 4325, "cited_by_count": 46571},
-      //     {"year": 2020, "works_count": 4364, "cited_by_count": 33225},
-      //     {"year": 2019, "works_count": 3857, "cited_by_count": 22303},
-      //     {"year": 2018, "works_count": 3081, "cited_by_count": 14254},
-      //     {"year": 2017, "works_count": 1497, "cited_by_count": 9754},
-      //     {"year": 2016, "works_count": 1522, "cited_by_count": 5424},
-      //     {"year": 2015, "works_count": 942, "cited_by_count": 2603},
-      //     {"year": 2014, "works_count": 492, "cited_by_count": 1050},
-      //     {"year": 2013, "works_count": 238, "cited_by_count": 198},
-      //     {"year": 2012, "works_count": 0, "cited_by_count": 9}
-      //   ],
-      //   "works_api_url": "https://api.openalex.org/works?filter=host_venue.id:V1983995261",
-      //   "updated_date": "2022-06-18",
-      //   "created_date": "2016-06-24"
-      // }
-
       test('returns venue on valid response', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
@@ -517,61 +432,228 @@ void main() {
                             'worksCount', 4325)
                         .having((yearVenue) => yearVenue.citedByCount,
                             'citedByCount', 46571),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2020)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 4364)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 33225),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2019)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 3857)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 22303),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2018)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 3081)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 14254),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2017)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 1497)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 9754),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2016)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 1522)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 5424),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2015)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 942)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 2603),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2014)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 492)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 1050),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2013)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 238)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 198),
-                    isA<YearVenue>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2012)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 0)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 9),
                   ],
+                ));
+      });
+    });
+    group('getInstitution', () {
+      const institutionId = 'https://openalex.org/I114027177';
+
+      test('makes correct http request', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        try {
+          await metaWorkApiClient.getInstitution(institutionId);
+        } catch (_) {}
+        verify(
+          () => httpClient.get(
+            Uri.https(
+              'api.openalex.org',
+              'institutions/$institutionId',
+            ),
+          ),
+        ).called(1);
+      });
+
+      test('throws InstitutionRequestFailure on non-200 response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(400);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        expect(
+          () async => await metaWorkApiClient.getInstitution(institutionId),
+          throwsA(isA<InstitutionRequestFailure>()),
+        );
+      });
+
+      test('throws InstitutionNotFoundFailure on 404 response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(404);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        expect(
+          () async => await metaWorkApiClient.getInstitution(institutionId),
+          throwsA(isA<InstitutionNotFoundFailure>()),
+        );
+      });
+      test('returns institution on valid response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn(institutionJsonResponse);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        final actual = await metaWorkApiClient.getInstitution(institutionId);
+
+        expect(
+            actual,
+            isA<Institution>()
+                .having(
+                  (institution) => institution.id,
+                  'openAlexId',
+                  'https://openalex.org/I114027177',
+                )
+                .having(
+                  (institution) => institution.ror,
+                  'ror',
+                  'https://ror.org/0130frc33',
+                )
+                .having(
+                  (institution) => institution.countryCode,
+                  'countryCode',
+                  'US',
+                )
+                .having(
+                  (institution) => institution.type,
+                  'type',
+                  InstitutionType.Education,
+                )
+                .having(
+                  (institution) => institution.homepageUrl,
+                  'homepageUrl',
+                  'http://www.unc.edu/',
+                )
+                .having(
+                  (institution) => institution.imageUrl,
+                  'imageUrl',
+                  'https://upload.wikimedia.org/wikipedia/en/5/5c/University_of_North_Carolina_at_Chapel_Hill_seal.svg',
+                )
+                .having(
+                  (institution) => institution.imageThumbnailUrl,
+                  'imageThumbnailUrl',
+                  'https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/University_of_North_Carolina_at_Chapel_Hill_seal.svg/100px-University_of_North_Carolina_at_Chapel_Hill_seal.svg.png',
+                )
+                .having(
+                  (institution) => institution.displayNameAcronyms,
+                  'displayNameAcronyms',
+                  ['UNC'],
+                )
+                .having(
+                  (institution) => institution.displayNameAlternatives,
+                  'displayNameAlternatives',
+                  ['UNC-Chapel Hill'],
+                )
+                .having(
+                  (institution) => institution.worksCount,
+                  'worksCount',
+                  200714,
+                )
+                .having(
+                  (institution) => institution.citedByCount,
+                  'citedByCount',
+                  20698095,
+                )
+                .having(
+                  (institution) => institution.magId,
+                  'magId',
+                  '114027177',
+                )
+                .having(
+                  (institution) => institution.gridId,
+                  'gridId',
+                  'grid.10698.36',
+                )
+                .having(
+                  (institution) => institution.wikipediaId,
+                  'wikipediaId',
+                  'https://en.wikipedia.org/wiki/University%20of%20North%20Carolina%20at%20Chapel%20Hill',
+                )
+                .having(
+                  (institution) => institution.wikidataId,
+                  'wikidataId',
+                  'https://www.wikidata.org/wiki/Q192334',
+                )
+                .having(
+                  (institution) => institution.geo,
+                  'geo',
+                  isA<Geo>()
+                      .having(
+                        (geo) => geo.city,
+                        'city',
+                        'Chapel Hill',
+                      )
+                      .having(
+                        (geo) => geo.geonamesCityId,
+                        'geonamesCityId',
+                        '4460162',
+                      )
+                      .having(
+                        (geo) => geo.region,
+                        'region',
+                        'North Carolina',
+                      )
+                      .having(
+                        (geo) => geo.countryCode,
+                        'countryCode',
+                        'US',
+                      )
+                      .having(
+                        (geo) => geo.country,
+                        'country',
+                        'United States',
+                      )
+                      .having(
+                        (geo) => geo.latitude,
+                        'latitude',
+                        35.905163,
+                      )
+                      .having(
+                        (geo) => geo.longitude,
+                        'longitude',
+                        -79.04694,
+                      ),
+                )
+                .having(
+                  (institution) => institution.countsByYear,
+                  'countsByYear',
+                  [
+                    isA<YearInstitution>()
+                        .having(
+                          (countByYear) => countByYear.year,
+                          'year',
+                          2022,
+                        )
+                        .having(
+                          (countByYear) => countByYear.worksCount,
+                          'worksCount',
+                          5518,
+                        )
+                        .having(
+                          (countByYear) => countByYear.citedByCount,
+                          'citedByCount',
+                          771027,
+                        ),
+                    isA<YearInstitution>()
+                        .having(
+                          (countByYear) => countByYear.year,
+                          'year',
+                          2021,
+                        )
+                        .having(
+                          (countByYear) => countByYear.worksCount,
+                          'worksCount',
+                          12787,
+                        )
+                        .having(
+                          (countByYear) => countByYear.citedByCount,
+                          'citedByCount',
+                          2119577,
+                        ),
+                  ],
+                )
+                .having(
+                  (institution) => institution.worksApiUrl,
+                  'worksApiUrl',
+                  'https://api.openalex.org/works?filter=institutions.id:I114027177',
+                )
+                .having(
+                  (institution) => institution.updatedDate,
+                  'updatedDate',
+                  DateTime(2022, 06, 18),
+                )
+                .having(
+                  (institution) => institution.createdDate,
+                  'createdDate',
+                  DateTime(2016, 06, 24),
                 ));
       });
     });
