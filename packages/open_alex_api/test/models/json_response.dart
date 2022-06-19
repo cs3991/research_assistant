@@ -569,3 +569,69 @@ const String institutionJsonResponse = '''{
   "updated_date": "2022-06-18",
   "created_date": "2016-06-24"
 }''';
+
+const String conceptJsonResponse = '''{
+  "id": "https://openalex.org/C2778407487",
+  "wikidata": "https://www.wikidata.org/wiki/Q14565201",
+  "display_name": "Altmetrics",
+  "level": 2,
+  "description": "study of alternative metrics for analyzing and informing scholarship",
+  "works_count": 3481,
+  "cited_by_count": 19968,
+  "ids": {
+    "openalex": "https://openalex.org/C2778407487",
+    "wikidata": "https://www.wikidata.org/wiki/Q14565201",
+    "mag": "2778407487",
+    "wikipedia": "https://en.wikipedia.org/wiki/Altmetrics"
+  },
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Altmetrics.svg",
+  "image_thumbnail_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Altmetrics.svg/100px-Altmetrics.svg.png",
+  "international": {
+    "display_name": {
+      "ca": "Altmetrics",
+      "cs": "altmetrika"
+    },
+    "description": {
+      "ca": "m\u00e8triques alternatives",
+      "en": "study of alternative metrics for analyzing and informing scholarship"
+    }
+  },
+  "ancestors": [
+    {
+      "id": "https://openalex.org/C2522767166",
+      "wikidata": "https://www.wikidata.org/wiki/Q2374463",
+      "display_name": "Data science",
+      "level": 1
+    },
+    {
+      "id": "https://openalex.org/C161191863",
+      "wikidata": "https://www.wikidata.org/wiki/Q199655",
+      "display_name": "Library science",
+      "level": 1
+    }
+  ],
+  "related_concepts": [
+    {
+      "id": "https://openalex.org/C2778793908",
+      "wikidata": null,
+      "display_name": "Citation impact",
+      "level": 3,
+      "score": 4.567492
+    },
+    {
+      "id": "https://openalex.org/C2779455604",
+      "wikidata": null,
+      "display_name": "Impact factor",
+      "level": 2,
+      "score": 4.463963
+    }
+  ],
+  "counts_by_year": [
+    {"year": 2022, "works_count": 83, "cited_by_count": 1143},
+    {"year": 2021, "works_count": 204, "cited_by_count": 3395}
+  ],
+  "works_api_url": "https://api.openalex.org/works?filter=concepts.id:C2778407487",
+  "updated_date": "2022-06-19",
+  "created_date": "2018-01-05"
+}''';
+
