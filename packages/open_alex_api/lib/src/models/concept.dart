@@ -28,8 +28,8 @@ class Concept {
   // final List<Concept> relatedConcepts;
   final List<YearConcept> countsByYear;
   final String worksApiUrl;
-  final String updatedDate;
-  final String createdDate;
+  final DateTime updatedDate;
+  final DateTime createdDate;
 
   Concept({
     // required this.displayName,

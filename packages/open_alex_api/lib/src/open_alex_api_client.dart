@@ -19,6 +19,10 @@ class InstitutionRequestFailure implements Exception {}
 
 class InstitutionNotFoundFailure implements Exception {}
 
+class ConceptRequestFailure implements Exception {}
+
+class ConceptNotFoundFailure implements Exception {}
+
 class OpenAlexApiClient {
   OpenAlexApiClient({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
@@ -77,6 +81,19 @@ class OpenAlexApiClient {
       throw InstitutionNotFoundFailure();
     } else {
       throw InstitutionRequestFailure();
+    }
+  }
+  
+  /// Fetches a [Concept] by its OpenAlex ID.
+  Future<Concept> getConcept(String id) async {
+    final conceptResponse =
+        await _httpClient.get(Uri.https(_baseUrl, 'concepts/$id'));
+    if (conceptResponse.statusCode == 200) {
+      return Concept.fromJson(jsonDecode(conceptResponse.body));
+    } else if (conceptResponse.statusCode == 404) {
+      throw ConceptNotFoundFailure();
+    } else {
+      throw ConceptRequestFailure();
     }
   }
 }

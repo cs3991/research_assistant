@@ -37,8 +37,10 @@ Concept _$ConceptFromJson(Map<String, dynamic> json) => $checkedCreate(
                   .map((e) => YearConcept.fromJson(e as Map<String, dynamic>))
                   .toList()),
           worksApiUrl: $checkedConvert('works_api_url', (v) => v as String),
-          updatedDate: $checkedConvert('updated_date', (v) => v as String),
-          createdDate: $checkedConvert('created_date', (v) => v as String),
+          updatedDate: $checkedConvert(
+              'updated_date', (v) => DateTime.parse(v as String)),
+          createdDate: $checkedConvert(
+              'created_date', (v) => DateTime.parse(v as String)),
           magId: $checkedConvert(
             'mag',
             (v) => v as String?,

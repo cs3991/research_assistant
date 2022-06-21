@@ -657,5 +657,181 @@ void main() {
                 ));
       });
     });
+    group('getConcept', () {
+      const conceptId = 'https://openalex.org/C2778407487';
+      test('makes correct http request', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        try {
+          await metaWorkApiClient.getConcept(conceptId);
+        } catch (_) {}
+        verify(
+          () => httpClient.get(
+            Uri.https(
+              'api.openalex.org',
+              'concepts/$conceptId',
+            ),
+          ),
+        ).called(1);
+      });
+
+      test('throws ConceptRequestFailure on non-200 response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(400);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        expect(
+          () async => await metaWorkApiClient.getConcept(conceptId),
+          throwsA(isA<ConceptRequestFailure>()),
+        );
+      });
+
+      test('throws ConceptNotFoundFailure on 404 response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(404);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        expect(
+          () async => await metaWorkApiClient.getConcept(conceptId),
+          throwsA(isA<ConceptNotFoundFailure>()),
+        );
+      });
+      test('returns concept on valid response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn(conceptJsonResponse);
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        final actual = await metaWorkApiClient.getConcept(conceptId);
+        expect(
+            actual,
+            isA<Concept>()
+                .having(
+                  (concept) => concept.id,
+                  'id',
+                  'https://openalex.org/C2778407487',
+                )
+                .having(
+                  (concept) => concept.wikidata,
+                  'wikidata',
+                  'https://www.wikidata.org/wiki/Q14565201',
+                )
+                // .having(
+                //   (concept) => concept.displayName,
+                //   'display_name',
+                //   'Altmetrics',
+                // )
+                .having(
+                  (concept) => concept.level,
+                  'level',
+                  2,
+                )
+                // .having(
+                //   (concept) => concept.description,
+                //   'description',
+                //   'study of alternative metrics for analyzing and informing scholarship',
+                // )
+                .having(
+                  (concept) => concept.worksCount,
+                  'works_count',
+                  3481,
+                )
+                .having(
+                  (concept) => concept.citedByCount,
+                  'cited_by_count',
+                  19968,
+                )
+                .having(
+                  (concept) => concept.magId,
+                  'magId',
+                  '2778407487',
+                )
+                .having(
+                  (concept) => concept.wikipediaId,
+                  'wikipediaId',
+                  'https://en.wikipedia.org/wiki/Altmetrics',
+                )
+                .having(
+                  (concept) => concept.imageUrl,
+                  'imageUrl',
+                  'https://upload.wikimedia.org/wikipedia/commons/f/f1/Altmetrics.svg',
+                )
+                .having(
+                  (concept) => concept.imageThumbnailUrl,
+                  'imageThumbnailUrl',
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Altmetrics.svg/100px-Altmetrics.svg.png',
+                )
+                .having(
+                  (concept) => concept.internationalDisplayName,
+                  'internationalDisplayName',
+                  {
+                    'ca': 'Altmetrics',
+                    'cs': 'altmetrika',
+                  },
+                )
+                .having(
+                  (concept) => concept.internationalDescription,
+                  'internationalDescription',
+                  {
+                    'ca': 'mètriques alternatives',
+                    'en':
+                        'study of alternative metrics for analyzing and informing scholarship',
+                  },
+                )
+                .having(
+                  (concept) => concept.countsByYear,
+                  'countsByYear',
+                  [
+                    isA<YearConcept>()
+                        .having(
+                          (yearConcept) => yearConcept.year,
+                          'year',
+                          2022,
+                        )
+                        .having(
+                          (yearConcept) => yearConcept.worksCount,
+                          'works_count',
+                          83,
+                        )
+                        .having(
+                          (yearConcept) => yearConcept.citedByCount,
+                          'cited_by_count',
+                          1143,
+                        ),
+                    isA<YearConcept>()
+                        .having(
+                          (yearConcept) => yearConcept.year,
+                          'year',
+                          2021,
+                        )
+                        .having(
+                          (yearConcept) => yearConcept.worksCount,
+                          'works_count',
+                          204,
+                        )
+                        .having(
+                          (yearConcept) => yearConcept.citedByCount,
+                          'cited_by_count',
+                          3395,
+                        ),
+                  ],
+                )
+                .having(
+                  (concept) => concept.worksApiUrl,
+                  'works_api_url',
+                  'https://api.openalex.org/works?filter=concepts.id:C2778407487',
+                )
+                .having(
+                  (concept) => concept.updatedDate,
+                  'updated_date',
+                  DateTime(2022, 6, 19),
+                )
+                .having(
+                  (concept) => concept.createdDate,
+                  'created_date',
+                  DateTime(2018, 1, 5),
+                ));
+      });
+    });
   });
 }
