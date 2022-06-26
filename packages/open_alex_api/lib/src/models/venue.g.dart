@@ -8,6 +8,27 @@ part of 'venue.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+VenueDehydrated _$VenueDehydratedFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'VenueDehydrated',
+      json,
+      ($checkedConvert) {
+        final val = VenueDehydrated(
+          id: $checkedConvert('id', (v) => v as String),
+          displayName: $checkedConvert('display_name', (v) => v as String),
+          linkingIssn: $checkedConvert('issn_l', (v) => v as String),
+          issn: $checkedConvert('issn',
+              (v) => (v as List<dynamic>).map((e) => e as String).toList()),
+          publisher: $checkedConvert('publisher', (v) => v as String),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'displayName': 'display_name',
+        'linkingIssn': 'issn_l'
+      },
+    );
+
 Venue _$VenueFromJson(Map<String, dynamic> json) => $checkedCreate(
       'Venue',
       json,

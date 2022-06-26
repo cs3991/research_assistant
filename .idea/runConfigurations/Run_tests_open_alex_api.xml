@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run tests open_alex_api" type="FlutterTestConfigType" factoryName="Flutter Test">
+    <option name="testDir" value="C:\Users\simar\Documents\documents\dev\uwu\research_assistant\research_assistant\packages\open_alex_api\test" />
+    <option name="useRegexp" value="false" />
+    <option name="additionalArgs" value="" />
+    <method v="2" />
+  </configuration>
+</component>
