@@ -10,15 +10,17 @@ abstract class VenueBase {
     required this.linkingIssn,
     required this.issn,
     required this.displayName,
-    required this.publisher,
+    this.publisher,
   });
 
-  final String id;
+  // todo: change this when fixed. Nullable because of a bug in the API
+  //  (https://docs.openalex.org/about-the-data/work#alternate_host_venues)
+  final String? id;
   final String displayName;
   @JsonKey(name: 'issn_l')
-  final String linkingIssn;
-  final List<String> issn;
-  final String publisher;
+  final String? linkingIssn;
+  final List<String>? issn;
+  final String? publisher;
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -26,8 +28,8 @@ class VenueDehydrated extends VenueBase {
   VenueDehydrated({
     required super.id,
     required super.displayName,
-    required super.linkingIssn,
-    required super.issn,
+    super.linkingIssn,
+    super.issn,
     required super.publisher,
   });
 

@@ -63,7 +63,7 @@ class Author extends AuthorBase {
   @JsonKey(readValue: _readId, name: 'scopus')
   final String? scopusId;
 
-  @JsonKey(name: 'counts_by_year')
+  // @JsonKey(name: 'counts_by_year')
   final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;

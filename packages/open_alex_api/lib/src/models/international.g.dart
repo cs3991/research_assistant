@@ -21,3 +21,20 @@ International _$InternationalFromJson(Map<String, dynamic> json) =>
       },
       fieldKeyMap: const {'displayName': 'display_name'},
     );
+
+InternationalWithDescription _$InternationalWithDescriptionFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      'InternationalWithDescription',
+      json,
+      ($checkedConvert) {
+        final val = InternationalWithDescription(
+          displayName: $checkedConvert(
+              'display_name', (v) => Map<String, String>.from(v as Map)),
+          description: $checkedConvert(
+              'description', (v) => Map<String, String>.from(v as Map)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'displayName': 'display_name'},
+    );

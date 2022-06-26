@@ -14,12 +14,12 @@ VenueDehydrated _$VenueDehydratedFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = VenueDehydrated(
-          id: $checkedConvert('id', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as String?),
           displayName: $checkedConvert('display_name', (v) => v as String),
-          linkingIssn: $checkedConvert('issn_l', (v) => v as String),
+          linkingIssn: $checkedConvert('issn_l', (v) => v as String?),
           issn: $checkedConvert('issn',
-              (v) => (v as List<dynamic>).map((e) => e as String).toList()),
-          publisher: $checkedConvert('publisher', (v) => v as String),
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
+          publisher: $checkedConvert('publisher', (v) => v as String?),
         );
         return val;
       },
@@ -34,12 +34,12 @@ Venue _$VenueFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = Venue(
-          id: $checkedConvert('id', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as String?),
           displayName: $checkedConvert('display_name', (v) => v as String),
-          linkingIssn: $checkedConvert('issn_l', (v) => v as String),
+          linkingIssn: $checkedConvert('issn_l', (v) => v as String?),
           issn: $checkedConvert('issn',
-              (v) => (v as List<dynamic>).map((e) => e as String).toList()),
-          publisher: $checkedConvert('publisher', (v) => v as String),
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
+          publisher: $checkedConvert('publisher', (v) => v as String?),
           worksCount: $checkedConvert('works_count', (v) => v as int),
           citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
           isOa: $checkedConvert('is_oa', (v) => v as bool),

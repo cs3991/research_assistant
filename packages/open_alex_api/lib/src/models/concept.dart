@@ -4,16 +4,39 @@ import 'models.dart';
 
 part 'concept.g.dart';
 
+abstract class ConceptBase {
+  final String id;
+  final String displayName;
+  final String? wikidata;
+  final int level;
+
+  ConceptBase({
+    required this.id,
+    required this.displayName,
+    required this.wikidata,
+    required this.level,
+  });
+}
+
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Concept {
+class ConceptDehydrated extends ConceptBase {
+  factory ConceptDehydrated.fromJson(Map<String, dynamic> json) =>
+      _$ConceptDehydratedFromJson(json);
+
+  ConceptDehydrated({
+    required super.id,
+    required super.displayName,
+    required super.wikidata,
+    required super.level,
+  });
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class Concept extends ConceptBase {
   factory Concept.fromJson(Map<String, dynamic> json) =>
       _$ConceptFromJson(json);
 
-  final String id;
-  final String wikidata;
-  // final String displayName;
-  final int level;
-  // final String description;
+  final String description;
   final int worksCount;
   final int citedByCount;
   @JsonKey(readValue: _readIds, name: "mag")
@@ -22,32 +45,28 @@ class Concept {
   final String? wikipediaId;
   final String imageUrl;
   final String imageThumbnailUrl;
-  @JsonKey(readValue: _readInternational, name: "display_name")
-  final Map<String, String> internationalDisplayName;
-  @JsonKey(readValue: _readInternational, name: "description")
-  final Map<String, String> internationalDescription;
+  final InternationalWithDescription international;
 
-  // final List<Concept> ancestors;
-  // final List<Concept> relatedConcepts;
+  final List<ConceptDehydrated> ancestors;
+  final List<ConceptDehydrated> relatedConcepts; // todo: add score
   final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
   final DateTime createdDate;
 
   Concept({
-    // required this.displayName,
-    // required this.description,
-    required this.id,
-    required this.wikidata,
-    required this.level,
+    required super.displayName,
+    required super.id,
+    required super.wikidata,
+    required super.level,
+    required this.description,
     required this.worksCount,
     required this.citedByCount,
     required this.imageUrl,
     required this.imageThumbnailUrl,
-    required this.internationalDisplayName,
-    required this.internationalDescription,
-    // required this.ancestors,
-    // required this.relatedConcepts,
+    required this.international,
+    required this.ancestors,
+    required this.relatedConcepts,
     required this.countsByYear,
     required this.worksApiUrl,
     required this.updatedDate,
@@ -58,7 +77,4 @@ class Concept {
 
   static Object? _readIds(Map<dynamic, dynamic> json, String key) =>
       json['ids'][key];
-
-  static Object? _readInternational(Map<dynamic, dynamic> json, String key) =>
-      json['international'][key];
 }

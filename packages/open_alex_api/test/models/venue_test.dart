@@ -13,11 +13,11 @@ main() {
       test('throws CheckedFromJsonException when one required field is missing',
           () {
         for (final field in [
-          "id",
+          // "id",
           "display_name",
-          "issn_l",
-          "issn",
-          "publisher",
+          // "issn_l",
+          // "issn",
+          // "publisher",
           "works_count",
           "cited_by_count",
           "is_oa",
