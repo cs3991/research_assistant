@@ -8,6 +8,39 @@ part of 'institution.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+InstitutionDehydrated _$InstitutionDehydratedFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      'InstitutionDehydrated',
+      json,
+      ($checkedConvert) {
+        final val = InstitutionDehydrated(
+          id: $checkedConvert('id', (v) => v as String),
+          displayName: $checkedConvert('display_name', (v) => v as String),
+          ror: $checkedConvert('ror', (v) => v as String),
+          countryCode: $checkedConvert('country_code', (v) => v as String),
+          type: $checkedConvert(
+              'type', (v) => $enumDecode(_$InstitutionTypeEnumMap, v)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'displayName': 'display_name',
+        'countryCode': 'country_code'
+      },
+    );
+
+const _$InstitutionTypeEnumMap = {
+  InstitutionType.Education: 'education',
+  InstitutionType.Healthcare: 'healthcare',
+  InstitutionType.Company: 'company',
+  InstitutionType.Archive: 'archive',
+  InstitutionType.Nonprofit: 'nonprofit',
+  InstitutionType.Government: 'government',
+  InstitutionType.Facility: 'facility',
+  InstitutionType.Other: 'other',
+};
+
 Institution _$InstitutionFromJson(Map<String, dynamic> json) => $checkedCreate(
       'Institution',
       json,
@@ -15,6 +48,7 @@ Institution _$InstitutionFromJson(Map<String, dynamic> json) => $checkedCreate(
         final val = Institution(
           id: $checkedConvert('id', (v) => v as String),
           ror: $checkedConvert('ror', (v) => v as String),
+          displayName: $checkedConvert('display_name', (v) => v as String),
           countryCode: $checkedConvert('country_code', (v) => v as String),
           type: $checkedConvert(
               'type', (v) => $enumDecode(_$InstitutionTypeEnumMap, v)),
@@ -30,11 +64,14 @@ Institution _$InstitutionFromJson(Map<String, dynamic> json) => $checkedCreate(
           citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
           geo: $checkedConvert(
               'geo', (v) => Geo.fromJson(v as Map<String, dynamic>)),
-          internationalDisplayName: $checkedConvert(
-            'display_name',
-            (v) => Map<String, String>.from(v as Map),
-            readValue: Institution._readInternational,
-          ),
+          international: $checkedConvert('international',
+              (v) => International.fromJson(v as Map<String, dynamic>)),
+          associatedInstitutions: $checkedConvert(
+              'associated_institutions',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      InstitutionDehydrated.fromJson(e as Map<String, dynamic>))
+                  .toList()),
           countsByYear: $checkedConvert(
               'counts_by_year',
               (v) => (v as List<dynamic>)
@@ -70,6 +107,7 @@ Institution _$InstitutionFromJson(Map<String, dynamic> json) => $checkedCreate(
         return val;
       },
       fieldKeyMap: const {
+        'displayName': 'display_name',
         'countryCode': 'country_code',
         'homepageUrl': 'homepage_url',
         'imageUrl': 'image_url',
@@ -78,7 +116,7 @@ Institution _$InstitutionFromJson(Map<String, dynamic> json) => $checkedCreate(
         'displayNameAlternatives': 'display_name_alternatives',
         'worksCount': 'works_count',
         'citedByCount': 'cited_by_count',
-        'internationalDisplayName': 'display_name',
+        'associatedInstitutions': 'associated_institutions',
         'countsByYear': 'counts_by_year',
         'worksApiUrl': 'works_api_url',
         'updatedDate': 'updated_date',
@@ -89,17 +127,6 @@ Institution _$InstitutionFromJson(Map<String, dynamic> json) => $checkedCreate(
         'wikidataId': 'wikidata'
       },
     );
-
-const _$InstitutionTypeEnumMap = {
-  InstitutionType.Education: 'education',
-  InstitutionType.Healthcare: 'healthcare',
-  InstitutionType.Company: 'company',
-  InstitutionType.Archive: 'archive',
-  InstitutionType.Nonprofit: 'nonprofit',
-  InstitutionType.Government: 'government',
-  InstitutionType.Facility: 'facility',
-  InstitutionType.Other: 'other',
-};
 
 YearInstitution _$YearInstitutionFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
@@ -139,4 +166,18 @@ Geo _$GeoFromJson(Map<String, dynamic> json) => $checkedCreate(
         'geonamesCityId': 'geonames_city_id',
         'countryCode': 'country_code'
       },
+    );
+
+International _$InternationalFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'International',
+      json,
+      ($checkedConvert) {
+        final val = International(
+          displayName: $checkedConvert(
+              'display_name', (v) => Map<String, String>.from(v as Map)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'displayName': 'display_name'},
     );

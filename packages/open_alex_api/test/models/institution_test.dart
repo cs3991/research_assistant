@@ -26,7 +26,7 @@ main() {
           "cited_by_count",
           "geo",
           "international",
-          // "associated_institutions",
+          "associated_institutions",
           "counts_by_year",
           "works_api_url",
           "updated_date",

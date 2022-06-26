@@ -603,6 +603,52 @@ void main() {
                       ),
                 )
                 .having(
+                  (institution) => institution.international,
+                  'international',
+                  isA<International>().having(
+                    (international) => international.displayName,
+                    'displayName',
+                    {
+                      "ar":
+                          "\u062c\u0627\u0645\u0639\u0629 \u0646\u0648\u0631\u062b \u0643\u0627\u0631\u0648\u0644\u064a\u0646\u0627 \u0641\u064a \u062a\u0634\u0627\u0628\u0644 \u0647\u064a\u0644",
+                      "arz":
+                          "\u062c\u0627\u0645\u0639\u0629 \u0646\u0648\u0631\u062b \u0643\u0627\u0631\u0648\u0644\u0627\u064a\u0646\u0627 \u0641\u0649 \u062a\u0634\u0627\u0628\u0644 \u0647\u064a\u0644"
+                    },
+                  ),
+                )
+                .having(
+                  (institution) => institution.associatedInstitutions,
+                  'associatedInstitutions',
+                  [
+                    isA<InstitutionDehydrated>()
+                        .having(
+                          (institution) => institution.displayName,
+                          'displayName',
+                          'Carolina Institute for NanoMedicine',
+                        )
+                        .having(
+                          (institution) => institution.id,
+                          'openAlexId',
+                          'https://openalex.org/I4210157879',
+                        )
+                        .having(
+                          (institution) => institution.ror,
+                          'ror',
+                          'https://ror.org/04q5n7269',
+                        )
+                        .having(
+                          (institution) => institution.countryCode,
+                          'countryCode',
+                          'US',
+                        )
+                        .having(
+                          (institution) => institution.type,
+                          'type',
+                          InstitutionType.Facility,
+                        ),
+                  ],
+                )
+                .having(
                   (institution) => institution.countsByYear,
                   'countsByYear',
                   [

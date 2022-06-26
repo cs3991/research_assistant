@@ -14,16 +14,67 @@ enum InstitutionType {
   Other,
 }
 
+abstract class InstitutionBase {
+  final String id;
+  final String displayName;
+  final String ror;
+  final String countryCode;
+  final InstitutionType type;
+
+  InstitutionBase({
+    required this.id,
+    required this.displayName,
+    required this.ror,
+    required this.countryCode,
+    required this.type,
+  });
+}
+
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Institution {
+class InstitutionDehydrated extends InstitutionBase {
+  factory InstitutionDehydrated.fromJson(Map<String, dynamic> json) =>
+      _$InstitutionDehydratedFromJson(json);
+
+  InstitutionDehydrated({
+    required super.id,
+    required super.displayName,
+    required super.ror,
+    required super.countryCode,
+    required super.type,
+  });
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class Institution extends InstitutionBase {
+  Institution({
+    required super.id,
+    required super.ror,
+    required super.displayName,
+    required super.countryCode,
+    required super.type,
+    required this.homepageUrl,
+    required this.imageUrl,
+    required this.imageThumbnailUrl,
+    required this.displayNameAcronyms,
+    required this.displayNameAlternatives,
+    required this.worksCount,
+    required this.citedByCount,
+    required this.geo,
+    required this.international,
+    required this.associatedInstitutions,
+    required this.countsByYear,
+    required this.worksApiUrl,
+    required this.updatedDate,
+    required this.createdDate,
+    this.magId,
+    this.gridId,
+    this.wikipediaId,
+    this.wikidataId,
+  });
+
   factory Institution.fromJson(Map<String, dynamic> json) =>
       _$InstitutionFromJson(json);
 
-  final String id;
-  final String ror;
-  // final String displayName;
-  final String countryCode;
-  final InstitutionType type;
   final String homepageUrl;
   final String imageUrl;
   final String imageThumbnailUrl;
@@ -42,45 +93,15 @@ class Institution {
   final String? wikidataId;
 
   final Geo geo;
-  @JsonKey(readValue: _readInternational, name: "display_name")
-  final Map<String, String> internationalDisplayName;
-  // final List<Institution> associatedInstitutions;
+  final International international;
+  final List<InstitutionDehydrated> associatedInstitutions;
   final List<YearInstitution> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
   final DateTime createdDate;
 
-  Institution({
-    required this.id,
-    required this.ror,
-    // required this.displayName,
-    required this.countryCode,
-    required this.type,
-    required this.homepageUrl,
-    required this.imageUrl,
-    required this.imageThumbnailUrl,
-    required this.displayNameAcronyms,
-    required this.displayNameAlternatives,
-    required this.worksCount,
-    required this.citedByCount,
-    required this.geo,
-    required this.internationalDisplayName,
-    // required this.associatedInstitutions,
-    required this.countsByYear,
-    required this.worksApiUrl,
-    required this.updatedDate,
-    required this.createdDate,
-    this.magId,
-    this.gridId,
-    this.wikipediaId,
-    this.wikidataId,
-  });
-
   static Object? _readId(Map<dynamic, dynamic> json, String key) =>
       json['ids'][key];
-
-  static Object? _readInternational(Map<dynamic, dynamic> json, String key) =>
-      json['international'][key];
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -120,4 +141,16 @@ class Geo {
   });
 
   factory Geo.fromJson(Map<String, dynamic> json) => _$GeoFromJson(json);
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class International {
+  final Map<String, String> displayName;
+
+  International({
+    required this.displayName,
+  });
+
+  factory International.fromJson(Map<String, dynamic> json) =>
+      _$InternationalFromJson(json);
 }
