@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'models.dart';
+
 part 'institution.g.dart';
 
 @JsonEnum(fieldRename: FieldRename.snake)
@@ -143,14 +145,4 @@ class Geo {
   factory Geo.fromJson(Map<String, dynamic> json) => _$GeoFromJson(json);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class International {
-  final Map<String, String> displayName;
 
-  International({
-    required this.displayName,
-  });
-
-  factory International.fromJson(Map<String, dynamic> json) =>
-      _$InternationalFromJson(json);
-}

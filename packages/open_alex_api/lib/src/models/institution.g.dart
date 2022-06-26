@@ -167,17 +167,3 @@ Geo _$GeoFromJson(Map<String, dynamic> json) => $checkedCreate(
         'countryCode': 'country_code'
       },
     );
-
-International _$InternationalFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'International',
-      json,
-      ($checkedConvert) {
-        final val = International(
-          displayName: $checkedConvert(
-              'display_name', (v) => Map<String, String>.from(v as Map)),
-        );
-        return val;
-      },
-      fieldKeyMap: const {'displayName': 'display_name'},
-    );
