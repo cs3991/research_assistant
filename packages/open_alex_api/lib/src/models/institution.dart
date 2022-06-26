@@ -97,7 +97,7 @@ class Institution extends InstitutionBase {
   final Geo geo;
   final International international;
   final List<InstitutionDehydrated> associatedInstitutions;
-  final List<YearInstitution> countsByYear;
+  final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
   final DateTime createdDate;
@@ -106,21 +106,6 @@ class Institution extends InstitutionBase {
       json['ids'][key];
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class YearInstitution {
-  final int year;
-  final int worksCount;
-  final int citedByCount;
-
-  YearInstitution({
-    required this.year,
-    required this.worksCount,
-    required this.citedByCount,
-  });
-
-  factory YearInstitution.fromJson(Map<String, dynamic> json) =>
-      _$YearInstitutionFromJson(json);
-}
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Geo {

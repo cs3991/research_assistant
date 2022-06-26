@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'models.dart';
+
 part 'author.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -41,7 +43,7 @@ class Author {
   final String? scopusId;
 
   @JsonKey(name: 'counts_by_year')
-  final List<YearAuthor> countsByYear;
+  final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
   final DateTime createdDate;
@@ -52,18 +54,3 @@ class Author {
   factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class YearAuthor {
-  final int year;
-  final int citedByCount;
-  final int worksCount;
-
-  YearAuthor({
-    required this.year,
-    required this.citedByCount,
-    required this.worksCount,
-  });
-
-  factory YearAuthor.fromJson(Map<String, dynamic> json) =>
-      _$YearAuthorFromJson(json);
-}

@@ -133,16 +133,3 @@ const _$OpenAccessStatusEnumMap = {
   OpenAccessStatus.bronze: 'bronze',
   OpenAccessStatus.closed: 'closed',
 };
-
-YearWork _$YearWorkFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'YearWork',
-      json,
-      ($checkedConvert) {
-        final val = YearWork(
-          year: $checkedConvert('year', (v) => v as int),
-          citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
-        );
-        return val;
-      },
-      fieldKeyMap: const {'citedByCount': 'cited_by_count'},
-    );

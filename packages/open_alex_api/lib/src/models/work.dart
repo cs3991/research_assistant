@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'models.dart';
+
 part 'work.g.dart';
 
 @JsonEnum(fieldRename: FieldRename.kebab)
@@ -112,18 +114,4 @@ class Work {
 
   static Object? _readOpenAccess(Map<dynamic, dynamic> json, String key) =>
       json['open_access'][key];
-}
-
-@JsonSerializable(fieldRename: FieldRename.snake)
-class YearWork {
-  final int year;
-  final int citedByCount;
-
-  YearWork({
-    required this.year,
-    required this.citedByCount,
-  });
-
-  factory YearWork.fromJson(Map<String, dynamic> json) =>
-      _$YearWorkFromJson(json);
 }

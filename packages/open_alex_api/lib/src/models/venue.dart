@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'models.dart';
+
 part 'venue.g.dart';
 
 // example of json model:
@@ -58,7 +60,7 @@ class Venue {
   final String? magId;
 
   // counts_by_year
-  final List<YearVenue> countsByYear;
+  final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
   final DateTime createdDate;
@@ -87,18 +89,3 @@ class Venue {
   factory Venue.fromJson(Map<String, dynamic> json) => _$VenueFromJson(json);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class YearVenue {
-  final int year;
-  final int worksCount;
-  final int citedByCount;
-
-  YearVenue({
-    required this.year,
-    required this.worksCount,
-    required this.citedByCount,
-  });
-
-  factory YearVenue.fromJson(Map<String, dynamic> json) =>
-      _$YearVenueFromJson(json);
-}

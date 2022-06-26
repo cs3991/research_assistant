@@ -284,11 +284,11 @@ void main() {
                 DateTime(2016, 06, 24),
               )
               .having((author) => author.countsByYear, 'citedByCountsByYear', [
-                isA<YearAuthor>()
+                isA<Year>()
                     .having((year) => year.year, 'year', 2022)
                     .having((year) => year.worksCount, 'worksCount', 0)
                     .having((year) => year.citedByCount, 'citedByCount', 52),
-                isA<YearAuthor>()
+            isA<Year>()
                     .having((year) => year.year, 'year', 2021)
                     .having((year) => year.worksCount, 'worksCount', 1)
                     .having((year) => year.citedByCount, 'citedByCount', 299),
@@ -420,13 +420,13 @@ void main() {
                   (venue) => venue.countsByYear,
                   'countsByYear',
                   [
-                    isA<YearVenue>()
+                    isA<Year>()
                         .having((yearVenue) => yearVenue.year, 'year', 2022)
                         .having((yearVenue) => yearVenue.worksCount,
                             'worksCount', 883)
                         .having((yearVenue) => yearVenue.citedByCount,
                             'citedByCount', 18439),
-                    isA<YearVenue>()
+                    isA<Year>()
                         .having((yearVenue) => yearVenue.year, 'year', 2021)
                         .having((yearVenue) => yearVenue.worksCount,
                             'worksCount', 4325)
@@ -652,7 +652,7 @@ void main() {
                   (institution) => institution.countsByYear,
                   'countsByYear',
                   [
-                    isA<YearInstitution>()
+                    isA<Year>()
                         .having(
                           (countByYear) => countByYear.year,
                           'year',
@@ -668,7 +668,7 @@ void main() {
                           'citedByCount',
                           771027,
                         ),
-                    isA<YearInstitution>()
+                    isA<Year>()
                         .having(
                           (countByYear) => countByYear.year,
                           'year',
@@ -828,7 +828,7 @@ void main() {
                   (concept) => concept.countsByYear,
                   'countsByYear',
                   [
-                    isA<YearConcept>()
+                    isA<Year>()
                         .having(
                           (yearConcept) => yearConcept.year,
                           'year',
@@ -844,7 +844,7 @@ void main() {
                           'cited_by_count',
                           1143,
                         ),
-                    isA<YearConcept>()
+                    isA<Year>()
                         .having(
                           (yearConcept) => yearConcept.year,
                           'year',

@@ -34,7 +34,7 @@ Concept _$ConceptFromJson(Map<String, dynamic> json) => $checkedCreate(
           countsByYear: $checkedConvert(
               'counts_by_year',
               (v) => (v as List<dynamic>)
-                  .map((e) => YearConcept.fromJson(e as Map<String, dynamic>))
+                  .map((e) => Year.fromJson(e as Map<String, dynamic>))
                   .toList()),
           worksApiUrl: $checkedConvert('works_api_url', (v) => v as String),
           updatedDate: $checkedConvert(
@@ -67,22 +67,5 @@ Concept _$ConceptFromJson(Map<String, dynamic> json) => $checkedCreate(
         'createdDate': 'created_date',
         'magId': 'mag',
         'wikipediaId': 'wikipedia'
-      },
-    );
-
-YearConcept _$YearConceptFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'YearConcept',
-      json,
-      ($checkedConvert) {
-        final val = YearConcept(
-          year: $checkedConvert('year', (v) => v as int),
-          worksCount: $checkedConvert('works_count', (v) => v as int),
-          citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
-        );
-        return val;
-      },
-      fieldKeyMap: const {
-        'worksCount': 'works_count',
-        'citedByCount': 'cited_by_count'
       },
     );

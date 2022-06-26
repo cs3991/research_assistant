@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'models.dart';
+
 part 'concept.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -24,9 +26,10 @@ class Concept {
   final Map<String, String> internationalDisplayName;
   @JsonKey(readValue: _readInternational, name: "description")
   final Map<String, String> internationalDescription;
+
   // final List<Concept> ancestors;
   // final List<Concept> relatedConcepts;
-  final List<YearConcept> countsByYear;
+  final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
   final DateTime createdDate;
@@ -60,19 +63,3 @@ class Concept {
       json['international'][key];
 }
 
-
-@JsonSerializable(fieldRename: FieldRename.snake)
-class YearConcept {
-  factory YearConcept.fromJson(Map<String, dynamic> json) =>
-      _$YearConceptFromJson(json);
-
-  final int year;
-  final int worksCount;
-  final int citedByCount;
-
-  YearConcept({
-    required this.year,
-    required this.worksCount,
-    required this.citedByCount,
-  });
-}
