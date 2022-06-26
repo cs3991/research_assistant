@@ -4,35 +4,56 @@ import 'models.dart';
 
 part 'author.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class Author {
-  Author({
+abstract class AuthorBase {
+  AuthorBase({
     required this.id,
     required this.displayName,
+    this.orcid,
+  });
+
+  final String id;
+  final String displayName;
+  final String? orcid;
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class AuthorDehydrated extends AuthorBase {
+  factory AuthorDehydrated.fromJson(Map<String, dynamic> json) =>
+      _$AuthorDehydratedFromJson(json);
+
+  AuthorDehydrated({
+    required super.id,
+    required super.displayName,
+    super.orcid,
+  });
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class Author extends AuthorBase {
+  Author({
+    required super.id,
+    required super.displayName,
     required this.displayNameAlternatives,
     required this.worksCount,
     required this.citedByCount,
     required this.countsByYear,
     required this.worksApiUrl,
+    required this.lastKnownInstitution,
     required this.updatedDate,
     required this.createdDate,
-    this.orcidId,
+    super.orcid,
     this.magId,
     this.twitterId,
     this.wikipediaId,
     this.scopusId,
   });
 
-  @JsonKey(name: 'id')
-  final String id;
-  final String displayName;
+  final InstitutionDehydrated lastKnownInstitution;
   final List<String> displayNameAlternatives;
   final int worksCount;
   final int citedByCount;
 
   // ids
-  @JsonKey(readValue: _readId, name: 'orcid')
-  final String? orcidId;
   @JsonKey(readValue: _readId, name: 'mag')
   final String? magId;
   @JsonKey(readValue: _readId, name: 'twitter')
@@ -53,4 +74,3 @@ class Author {
 
   factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
 }
-

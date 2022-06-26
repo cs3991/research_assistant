@@ -229,7 +229,7 @@ void main() {
                 'https://openalex.org/A1969205032',
               )
               .having(
-                (author) => author.orcidId,
+                (author) => author.orcid,
                 'orcid',
                 'https://orcid.org/0000-0003-1613-5981',
               )
@@ -269,6 +269,35 @@ void main() {
                 'http://www.scopus.com/inward/authorDetails.url?authorID=25122628200&partnerID=MN8TOARS',
               )
               .having(
+                  (author) => author.lastKnownInstitution,
+                  'lastKnownInstitution',
+                  isA<InstitutionDehydrated>()
+                      .having(
+                        (institution) => institution.id,
+                        'id',
+                        'https://openalex.org/I4200000001',
+                      )
+                      .having(
+                        (institution) => institution.ror,
+                        'ror',
+                        'https://ror.org/02nr0ka47',
+                      )
+                      .having(
+                        (institution) => institution.displayName,
+                        'displayName',
+                        'Our Research',
+                      )
+                      .having(
+                        (institution) => institution.countryCode,
+                        'countryCode',
+                        'CA',
+                      )
+                      .having(
+                        (institution) => institution.type,
+                        'type',
+                        InstitutionType.Nonprofit,
+                      ))
+              .having(
                 (author) => author.worksApiUrl,
                 'worksApiUrl',
                 'https://api.openalex.org/works?filter=author.id:A1969205032',
@@ -288,7 +317,7 @@ void main() {
                     .having((year) => year.year, 'year', 2022)
                     .having((year) => year.worksCount, 'worksCount', 0)
                     .having((year) => year.citedByCount, 'citedByCount', 52),
-            isA<Year>()
+                isA<Year>()
                     .having((year) => year.year, 'year', 2021)
                     .having((year) => year.worksCount, 'worksCount', 1)
                     .having((year) => year.citedByCount, 'citedByCount', 299),

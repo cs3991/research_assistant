@@ -88,4 +88,3 @@ class Venue {
 
   factory Venue.fromJson(Map<String, dynamic> json) => _$VenueFromJson(json);
 }
-

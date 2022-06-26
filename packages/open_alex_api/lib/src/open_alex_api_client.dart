@@ -83,7 +83,7 @@ class OpenAlexApiClient {
       throw InstitutionRequestFailure();
     }
   }
-  
+
   /// Fetches a [Concept] by its OpenAlex ID.
   Future<Concept> getConcept(String id) async {
     final conceptResponse =

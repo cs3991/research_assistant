@@ -64,7 +64,7 @@ void main() {
           'pmid',
           'pmcid',
         ]) {
-        expect(validJson['ids'].remove(field), isNotNull);
+          expect(validJson['ids'].remove(field), isNotNull);
         }
         expect(validJson['open_access'].remove('oa_url'), isNotNull);
         expect(Work.fromJson(validJson), isA<Work>());

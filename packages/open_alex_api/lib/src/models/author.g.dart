@@ -8,6 +8,21 @@ part of 'author.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+AuthorDehydrated _$AuthorDehydratedFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'AuthorDehydrated',
+      json,
+      ($checkedConvert) {
+        final val = AuthorDehydrated(
+          id: $checkedConvert('id', (v) => v as String),
+          displayName: $checkedConvert('display_name', (v) => v as String),
+          orcid: $checkedConvert('orcid', (v) => v as String?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'displayName': 'display_name'},
+    );
+
 Author _$AuthorFromJson(Map<String, dynamic> json) => $checkedCreate(
       'Author',
       json,
@@ -25,15 +40,13 @@ Author _$AuthorFromJson(Map<String, dynamic> json) => $checkedCreate(
                   .map((e) => Year.fromJson(e as Map<String, dynamic>))
                   .toList()),
           worksApiUrl: $checkedConvert('works_api_url', (v) => v as String),
+          lastKnownInstitution: $checkedConvert('last_known_institution',
+              (v) => InstitutionDehydrated.fromJson(v as Map<String, dynamic>)),
           updatedDate: $checkedConvert(
               'updated_date', (v) => DateTime.parse(v as String)),
           createdDate: $checkedConvert(
               'created_date', (v) => DateTime.parse(v as String)),
-          orcidId: $checkedConvert(
-            'orcid',
-            (v) => v as String?,
-            readValue: Author._readId,
-          ),
+          orcid: $checkedConvert('orcid', (v) => v as String?),
           magId: $checkedConvert(
             'mag',
             (v) => v as String?,
@@ -64,9 +77,9 @@ Author _$AuthorFromJson(Map<String, dynamic> json) => $checkedCreate(
         'citedByCount': 'cited_by_count',
         'countsByYear': 'counts_by_year',
         'worksApiUrl': 'works_api_url',
+        'lastKnownInstitution': 'last_known_institution',
         'updatedDate': 'updated_date',
         'createdDate': 'created_date',
-        'orcidId': 'orcid',
         'magId': 'mag',
         'twitterId': 'twitter',
         'wikipediaId': 'wikipedia',

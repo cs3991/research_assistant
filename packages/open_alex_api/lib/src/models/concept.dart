@@ -62,4 +62,3 @@ class Concept {
   static Object? _readInternational(Map<dynamic, dynamic> json, String key) =>
       json['international'][key];
 }
-

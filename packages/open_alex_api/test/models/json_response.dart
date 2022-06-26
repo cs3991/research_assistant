@@ -514,7 +514,6 @@ const String venueJsonResponse = '''{
   "created_date": "2016-06-24"
 }''';
 
-
 const String institutionJsonResponse = '''{
   "id": "https://openalex.org/I114027177",
   "ror": "https://ror.org/0130frc33",
@@ -634,4 +633,3 @@ const String conceptJsonResponse = '''{
   "updated_date": "2022-06-19",
   "created_date": "2018-01-05"
 }''';
-

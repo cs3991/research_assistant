@@ -106,7 +106,6 @@ class Institution extends InstitutionBase {
       json['ids'][key];
 }
 
-
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Geo {
   final String city;
@@ -129,5 +128,3 @@ class Geo {
 
   factory Geo.fromJson(Map<String, dynamic> json) => _$GeoFromJson(json);
 }
-
-
