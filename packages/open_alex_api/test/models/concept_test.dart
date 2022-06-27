@@ -36,11 +36,7 @@ main() {
       });
       test('Return Concept when optional fields are null', () {
         var validJson = Map<String, dynamic>.from(jsonResponseMap);
-        for (final field in [
-          'mag',
-          'wikipedia',
-          'wikidata'
-        ]) {
+        for (final field in ['mag', 'wikipedia', 'wikidata']) {
           expect(validJson['ids'].remove(field), isNotNull);
         }
         expect(Concept.fromJson(validJson), isA<Concept>());

@@ -96,7 +96,8 @@ class Institution extends InstitutionBase {
 
   final Geo geo;
   final International international;
-  final List<InstitutionDehydrated> associatedInstitutions; // todo: add relationship
+  final List<InstitutionDehydrated>
+      associatedInstitutions; // todo: add relationship
   final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
