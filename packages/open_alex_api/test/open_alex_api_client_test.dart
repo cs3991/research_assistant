@@ -34,11 +34,36 @@ void main() {
     group('getWork', () {
       const workId = 'https://openalex.org/W2741809807';
 
+      test('pass the mail address in the User-Agent header', () async {
+        final mailClient =
+            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
+        try {
+          await mailClient.getWork(workId);
+        } catch (_) {}
+        verify(
+          () => httpClient.get(
+            Uri.https(
+              'api.openalex.org',
+              'works/$workId',
+            ),
+            headers: {
+              'User-Agent': 'address@mail.com',
+            },
+          ),
+        ).called(1);
+      });
+
       test('makes correct http request', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         try {
           await metaWorkApiClient.getWork(workId);
         } catch (_) {}
@@ -48,6 +73,7 @@ void main() {
               'api.openalex.org',
               'works/$workId',
             ),
+            headers: {},
           ),
         ).called(1);
       });
@@ -55,7 +81,8 @@ void main() {
       test('throws WorkRequestFailure on non-200 response', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getWork(workId),
           throwsA(isA<WorkRequestFailure>()),
@@ -66,7 +93,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(404);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getWork(workId),
           throwsA(isA<WorkNotFoundFailure>()),
@@ -77,7 +105,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn(workJsonResponse);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         final actual = await metaWorkApiClient.getWork(workId);
         expect(
           actual,
@@ -521,11 +550,36 @@ void main() {
     group('getAuthor', () {
       const authorId = 'https://openalex.org/A1969205032';
 
+      test('pass the mail address in the User-Agent header', () async {
+        final mailClient =
+        OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
+        try {
+          await mailClient.getAuthor(authorId);
+        } catch (_) {}
+        verify(
+              () => httpClient.get(
+            Uri.https(
+              'api.openalex.org',
+              'authors/$authorId',
+            ),
+            headers: {
+              'User-Agent': 'address@mail.com',
+            },
+          ),
+        ).called(1);
+      });
+
       test('makes correct http request', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         try {
           await metaWorkApiClient.getAuthor(authorId);
         } catch (_) {}
@@ -535,6 +589,7 @@ void main() {
               'api.openalex.org',
               'authors/$authorId',
             ),
+            headers: {},
           ),
         ).called(1);
       });
@@ -542,7 +597,8 @@ void main() {
       test('throws AuthorRequestFailure on non-200 response', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getAuthor(authorId),
           throwsA(isA<AuthorRequestFailure>()),
@@ -553,7 +609,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(404);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getAuthor(authorId),
           throwsA(isA<AuthorNotFoundFailure>()),
@@ -564,7 +621,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn(authorJsonResponse);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         final actual = await metaWorkApiClient.getAuthor(authorId);
         expect(
           actual,
@@ -674,11 +732,37 @@ void main() {
     group('getVenue', () {
       const venueId = 'https://openalex.org/V1983995261';
 
+      test('pass the mail address in the User-Agent header', () async {
+        final mailClient =
+        OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
+        try {
+          await mailClient.getVenue(venueId);
+        } catch (_) {}
+        verify(
+              () => httpClient.get(
+            Uri.https(
+              'api.openalex.org',
+              'venues/$venueId',
+            ),
+            headers: {
+              'User-Agent': 'address@mail.com',
+            },
+          ),
+        ).called(1);
+      });
+
+
       test('makes correct http request', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         try {
           await metaWorkApiClient.getVenue(venueId);
         } catch (_) {}
@@ -688,6 +772,7 @@ void main() {
               'api.openalex.org',
               'venues/$venueId',
             ),
+            headers: {},
           ),
         ).called(1);
       });
@@ -695,7 +780,8 @@ void main() {
       test('throws VenueRequestFailure on non-200 response', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getVenue(venueId),
           throwsA(isA<VenueRequestFailure>()),
@@ -706,7 +792,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(404);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getVenue(venueId),
           throwsA(isA<VenueNotFoundFailure>()),
@@ -716,7 +803,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn(venueJsonResponse);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         final actual = await metaWorkApiClient.getVenue(venueId);
         expect(
             actual,
@@ -814,11 +902,37 @@ void main() {
     group('getInstitution', () {
       const institutionId = 'https://openalex.org/I114027177';
 
+      test('pass the mail address in the User-Agent header', () async {
+        final mailClient =
+        OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
+        try {
+          await mailClient.getInstitution(institutionId);
+        } catch (_) {}
+        verify(
+              () => httpClient.get(
+            Uri.https(
+              'api.openalex.org',
+              'institutions/$institutionId',
+            ),
+            headers: {
+              'User-Agent': 'address@mail.com',
+            },
+          ),
+        ).called(1);
+      });
+
+
       test('makes correct http request', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         try {
           await metaWorkApiClient.getInstitution(institutionId);
         } catch (_) {}
@@ -828,6 +942,7 @@ void main() {
               'api.openalex.org',
               'institutions/$institutionId',
             ),
+            headers: {},
           ),
         ).called(1);
       });
@@ -835,7 +950,8 @@ void main() {
       test('throws InstitutionRequestFailure on non-200 response', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getInstitution(institutionId),
           throwsA(isA<InstitutionRequestFailure>()),
@@ -846,7 +962,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(404);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getInstitution(institutionId),
           throwsA(isA<InstitutionNotFoundFailure>()),
@@ -856,7 +973,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn(institutionJsonResponse);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         final actual = await metaWorkApiClient.getInstitution(institutionId);
 
         expect(
@@ -1080,11 +1198,38 @@ void main() {
     });
     group('getConcept', () {
       const conceptId = 'https://openalex.org/C2778407487';
+
+      test('pass the mail address in the User-Agent header', () async {
+        final mailClient =
+        OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn('{}');
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
+        try {
+          await mailClient.getConcept(conceptId);
+        } catch (_) {}
+        verify(
+              () => httpClient.get(
+            Uri.https(
+              'api.openalex.org',
+              'concepts/$conceptId',
+            ),
+            headers: {
+              'User-Agent': 'address@mail.com',
+            },
+          ),
+        ).called(1);
+      });
+
+
       test('makes correct http request', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         try {
           await metaWorkApiClient.getConcept(conceptId);
         } catch (_) {}
@@ -1094,6 +1239,7 @@ void main() {
               'api.openalex.org',
               'concepts/$conceptId',
             ),
+            headers: {},
           ),
         ).called(1);
       });
@@ -1101,7 +1247,8 @@ void main() {
       test('throws ConceptRequestFailure on non-200 response', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getConcept(conceptId),
           throwsA(isA<ConceptRequestFailure>()),
@@ -1112,7 +1259,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(404);
         when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         expect(
           () async => await metaWorkApiClient.getConcept(conceptId),
           throwsA(isA<ConceptNotFoundFailure>()),
@@ -1122,7 +1270,8 @@ void main() {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn(conceptJsonResponse);
-        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        when(() => httpClient.get(any(), headers: any(named: 'headers')))
+            .thenAnswer((_) async => response);
         final actual = await metaWorkApiClient.getConcept(conceptId);
         expect(
             actual,
