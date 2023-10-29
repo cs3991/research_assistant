@@ -552,7 +552,7 @@ void main() {
 
       test('pass the mail address in the User-Agent header', () async {
         final mailClient =
-        OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
@@ -562,7 +562,7 @@ void main() {
           await mailClient.getAuthor(authorId);
         } catch (_) {}
         verify(
-              () => httpClient.get(
+          () => httpClient.get(
             Uri.https(
               'api.openalex.org',
               'authors/$authorId',
@@ -734,7 +734,7 @@ void main() {
 
       test('pass the mail address in the User-Agent header', () async {
         final mailClient =
-        OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
@@ -744,7 +744,7 @@ void main() {
           await mailClient.getVenue(venueId);
         } catch (_) {}
         verify(
-              () => httpClient.get(
+          () => httpClient.get(
             Uri.https(
               'api.openalex.org',
               'venues/$venueId',
@@ -755,7 +755,6 @@ void main() {
           ),
         ).called(1);
       });
-
 
       test('makes correct http request', () async {
         final response = MockResponse();
@@ -904,7 +903,7 @@ void main() {
 
       test('pass the mail address in the User-Agent header', () async {
         final mailClient =
-        OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
@@ -914,7 +913,7 @@ void main() {
           await mailClient.getInstitution(institutionId);
         } catch (_) {}
         verify(
-              () => httpClient.get(
+          () => httpClient.get(
             Uri.https(
               'api.openalex.org',
               'institutions/$institutionId',
@@ -925,7 +924,6 @@ void main() {
           ),
         ).called(1);
       });
-
 
       test('makes correct http request', () async {
         final response = MockResponse();
@@ -1201,7 +1199,7 @@ void main() {
 
       test('pass the mail address in the User-Agent header', () async {
         final mailClient =
-        OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
+            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(200);
         when(() => response.body).thenReturn('{}');
@@ -1211,7 +1209,7 @@ void main() {
           await mailClient.getConcept(conceptId);
         } catch (_) {}
         verify(
-              () => httpClient.get(
+          () => httpClient.get(
             Uri.https(
               'api.openalex.org',
               'concepts/$conceptId',
@@ -1222,7 +1220,6 @@ void main() {
           ),
         ).called(1);
       });
-
 
       test('makes correct http request', () async {
         final response = MockResponse();

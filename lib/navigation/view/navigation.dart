@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/collection/view/collection.dart';
 import 'package:research_assistant/navigation/cubit/navigation_cubit.dart';
 import 'package:research_assistant/newsfeed/view/newsfeed.dart';
+import 'package:research_assistant/search/view/search.dart';
+
 
 class NavigationPage extends StatelessWidget {
   const NavigationPage({super.key});
@@ -23,6 +25,10 @@ class NavigationPage extends StatelessWidget {
                       NavigationRail(
                         groupAlignment: 0,
                         destinations: const [
+                          NavigationRailDestination(
+                            icon: Icon(Icons.search_rounded),
+                            label: Text('Rechercher'),
+                          ),
                           NavigationRailDestination(
                             icon: Icon(Icons.rss_feed_rounded),
                             label: Text('Nouveautés'),
@@ -47,6 +53,10 @@ class NavigationPage extends StatelessWidget {
                       NavigationBody(index: index),
                       NavigationBar(
                         destinations: const [
+                          NavigationDestination(
+                            icon: Icon(Icons.search_rounded),
+                            label: 'Rechercher',
+                          ),
                           NavigationDestination(
                             icon: Icon(Icons.rss_feed_rounded),
                             label: 'Nouveautés',
@@ -84,9 +94,12 @@ class NavigationBody extends StatelessWidget {
       child: Builder(
         builder: (context) {
           if (index == 0) {
-            return const NewsFeed();
+            return const Search();
           }
           if (index == 1) {
+            return const NewsFeed();
+          }
+          if (index == 2) {
             return const Collection();
           } else {
             return ColoredBox(
