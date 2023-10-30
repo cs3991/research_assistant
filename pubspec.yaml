@@ -14,6 +14,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.1
+  open_alex_api:
+    path: packages/open_alex_api
+  openalex:
+    path: packages/openalex
 
 dev_dependencies:
   bloc_test: ^9.1.5

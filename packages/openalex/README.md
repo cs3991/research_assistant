@@ -1,0 +1,2 @@
+OpenAlex is a fully open catalog of the global research system. It's named after the ancient Library of Alexandria and made by the nonprofit OurResearch.
+This is the technical documentation for the OpenAlex API. Here, you can learn how to set up your code to access OpenAlex's data. If you want to explore the data as a human, you may be more interested in OpenAlex Web.

@@ -176,6 +176,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -216,6 +224,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.4"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.1"
   logging:
     dependency: transitive
     description:
@@ -280,6 +296,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  open_alex_api:
+    dependency: "direct main"
+    description:
+      path: "packages/open_alex_api"
+      relative: true
+    source: path
+    version: "0.0.1"
+  openalex:
+    dependency: "direct main"
+    description:
+      path: "packages/openalex"
+      relative: true
+    source: path
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:
@@ -510,5 +540,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=3.1.0-185.0.dev <4.0.0"
-  flutter: ">=1.16.0"
+  dart: ">=3.1.0 <=3.1.5"
+  flutter: ">=1.17.0"

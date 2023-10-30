@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:research_assistant/search/cubit/search_cubit.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({Key? key}) : super(key: key);
@@ -23,6 +25,9 @@ class SearchField extends StatelessWidget {
               fillColor: Theme.of(context).colorScheme.surface,
               contentPadding: const EdgeInsets.all(16),
             ),
+            onSubmitted: (value) {
+              context.read<SearchCubit>().search(value);
+            },
           ),
         ),
       ],

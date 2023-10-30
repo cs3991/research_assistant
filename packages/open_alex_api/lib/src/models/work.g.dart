@@ -21,8 +21,11 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
           publicationYear: $checkedConvert('publication_year', (v) => v as int),
           publicationDate: $checkedConvert(
               'publication_date', (v) => DateTime.parse(v as String)),
-          hostVenue: $checkedConvert('host_venue',
-              (v) => HostVenue.fromJson(v as Map<String, dynamic>)),
+          hostVenue: $checkedConvert(
+              'host_venue',
+              (v) => v == null
+                  ? null
+                  : HostVenue.fromJson(v as Map<String, dynamic>)),
           citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
           isOpenAccess: $checkedConvert(
             'is_oa',
@@ -65,8 +68,8 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
                   .toList()),
           alternateHostVenues: $checkedConvert(
               'alternate_host_venues',
-              (v) => (v as List<dynamic>)
-                  .map((e) => HostVenue.fromJson(e as Map<String, dynamic>))
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => HostVenue.fromJson(e as Map<String, dynamic>))
                   .toList()),
           referencedWorks: $checkedConvert('referenced_works',
               (v) => (v as List<dynamic>).map((e) => e as String).toList()),
@@ -74,7 +77,7 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
               (v) => (v as List<dynamic>).map((e) => e as String).toList()),
           abstractInvertedIndex: $checkedConvert(
               'abstract_inverted_index',
-              (v) => (v as Map<String, dynamic>).map(
+              (v) => (v as Map<String, dynamic>?)?.map(
                     (k, e) => MapEntry(
                         k, (e as List<dynamic>).map((e) => e as int).toList()),
                   )),
@@ -135,35 +138,21 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
 
 const _$WorkTypeEnumMap = {
-  WorkType.bookSection: 'book-section',
-  WorkType.monograph: 'monograph',
+  WorkType.article: 'article',
+  WorkType.bookChapter: 'book-chapter',
+  WorkType.dissertation: 'dissertation',
+  WorkType.book: 'book',
+  WorkType.dataset: 'dataset',
+  WorkType.paratext: 'paratext',
+  WorkType.other: 'other',
+  WorkType.referenceEntry: 'reference-entry',
   WorkType.report: 'report',
   WorkType.peerReview: 'peer-review',
-  WorkType.bookTrack: 'book-track',
-  WorkType.journalArticle: 'journal-article',
-  WorkType.bookPart: 'book-part',
-  WorkType.other: 'other',
-  WorkType.book: 'book',
-  WorkType.journalVolume: 'journal-volume',
-  WorkType.bookSet: 'book-set',
-  WorkType.referenceEntry: 'reference-entry',
-  WorkType.proceedingsArticle: 'proceedings-article',
-  WorkType.journal: 'journal',
-  WorkType.component: 'component',
-  WorkType.bookChapter: 'book-chapter',
-  WorkType.proceedingsSeries: 'proceedings-series',
-  WorkType.reportSeries: 'report-series',
-  WorkType.proceedings: 'proceedings',
   WorkType.standard: 'standard',
-  WorkType.referenceBook: 'reference-book',
-  WorkType.postedContent: 'posted-content',
-  WorkType.journalIssue: 'journal-issue',
-  WorkType.dissertation: 'dissertation',
+  WorkType.editorial: 'editorial',
+  WorkType.erratum: 'erratum',
   WorkType.grant: 'grant',
-  WorkType.dataset: 'dataset',
-  WorkType.bookSeries: 'book-series',
-  WorkType.editedBook: 'edited-book',
-  WorkType.standardSeries: 'standard-series',
+  WorkType.letter: 'letter',
 };
 
 const _$OpenAccessStatusEnumMap = {

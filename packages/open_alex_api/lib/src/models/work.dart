@@ -6,35 +6,21 @@ part 'work.g.dart';
 
 @JsonEnum(fieldRename: FieldRename.kebab)
 enum WorkType {
-  bookSection,
-  monograph,
+  article,
+  bookChapter,
+  dissertation,
+  book,
+  dataset,
+  paratext,
+  other,
+  referenceEntry,
   report,
   peerReview,
-  bookTrack,
-  journalArticle,
-  bookPart,
-  other,
-  book,
-  journalVolume,
-  bookSet,
-  referenceEntry,
-  proceedingsArticle,
-  journal,
-  component,
-  bookChapter,
-  proceedingsSeries,
-  reportSeries,
-  proceedings,
   standard,
-  referenceBook,
-  postedContent,
-  journalIssue,
-  dissertation,
+  editorial,
+  erratum,
   grant,
-  dataset,
-  bookSeries,
-  editedBook,
-  standardSeries,
+  letter,
 }
 
 enum OpenAccessStatus {
@@ -64,7 +50,7 @@ class Work {
   final String displayName;
   final int publicationYear;
   final DateTime publicationDate;
-  final HostVenue hostVenue;
+  final HostVenue? hostVenue;
   final WorkType type;
 
   // Open access
@@ -82,10 +68,10 @@ class Work {
   final bool isParatext;
   final List<ConceptDehydrated> concepts; // todo: add score
   final List<Map> mesh;
-  final List<HostVenue> alternateHostVenues;
+  final List<HostVenue>? alternateHostVenues;
   final List<String> referencedWorks;
   final List<String> relatedWorks;
-  final Map<String, List<int>> abstractInvertedIndex;
+  final Map<String, List<int>>? abstractInvertedIndex;
   final String citedByApiUrl;
   @JsonKey(name: 'counts_by_year')
   final List<YearWork> countsByYear;

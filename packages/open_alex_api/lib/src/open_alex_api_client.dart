@@ -108,4 +108,18 @@ class OpenAlexApiClient {
       throw ConceptRequestFailure();
     }
   }
+  /// Searches for [Work]s by a query.
+  Future<List<Work>> searchWorks(String query) async {
+    final searchResponse = await _get(Uri.https(_baseUrl, 'works', {'search': query}));
+    if (searchResponse.statusCode == 200) {
+      final searchResults = jsonDecode(searchResponse.body);
+      final List<Work> works = [];
+      for (final result in searchResults['results']) {
+        works.add(Work.fromJson(result));
+      }
+      return works;
+    } else {
+      throw WorkRequestFailure();
+    }
+  }
 }
