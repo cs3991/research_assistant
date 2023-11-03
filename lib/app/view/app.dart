@@ -15,10 +15,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Brightness.light;
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffd95d3c)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffd95d3c), brightness: brightness),
       ),
       localizationsDelegates: const [
         AppLocalizations.delegate,

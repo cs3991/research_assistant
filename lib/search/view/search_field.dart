@@ -7,28 +7,47 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Checkbox(
+            value: false,
+            activeColor: Theme.of(context).colorScheme.onSurfaceVariant,
+            onChanged: (bool? value) {},
+          ),
+        ),
         Expanded(
           child: TextField(
             decoration: InputDecoration(
               hintText: 'Rechercher',
               prefixIcon: const Padding(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Icon(Icons.search),
               ),
               border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(34)),
+                borderRadius: BorderRadius.all(Radius.circular(50)),
                 borderSide: BorderSide.none,
               ),
+              isDense: true,
               filled: true,
               fillColor: Theme.of(context).colorScheme.surface,
-              contentPadding: const EdgeInsets.all(16),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
             ),
             onSubmitted: (value) {
               context.read<SearchCubit>().search(value);
             },
           ),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.filter_alt_rounded),
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.sort_by_alpha_rounded),
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
       ],
     );

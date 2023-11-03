@@ -13,7 +13,7 @@ class Work {
   final List<Grant> grants;
   final bool hasFulltext;
   final int institutionsDistinctCount;
-  final String language;
+  final String? language;
   final String? license;
   final List<Location> locations;
   final int locationsCount;
@@ -36,8 +36,8 @@ class Work {
   @JsonKey(readValue: _readId, name: 'pmcid')
   final String? pmcId;
 
-  final String title;
-  final String displayName;
+  final String? title;
+  final String? displayName;
   final WorkType type;
 
   // Open access
