@@ -203,7 +203,7 @@ void main() {
               .having(
                 (work) => work.type,
                 'type',
-                WorkType.journalArticle,
+                WorkType.article,
               )
               .having(
                 (work) => work.isOpenAccess,
@@ -807,7 +807,7 @@ void main() {
         final actual = await metaWorkApiClient.getVenue(venueId);
         expect(
             actual,
-            isA<Venue>()
+            isA<Source>()
                 .having(
                   (venue) => venue.id,
                   'openAlexId',

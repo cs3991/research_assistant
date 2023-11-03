@@ -31,7 +31,7 @@ main() {
           var invalidJson = Map<String, dynamic>.from(jsonResponseMap);
           expect(invalidJson.remove(field), isNotNull);
           expect(() {
-            return Venue.fromJson(invalidJson);
+            return Source.fromJson(invalidJson);
           }, throwsA(isA<CheckedFromJsonException>()));
         }
       });

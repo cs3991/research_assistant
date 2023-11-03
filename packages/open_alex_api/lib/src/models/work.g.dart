@@ -13,76 +13,43 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = Work(
-          id: $checkedConvert('id', (v) => v as String),
-          type:
-              $checkedConvert('type', (v) => $enumDecode(_$WorkTypeEnumMap, v)),
-          title: $checkedConvert('title', (v) => v as String),
-          displayName: $checkedConvert('display_name', (v) => v as String),
-          publicationYear: $checkedConvert('publication_year', (v) => v as int),
-          publicationDate: $checkedConvert(
-              'publication_date', (v) => DateTime.parse(v as String)),
-          hostVenue: $checkedConvert(
-              'host_venue',
-              (v) => v == null
-                  ? null
-                  : HostVenue.fromJson(v as Map<String, dynamic>)),
-          citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
-          isOpenAccess: $checkedConvert(
-            'is_oa',
-            (v) => v as bool,
-            readValue: Work._readOpenAccess,
-          ),
-          openAccessStatus: $checkedConvert(
-            'oa_status',
-            (v) => $enumDecode(_$OpenAccessStatusEnumMap, v),
-            readValue: Work._readOpenAccess,
-          ),
-          isRetracted: $checkedConvert('is_retracted', (v) => v as bool),
-          isParatext: $checkedConvert('is_paratext', (v) => v as bool),
-          citedByApiUrl:
-              $checkedConvert('cited_by_api_url', (v) => v as String),
-          countsByYear: $checkedConvert(
-              'counts_by_year',
-              (v) => (v as List<dynamic>)
-                  .map((e) => YearWork.fromJson(e as Map<String, dynamic>))
-                  .toList()),
-          updatedDate: $checkedConvert(
-              'updated_date', (v) => DateTime.parse(v as String)),
-          createdDate: $checkedConvert(
-              'created_date', (v) => DateTime.parse(v as String)),
-          authorships: $checkedConvert(
-              'authorships',
-              (v) => (v as List<dynamic>)
-                  .map((e) => Authorship.fromJson(e as Map<String, dynamic>))
-                  .toList()),
-          concepts: $checkedConvert(
-              'concepts',
-              (v) => (v as List<dynamic>)
-                  .map((e) =>
-                      ConceptDehydrated.fromJson(e as Map<String, dynamic>))
-                  .toList()),
-          mesh: $checkedConvert(
-              'mesh',
-              (v) => (v as List<dynamic>)
-                  .map((e) => e as Map<String, dynamic>)
-                  .toList()),
-          alternateHostVenues: $checkedConvert(
-              'alternate_host_venues',
-              (v) => (v as List<dynamic>?)
-                  ?.map((e) => HostVenue.fromJson(e as Map<String, dynamic>))
-                  .toList()),
-          referencedWorks: $checkedConvert('referenced_works',
-              (v) => (v as List<dynamic>).map((e) => e as String).toList()),
-          relatedWorks: $checkedConvert('related_works',
-              (v) => (v as List<dynamic>).map((e) => e as String).toList()),
           abstractInvertedIndex: $checkedConvert(
               'abstract_inverted_index',
               (v) => (v as Map<String, dynamic>?)?.map(
-                    (k, e) => MapEntry(
-                        k, (e as List<dynamic>).map((e) => e as int).toList()),
+                    (k, e) => MapEntry(k, (e as List<dynamic>).map((e) => e as int).toList()),
                   )),
-          biblio: $checkedConvert(
-              'biblio', (v) => Map<String, String?>.from(v as Map)),
+          authorships: $checkedConvert(
+              'authorships',
+              (v) =>
+                  (v as List<dynamic>).map((e) => Authorship.fromJson(e as Map<String, dynamic>)).toList()),
+          apcList:
+              $checkedConvert('apc_list', (v) => v == null ? null : Apc.fromJson(v as Map<String, dynamic>)),
+          apcPaid:
+              $checkedConvert('apc_paid', (v) => v == null ? null : Apc.fromJson(v as Map<String, dynamic>)),
+          bestOaLocation: $checkedConvert(
+              'best_oa_location', (v) => v == null ? null : Location.fromJson(v as Map<String, dynamic>)),
+          biblio: $checkedConvert('biblio', (v) => Map<String, String?>.from(v as Map)),
+          citedByApiUrl: $checkedConvert('cited_by_api_url', (v) => v as String),
+          citedByCount: $checkedConvert('cited_by_count', (v) => v as int),
+          concepts: $checkedConvert(
+              'concepts',
+              (v) => (v as List<dynamic>)
+                  .map((e) => ConceptDehydrated.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+          correspondingAuthorIds: $checkedConvert(
+              'corresponding_author_ids', (v) => (v as List<dynamic>).map((e) => e as String).toList()),
+          correspondingInstitutionIds: $checkedConvert(
+              'corresponding_institution_ids', (v) => (v as List<dynamic>).map((e) => e as String).toList()),
+          countriesDistinctCount: $checkedConvert('countries_distinct_count', (v) => v as int),
+          countsByYear: $checkedConvert('counts_by_year',
+              (v) => (v as List<dynamic>).map((e) => YearWork.fromJson(e as Map<String, dynamic>)).toList()),
+          createdDate: $checkedConvert('created_date', (v) => DateTime.parse(v as String)),
+          displayName: $checkedConvert('display_name', (v) => v as String),
+          fulltextOrigin: $checkedConvert('fulltext_origin', (v) => v as String?),
+          grants: $checkedConvert('grants',
+              (v) => (v as List<dynamic>).map((e) => Grant.fromJson(e as Map<String, dynamic>)).toList()),
+          hasFulltext: $checkedConvert('has_fulltext', (v) => v as bool),
+          id: $checkedConvert('id', (v) => v as String),
           doiId: $checkedConvert(
             'doi',
             (v) => v as String?,
@@ -103,6 +70,38 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
             (v) => v as String?,
             readValue: Work._readId,
           ),
+          isParatext: $checkedConvert('is_paratext', (v) => v as bool),
+          isRetracted: $checkedConvert('is_retracted', (v) => v as bool),
+          mesh: $checkedConvert(
+              'mesh', (v) => (v as List<dynamic>).map((e) => e as Map<String, dynamic>).toList()),
+          title: $checkedConvert('title', (v) => v as String),
+          type: $checkedConvert('type', (v) => $enumDecode(_$WorkTypeEnumMap, v)),
+          institutionsDistinctCount: $checkedConvert('institutions_distinct_count', (v) => v as int),
+          language: $checkedConvert('language', (v) => v as String),
+          license: $checkedConvert('license', (v) => v as String?),
+          locations: $checkedConvert('locations',
+              (v) => (v as List<dynamic>).map((e) => Location.fromJson(e as Map<String, dynamic>)).toList()),
+          locationsCount: $checkedConvert('locations_count', (v) => v as int),
+          ngramsUrl: $checkedConvert('ngrams_url', (v) => v as String),
+          primaryLocation:
+              $checkedConvert('primary_location', (v) => Location.fromJson(v as Map<String, dynamic>)),
+          publicationDate: $checkedConvert('publication_date', (v) => DateTime.parse(v as String)),
+          publicationYear: $checkedConvert('publication_year', (v) => v as int),
+          referencedWorks: $checkedConvert(
+              'referenced_works', (v) => (v as List<dynamic>).map((e) => e as String).toList()),
+          relatedWorks:
+              $checkedConvert('related_works', (v) => (v as List<dynamic>).map((e) => e as String).toList()),
+          updatedDate: $checkedConvert('updated_date', (v) => v),
+          isOpenAccess: $checkedConvert(
+            'is_oa',
+            (v) => v as bool,
+            readValue: Work._readOpenAccess,
+          ),
+          openAccessStatus: $checkedConvert(
+            'oa_status',
+            (v) => $enumDecode(_$OpenAccessStatusEnumMap, v),
+            readValue: Work._readOpenAccess,
+          ),
           openAccessUrl: $checkedConvert(
             'oa_url',
             (v) => v as String?,
@@ -112,27 +111,37 @@ Work _$WorkFromJson(Map<String, dynamic> json) => $checkedCreate(
         return val;
       },
       fieldKeyMap: const {
-        'displayName': 'display_name',
-        'publicationYear': 'publication_year',
-        'publicationDate': 'publication_date',
-        'hostVenue': 'host_venue',
-        'citedByCount': 'cited_by_count',
-        'isOpenAccess': 'is_oa',
-        'openAccessStatus': 'oa_status',
-        'isRetracted': 'is_retracted',
-        'isParatext': 'is_paratext',
-        'citedByApiUrl': 'cited_by_api_url',
-        'countsByYear': 'counts_by_year',
-        'updatedDate': 'updated_date',
-        'createdDate': 'created_date',
-        'alternateHostVenues': 'alternate_host_venues',
-        'referencedWorks': 'referenced_works',
-        'relatedWorks': 'related_works',
         'abstractInvertedIndex': 'abstract_inverted_index',
+        'apcList': 'apc_list',
+        'apcPaid': 'apc_paid',
+        'bestOaLocation': 'best_oa_location',
+        'citedByApiUrl': 'cited_by_api_url',
+        'citedByCount': 'cited_by_count',
+        'correspondingAuthorIds': 'corresponding_author_ids',
+        'correspondingInstitutionIds': 'corresponding_institution_ids',
+        'countriesDistinctCount': 'countries_distinct_count',
+        'countsByYear': 'counts_by_year',
+        'createdDate': 'created_date',
+        'displayName': 'display_name',
+        'fulltextOrigin': 'fulltext_origin',
+        'hasFulltext': 'has_fulltext',
         'doiId': 'doi',
         'magId': 'mag',
         'pmidId': 'pmid',
         'pmcId': 'pmcid',
+        'isParatext': 'is_paratext',
+        'isRetracted': 'is_retracted',
+        'institutionsDistinctCount': 'institutions_distinct_count',
+        'locationsCount': 'locations_count',
+        'ngramsUrl': 'ngrams_url',
+        'primaryLocation': 'primary_location',
+        'publicationDate': 'publication_date',
+        'publicationYear': 'publication_year',
+        'referencedWorks': 'referenced_works',
+        'relatedWorks': 'related_works',
+        'updatedDate': 'updated_date',
+        'isOpenAccess': 'is_oa',
+        'openAccessStatus': 'oa_status',
         'openAccessUrl': 'oa_url'
       },
     );
@@ -163,37 +172,60 @@ const _$OpenAccessStatusEnumMap = {
   OpenAccessStatus.closed: 'closed',
 };
 
-HostVenue _$HostVenueFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'HostVenue',
+Location _$LocationFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Location',
       json,
       ($checkedConvert) {
-        final val = HostVenue(
-          displayName: $checkedConvert('display_name', (v) => v as String),
-          linkingIssn: $checkedConvert('issn_l', (v) => v as String?),
-          id: $checkedConvert('id', (v) => v as String?),
-          issn: $checkedConvert('issn',
-              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
-          publisher: $checkedConvert('publisher', (v) => v as String?),
-          url: $checkedConvert('url', (v) => v as String),
-          isOpenAccess: $checkedConvert('is_oa', (v) => v as bool),
-          version: $checkedConvert(
-              'version', (v) => $enumDecode(_$HostVenueVersionEnumMap, v)),
+        final val = Location(
+          isOa: $checkedConvert('is_oa', (v) => v as bool),
+          landingPageUrl: $checkedConvert('landing_page_url', (v) => v as String?),
+          pdfUrl: $checkedConvert('pdf_url', (v) => v as String?),
+          source: $checkedConvert(
+              'source', (v) => v == null ? null : SourceDehydrated.fromJson(v as Map<String, dynamic>)),
           license: $checkedConvert('license', (v) => v as String?),
+          version: $checkedConvert('version', (v) => v as String?),
+          isAccepted: $checkedConvert('is_accepted', (v) => v as bool),
+          isPublished: $checkedConvert('is_published', (v) => v as bool),
         );
         return val;
       },
       fieldKeyMap: const {
-        'displayName': 'display_name',
-        'linkingIssn': 'issn_l',
-        'isOpenAccess': 'is_oa'
+        'isOa': 'is_oa',
+        'landingPageUrl': 'landing_page_url',
+        'pdfUrl': 'pdf_url',
+        'isAccepted': 'is_accepted',
+        'isPublished': 'is_published'
       },
     );
 
-const _$HostVenueVersionEnumMap = {
-  HostVenueVersion.publishedVersion: 'publishedVersion',
-  HostVenueVersion.acceptedVersion: 'acceptedVersion',
-  HostVenueVersion.submittedVersion: 'submittedVersion',
-};
+Grant _$GrantFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Grant',
+      json,
+      ($checkedConvert) {
+        final val = Grant(
+          funder: $checkedConvert('funder', (v) => v as String),
+          funderDisplayName: $checkedConvert('funder_display_name', (v) => v as String),
+          awardId: $checkedConvert('award_id', (v) => v as String?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'funderDisplayName': 'funder_display_name', 'awardId': 'award_id'},
+    );
+
+Apc _$ApcFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Apc',
+      json,
+      ($checkedConvert) {
+        final val = Apc(
+          value: $checkedConvert('value', (v) => v as int),
+          currency: $checkedConvert('currency', (v) => v as String),
+          provenance: $checkedConvert('provenance', (v) => v as String?),
+          valueUsd: $checkedConvert('value_usd', (v) => v as int?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'valueUsd': 'value_usd'},
+    );
 
 Authorship _$AuthorshipFromJson(Map<String, dynamic> json) => $checkedCreate(
       'Authorship',

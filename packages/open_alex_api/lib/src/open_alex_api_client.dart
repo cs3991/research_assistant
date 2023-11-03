@@ -72,11 +72,11 @@ class OpenAlexApiClient {
     }
   }
 
-  /// Fetches a [Venue] by its OpenAlex ID.
-  Future<Venue> getVenue(String id) async {
+  /// Fetches a [Source] by its OpenAlex ID.
+  Future<Source> getVenue(String id) async {
     final venueResponse = await _get(Uri.https(_baseUrl, 'venues/$id'));
     if (venueResponse.statusCode == 200) {
-      return Venue.fromJson(jsonDecode(venueResponse.body));
+      return Source.fromJson(jsonDecode(venueResponse.body));
     } else if (venueResponse.statusCode == 404) {
       throw VenueNotFoundFailure();
     } else {
