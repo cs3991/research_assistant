@@ -28,7 +28,7 @@ class SearchResults extends StatelessWidget {
                           'Arxiv',
                           style: Theme.of(context)
                               .textTheme
-                              .labelMedium
+                              .labelSmall
                               ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
                         ),
                         const SizedBox(width: 8),
@@ -37,7 +37,7 @@ class SearchResults extends StatelessWidget {
                             '2022',
                             style: Theme.of(context)
                                 .textTheme
-                                .labelMedium
+                                .labelSmall
                                 ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
                           ),
                         ),
@@ -83,14 +83,6 @@ class SearchResults extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                     ),
-                    // ListTile(
-                    //   minLeadingWidth: 0,
-                    //   title: Text(work.title),
-                    //   subtitle: Text(work.author),
-                    //   titleTextStyle: Theme.of(context).textTheme.titleMedium,
-                    //   subtitleTextStyle: Theme.of(context).textTheme.bodySmall,
-                    //   textColor: Theme.of(context).colorScheme.onSurfaceVariant,
-                    // ),
                     const SizedBox(height: 25),
                   ],
                 );

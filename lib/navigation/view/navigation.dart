@@ -5,7 +5,6 @@ import 'package:research_assistant/navigation/cubit/navigation_cubit.dart';
 import 'package:research_assistant/newsfeed/view/newsfeed.dart';
 import 'package:research_assistant/search/view/search.dart';
 
-
 class NavigationPage extends StatelessWidget {
   const NavigationPage({super.key});
 
@@ -41,16 +40,19 @@ class NavigationPage extends StatelessWidget {
                         labelType: NavigationRailLabelType.selected,
                         selectedIndex: index,
                         onDestinationSelected: (int newIndex) =>
-                            BlocProvider.of<NavigationCubit>(context)
-                                .showTabWithIndex(newIndex),
+                            BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
                       ),
-                      NavigationBody(index: index),
+                      Center(
+                        child: NavigationBody(index: index),
+                      ),
                     ],
                   );
                 } else {
                   return Column(
                     children: [
-                      NavigationBody(index: index),
+                      Expanded(
+                        child: NavigationBody(index: index),
+                      ),
                       NavigationBar(
                         destinations: const [
                           NavigationDestination(
@@ -68,8 +70,7 @@ class NavigationPage extends StatelessWidget {
                         ],
                         selectedIndex: index,
                         onDestinationSelected: (int newIndex) =>
-                            BlocProvider.of<NavigationCubit>(context)
-                                .showTabWithIndex(newIndex),
+                            BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
                       ),
                     ],
                   );
@@ -90,25 +91,23 @@ class NavigationBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Builder(
-        builder: (context) {
-          if (index == 0) {
-            return const Search();
-          }
-          if (index == 1) {
-            return const NewsFeed();
-          }
-          if (index == 2) {
-            return const Collection();
-          } else {
-            return ColoredBox(
-              color: Theme.of(context).colorScheme.surface,
-              child: const Text('Unknown'),
-            );
-          }
-        },
-      ),
+    return Builder(
+      builder: (context) {
+        if (index == 0) {
+          return const Search();
+        }
+        if (index == 1) {
+          return const NewsFeed();
+        }
+        if (index == 2) {
+          return const Collection();
+        } else {
+          return ColoredBox(
+            color: Theme.of(context).colorScheme.surface,
+            child: const Text('Unknown'),
+          );
+        }
+      },
     );
   }
 }

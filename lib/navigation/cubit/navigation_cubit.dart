@@ -11,6 +11,10 @@ class NavigationCubit extends Cubit<int> {
     emit(1);
   }
 
+  void showSearch() {
+    emit(2);
+  }
+
   void showTabWithIndex(int i) {
     emit(i);
   }
