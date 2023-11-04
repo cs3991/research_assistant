@@ -25,8 +25,8 @@ class SearchField extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Icon(Icons.search),
               ),
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(50)),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
                 borderSide: BorderSide.none,
               ),
               isDense: true,

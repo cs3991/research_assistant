@@ -13,7 +13,7 @@ class Search extends StatelessWidget {
       padding: EdgeInsets.all(fullscreen ? 0 : 16),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(fullscreen ? 0 : 12)),
+          borderRadius: BorderRadius.circular(fullscreen ? 0 : 12),
           color: Theme.of(context).colorScheme.surfaceVariant,
         ),
         constraints: BoxConstraints(
