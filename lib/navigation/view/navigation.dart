@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/collection/view/collection.dart';
 import 'package:research_assistant/navigation/cubit/navigation_cubit.dart';
 import 'package:research_assistant/newsfeed/view/newsfeed.dart';
+import 'package:research_assistant/search/cubit/search_cubit.dart';
 import 'package:research_assistant/search/view/search.dart';
 
 class NavigationPage extends StatelessWidget {
@@ -11,11 +12,13 @@ class NavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Navigation')),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          return BlocProvider(
-            create: (context) => NavigationCubit(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => NavigationCubit()),
+              BlocProvider(create: (context) => SearchCubit()),
+            ],
             child: BlocBuilder<NavigationCubit, int>(
               builder: (BuildContext context, int index) {
                 if (constraints.maxWidth > 900) {
@@ -51,7 +54,7 @@ class NavigationPage extends StatelessWidget {
                   return Column(
                     children: [
                       Expanded(
-                        child: NavigationBody(index: index),
+                        child: NavigationBody(index: index, fullscreen: true),
                       ),
                       NavigationBar(
                         destinations: const [
@@ -85,16 +88,17 @@ class NavigationPage extends StatelessWidget {
 }
 
 class NavigationBody extends StatelessWidget {
-  const NavigationBody({super.key, required this.index});
+  const NavigationBody({super.key, required this.index, this.fullscreen = false});
 
   final int index;
+  final bool fullscreen;
 
   @override
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
         if (index == 0) {
-          return const Search();
+          return Search(fullscreen: fullscreen);
         }
         if (index == 1) {
           return const NewsFeed();
