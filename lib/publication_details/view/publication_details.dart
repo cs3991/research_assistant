@@ -1,12 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:research_assistant/catalog_repository/src/model/work.dart';
 import 'package:research_assistant/publication_details/publication_cubit/publication_cubit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PublicationDetails extends StatelessWidget {
-  const PublicationDetails({super.key});
+  PublicationDetails({super.key});
 
   final fullscreen = false;
+  final dateFormat = DateFormat('dd/MM/yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +52,12 @@ class PublicationDetails extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               SquareButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (work.bestOaUrl != null) {
+                                    log('Open ${work.bestOaUrl}');
+                                    launchUrl(work.bestOaUrl!);
+                                  }
+                                },
                                 child: Icon(
                                   Icons.open_in_new_rounded,
                                   size: 20,
@@ -104,7 +114,7 @@ class PublicationDetails extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              'Publié le 2 avril 2018 par Arxiv',
+                              'Publié le ${dateFormat.format(work.publicationDate)} par ${work.primaryLocation}',
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -112,7 +122,7 @@ class PublicationDetails extends StatelessWidget {
                             ),
                           ),
                           Icon(
-                            Icons.lock_open_rounded,
+                            work.isOpenAccess ? Icons.lock_open_rounded : Icons.lock_rounded,
                             color: Theme.of(context).colorScheme.onSurface,
                           ),
                           Container(
@@ -132,7 +142,7 @@ class PublicationDetails extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '593',
+                                  work.citedByCount.toString(),
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
@@ -151,8 +161,8 @@ class PublicationDetails extends StatelessWidget {
                         work.abstract,
                         textAlign: TextAlign.justify,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.onSurface,
-                            ),
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -160,13 +170,13 @@ class PublicationDetails extends StatelessWidget {
                       height: 50,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: 3,
+                        itemCount: work.conceptsNames.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(4),
                             child: Chip(
                               label: Text(
-                                'Concept',
+                                work.conceptsNames[index],
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium

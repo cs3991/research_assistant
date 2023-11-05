@@ -46,17 +46,9 @@ class SearchResults extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                'Arxiv',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
-                              ),
-                              const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  '2022',
+                                  '${work.publicationYear} - ${work.primaryLocation}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelSmall
@@ -80,7 +72,7 @@ class SearchResults extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      '593',
+                                      work.citedByCount.toString(),
                                       style: Theme.of(context)
                                           .textTheme
                                           .labelMedium
@@ -100,7 +92,7 @@ class SearchResults extends StatelessWidget {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            work.authors.join(', '),
+                            work.authors.take(10).join(', '),
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                                 ),
