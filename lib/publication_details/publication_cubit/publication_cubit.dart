@@ -6,14 +6,14 @@ import 'package:research_assistant/catalog_repository/src/model/work.dart';
 part 'publication_state.dart';
 
 class PublicationCubit extends Cubit<Work?> {
-  PublicationCubit() : super(null);
+  PublicationCubit({Work? work}) : super(work);
   final repository = CatalogRepository();
 
   void showPublication(Work work) {
     emit(work);
   }
 
-  Future<void> fetchPublication(String id) async {
+  Future<void> fetchAndShowPublication(String id) async {
     emit(null);
     final work = await repository.getWork(id);
     emit(work);

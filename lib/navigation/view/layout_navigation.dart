@@ -5,7 +5,9 @@ import 'package:research_assistant/publication_details/view/publication_details.
 import 'package:research_assistant/search/view/search.dart';
 
 class LayoutNavigation extends StatelessWidget {
-  const LayoutNavigation({super.key});
+  LayoutNavigation({super.key});
+
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,46 +19,81 @@ class LayoutNavigation extends StatelessWidget {
             builder: (context, state) {
               return LayoutBuilder(
                 builder: (context, constraints) {
-                  // return constraints.maxWidth > 900
-                  //     ?
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: state.stack.length,
-                    itemBuilder: (context, index) {
-                      if (state.stack[index] is SearchPage) {
-                        return const Search();
-                      } else if (state.stack[index] is AuthorDetailsPage) {
-                        return Padding(
-                          padding: EdgeInsets.all(constraints.maxWidth < 900 ? 0 : 16),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                constraints.maxWidth < 900 ? 0 : 12,
-                              ),
-                              color: Theme.of(context).colorScheme.surfaceVariant,
-                            ),
-                            constraints: BoxConstraints(
-                              maxWidth: constraints.maxWidth < 900 ? double.infinity : 500,
-                            ),
-                            padding: const EdgeInsets.all(16),
+                  return constraints.maxWidth > 900
+                      ? Scrollbar(
+                          controller: _scrollController,
+                          thumbVisibility: true,
+                          trackVisibility: true,
+                          child: ListView.builder(
+                            controller: _scrollController,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.stack.length,
+                            itemBuilder: (context, index) {
+                              if (state.stack[index] is SearchPage) {
+                                return const Search();
+                              } else if (state.stack[index] is AuthorDetailsPage) {
+                                return Padding(
+                                  padding: EdgeInsets.all(constraints.maxWidth < 900 ? 0 : 16),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        constraints.maxWidth < 900 ? 0 : 12,
+                                      ),
+                                      color: Theme.of(context).colorScheme.surfaceVariant,
+                                    ),
+                                    constraints: BoxConstraints(
+                                      maxWidth: constraints.maxWidth < 900 ? double.infinity : 500,
+                                    ),
+                                    padding: const EdgeInsets.all(16),
+                                  ),
+                                );
+                              } else if (state.stack[index] is PublicationDetailsPage) {
+                                return PublicationDetails(
+                                  work: (state.stack[index] as PublicationDetailsPage).work,
+                                  index: index,
+                                );
+                              } else {
+                                throw Exception('Unknown page type');
+                              }
+                            },
+                          ),
+                        )
+                      : Stack(
+                          children: List.generate(
+                            state.stack.length,
+                            (index) {
+                              if (state.stack[index] is SearchPage) {
+                                return const Search(
+                                  fullscreen: true,
+                                );
+                              } else if (state.stack[index] is AuthorDetailsPage) {
+                                return Padding(
+                                  padding: EdgeInsets.all(constraints.maxWidth < 900 ? 0 : 16),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        constraints.maxWidth < 900 ? 0 : 12,
+                                      ),
+                                      color: Theme.of(context).colorScheme.surfaceVariant,
+                                    ),
+                                    constraints: BoxConstraints(
+                                      maxWidth: constraints.maxWidth < 900 ? double.infinity : 500,
+                                    ),
+                                    padding: const EdgeInsets.all(16),
+                                  ),
+                                );
+                              } else if (state.stack[index] is PublicationDetailsPage) {
+                                return PublicationDetails(
+                                  work: (state.stack[index] as PublicationDetailsPage).work,
+                                  index: index,
+                                  fullscreen: true,
+                                );
+                              } else {
+                                throw Exception('Unknown page type');
+                              }
+                            },
                           ),
                         );
-                      } else if (state.stack[index] is PublicationDetailsPage) {
-                        return PublicationDetails();
-                      } else {
-                        throw Exception('Unknown page type');
-                      }
-                    },
-                  );
-                  // : Stack(
-                  //     children: List.generate(
-                  //       state.stack.length,
-                  //       (index) => CustomColumn(
-                  //         title: state.stack[index].toString(),
-                  //         index: index,
-                  //       ),
-                  //     ),
-                  //   );
                 },
               );
             },

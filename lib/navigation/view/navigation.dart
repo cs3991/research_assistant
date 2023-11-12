@@ -4,7 +4,6 @@ import 'package:research_assistant/collection/view/collection.dart';
 import 'package:research_assistant/navigation/cubit/navigation_cubit.dart';
 import 'package:research_assistant/navigation/view/layout_navigation.dart';
 import 'package:research_assistant/newsfeed/view/newsfeed.dart';
-import 'package:research_assistant/publication_details/publication_cubit/publication_cubit.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
 
 class NavigationPage extends StatelessWidget {
@@ -19,7 +18,6 @@ class NavigationPage extends StatelessWidget {
             providers: [
               BlocProvider(create: (context) => NavigationCubit()),
               BlocProvider(create: (context) => SearchCubit()),
-              BlocProvider(create: (context) => PublicationCubit()),
             ],
             child: BlocBuilder<NavigationCubit, int>(
               builder: (BuildContext context, int index) {

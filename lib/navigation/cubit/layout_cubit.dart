@@ -12,19 +12,19 @@ class LayoutCubit extends Cubit<LayoutState> {
     emit(LayoutLoaded(stack: newStack));
   }
 
-  void showPublication(Work work, int fromIndex) {
+  void showPublication({required int fromIndex, required Work work}) {
     _push(PublicationDetailsPage(index: fromIndex + 1, work: work), fromIndex);
   }
 
-  void showAuthor(int fromIndex) {
+  void showAuthor({required int fromIndex}) {
     _push(AuthorDetailsPage(index: fromIndex + 1), fromIndex);
   }
 
-  void showSearch(int fromIndex) {
+  void showSearch({required int fromIndex}) {
     _push(SearchPage(index: fromIndex + 1), fromIndex);
   }
 
-  void pop(int fromIndex) {
+  void pop({required int fromIndex}) {
     if (state.stack.length <= 1) {
       return;
     }

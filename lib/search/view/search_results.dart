@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:research_assistant/publication_details/publication_cubit/publication_cubit.dart';
-import 'package:research_assistant/publication_details/view/publication_details.dart';
+import 'package:research_assistant/navigation/cubit/layout_cubit.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
 
 class SearchResults extends StatelessWidget {
@@ -27,19 +26,25 @@ class SearchResults extends StatelessWidget {
                     child: InkResponse(
                       highlightShape: BoxShape.rectangle,
                       onTap: () {
-                        final publicationCubit = BlocProvider.of<PublicationCubit>(context);
-                        publicationCubit.showPublication(work);
-                        Navigator.push<Widget>(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return BlocProvider.value(
-                                value: publicationCubit,
-                                child: PublicationDetails(),
-                              );
-                            },
-                          ),
-                        );
+                        // final publicationCubit = BlocProvider.of<PublicationCubit>(context);
+                        // publicationCubit.showPublication(work);
+                        final index = context
+                            .read<LayoutCubit>()
+                            .state
+                            .stack
+                            .indexWhere((element) => element is SearchPage);
+                        context.read<LayoutCubit>().showPublication(fromIndex: index, work: work);
+                        // Navigator.push<Widget>(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) {
+                        //       return BlocProvider.value(
+                        //         value: publicationCubit,
+                        //         child: PublicationDetails(),
+                        //       );
+                        //     },
+                        //   ),
+                        // );
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
