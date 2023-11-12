@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/collection/view/collection.dart';
 import 'package:research_assistant/navigation/cubit/navigation_cubit.dart';
+import 'package:research_assistant/navigation/view/layout_navigation.dart';
 import 'package:research_assistant/newsfeed/view/newsfeed.dart';
 import 'package:research_assistant/publication_details/publication_cubit/publication_cubit.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
-import 'package:research_assistant/search/view/search.dart';
 
 class NavigationPage extends StatelessWidget {
   const NavigationPage({super.key});
@@ -47,7 +47,7 @@ class NavigationPage extends StatelessWidget {
                         onDestinationSelected: (int newIndex) =>
                             BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
                       ),
-                      Center(
+                      Expanded(
                         child: NavigationBody(index: index),
                       ),
                     ],
@@ -90,7 +90,11 @@ class NavigationPage extends StatelessWidget {
 }
 
 class NavigationBody extends StatelessWidget {
-  const NavigationBody({super.key, required this.index, this.fullscreen = false});
+  const NavigationBody({
+    super.key,
+    required this.index,
+    this.fullscreen = false,
+  });
 
   final int index;
   final bool fullscreen;
@@ -100,7 +104,7 @@ class NavigationBody extends StatelessWidget {
     return Builder(
       builder: (context) {
         if (index == 0) {
-          return Search(fullscreen: fullscreen);
+          return LayoutNavigation();
         }
         if (index == 1) {
           return const NewsFeed();
