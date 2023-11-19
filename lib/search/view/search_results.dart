@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:research_assistant/navigation/cubit/layout_cubit.dart';
+import 'package:research_assistant/layout/cubit/layout_cubit.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
 
 class SearchResults extends StatelessWidget {
