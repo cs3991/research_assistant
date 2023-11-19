@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/collection/view/collection.dart';
+import 'package:research_assistant/layout/cubit/layout_cubit.dart';
 import 'package:research_assistant/layout/cubit/navigation_cubit.dart';
 import 'package:research_assistant/layout/cubit/responsive_cubit.dart';
 import 'package:research_assistant/layout/view/layout_navigation.dart';
@@ -18,14 +19,16 @@ class NavigationPage extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => NavigationCubit()),
             BlocProvider(create: (context) => SearchCubit()),
-            BlocProvider(create: (context) => PhoneLayoutCubit()),
+            BlocProvider(create: (context) => PhoneScreenCubit()),
+            BlocProvider(create: (context) => LayoutCubit(page: SearchPage(index: 0))),
           ],
           child: LayoutBuilder(
             builder: (context, constraints) {
-              context.read<PhoneLayoutCubit>().constraintChanged(constraints.maxWidth);
+              context.read<PhoneScreenCubit>().constraintChanged(constraints.maxWidth);
               return BlocBuilder<NavigationCubit, int>(
                 builder: (BuildContext context, int index) {
-                  return BlocBuilder<PhoneLayoutCubit, bool>(
+                  final navigationBody = NavigationBody(index: index);
+                  return BlocBuilder<PhoneScreenCubit, bool>(
                     builder: (context, isPhoneScreen) {
                       if (!isPhoneScreen) {
                         return Row(
@@ -52,7 +55,7 @@ class NavigationPage extends StatelessWidget {
                                   BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
                             ),
                             Expanded(
-                              child: NavigationBody(index: index),
+                              child: navigationBody,
                             ),
                           ],
                         );
@@ -60,7 +63,7 @@ class NavigationPage extends StatelessWidget {
                         return Column(
                           children: [
                             Expanded(
-                              child: NavigationBody(index: index),
+                              child: navigationBody,
                             ),
                             NavigationBar(
                               destinations: const [
@@ -106,23 +109,13 @@ class NavigationBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        if (index == 0) {
-          return LayoutNavigation();
-        }
-        if (index == 1) {
-          return const NewsFeed();
-        }
-        if (index == 2) {
-          return const Collection();
-        } else {
-          return ColoredBox(
-            color: Theme.of(context).colorScheme.surface,
-            child: const Text('Unknown'),
-          );
-        }
-      },
+    return IndexedStack(
+      index: index,
+      children: [
+        LayoutNavigation(),
+        NewsFeed(),
+        Collection(),
+      ],
     );
   }
 }

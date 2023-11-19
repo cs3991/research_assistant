@@ -1,5 +1,3 @@
-
-
 class Work {
   Work({
     required this.title,
@@ -24,4 +22,8 @@ class Work {
   bool isOpenAccess;
   List<String> conceptsNames;
   Uri? bestOaUrl;
+
+  String toString() {
+    return 'Work(title: $title)';
+  }
 }

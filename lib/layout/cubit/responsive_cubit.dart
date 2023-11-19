@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 
-class PhoneLayoutCubit extends Cubit<bool> {
-  PhoneLayoutCubit() : super(false);
+class PhoneScreenCubit extends Cubit<bool> {
+  PhoneScreenCubit() : super(false);
 
   void showPhoneLayout() {
     emit(true);

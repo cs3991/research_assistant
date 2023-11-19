@@ -29,9 +29,9 @@ class PublicationDetails extends StatelessWidget {
           if (index >= state.stack.length) {
             return;
           }
-          if (state.stack[index] is PublicationDetailsPage) {
-            BlocProvider.of<PublicationCubit>(context)
-                .showPublication((state.stack[index] as PublicationDetailsPage).work);
+          final page = state.stack[index];
+          if (page is PublicationDetailsPage) {
+            BlocProvider.of<PublicationCubit>(context).showPublication(page.work);
           }
         },
         child: BlocBuilder<PublicationCubit, Work?>(
@@ -41,7 +41,7 @@ class PublicationDetails extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             }
-            return BlocBuilder<PhoneLayoutCubit, bool>(
+            return BlocBuilder<PhoneScreenCubit, bool>(
               builder: (context, isPhoneScreen) {
                 return Padding(
                   padding: EdgeInsets.all(isPhoneScreen ? 0 : 16),

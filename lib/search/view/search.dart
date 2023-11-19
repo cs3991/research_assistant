@@ -9,7 +9,7 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PhoneLayoutCubit, bool>(
+    return BlocBuilder<PhoneScreenCubit, bool>(
       builder: (context, isPhoneScreen) {
         return Padding(
           padding: EdgeInsets.all(isPhoneScreen ? 0 : 16),
