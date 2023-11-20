@@ -35,6 +35,7 @@ class CatalogRepository {
       publicationYear: work.publicationYear,
       publicationDate: work.publicationDate,
       isOpenAccess: work.isOpenAccess,
+      doiUrl: work.doiId != null ? Uri.parse('https://doi.org/${work.doiId}') : null,
       conceptsNames: work.concepts.map((e) => e.displayName).toList(),
       bestOaUrl: work.bestOaLocation != null && work.bestOaLocation!.pdfUrl != null
           ? Uri.parse(work.bestOaLocation!.pdfUrl!)

@@ -75,19 +75,20 @@ class PublicationDetails extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      SquareButton(
-                                        onPressed: () {
-                                          if (work.bestOaUrl != null) {
-                                            log('Open ${work.bestOaUrl}');
-                                            launchUrl(work.bestOaUrl!);
-                                          }
-                                        },
-                                        child: Icon(
-                                          Icons.open_in_new_rounded,
-                                          size: 20,
-                                          color: Theme.of(context).colorScheme.onSurface,
-                                        ),
-                                      ),
+                                      if (work.doiUrl != null)
+                                        SquareButton(
+                                          onPressed: () {
+                                            log('Open ${work.doiUrl}');
+                                            launchUrl(work.doiUrl!);
+                                          },
+                                          child: Icon(
+                                            Icons.open_in_new_rounded,
+                                            size: 20,
+                                            color: Theme.of(context).colorScheme.onSurface,
+                                          ),
+                                        )
+                                      else
+                                        Container(),
                                       const SizedBox(width: 8),
                                       SquareButton(
                                         onPressed: () {},

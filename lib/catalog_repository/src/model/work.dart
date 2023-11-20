@@ -9,6 +9,7 @@ class Work {
     required this.publicationDate,
     required this.isOpenAccess,
     required this.conceptsNames,
+    required this.doiUrl,
     this.bestOaUrl,
   });
 
@@ -22,6 +23,7 @@ class Work {
   bool isOpenAccess;
   List<String> conceptsNames;
   Uri? bestOaUrl;
+  Uri? doiUrl;
 
   String toString() {
     return 'Work(title: $title)';
