@@ -10,9 +10,24 @@ class LayoutNavigation extends StatelessWidget {
 
   final _scrollController = ScrollController();
 
+  Future<void> _runsAfterBuild(LayoutCubit layoutCubit) async {
+    await Future(() {});
+    layoutCubit.layoutRendered();
+    print('layout rendered');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LayoutCubit, LayoutState>(
+    return BlocConsumer<LayoutCubit, LayoutState>(
+      listener: (context, layoutState) {
+        if (layoutState is LayoutLoaded) {
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.fastOutSlowIn,
+          );
+        }
+      },
       builder: (context, layoutState) {
         return WillPopScope(
           onWillPop: () async {
@@ -34,6 +49,9 @@ class LayoutNavigation extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: layoutState.stack.length,
                     itemBuilder: (context, index) {
+                      if (index == layoutState.stack.length - 1) {
+                        context.read<LayoutCubit>().layoutRendered();
+                      }
                       return itemBuilder(
                         context: context,
                         stack: layoutState.stack,

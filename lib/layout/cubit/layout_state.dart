@@ -11,6 +11,10 @@ class LayoutInitial extends LayoutState {
   const LayoutInitial({required super.stack});
 }
 
+class LayoutLoading extends LayoutState {
+  const LayoutLoading({required super.stack});
+}
+
 class LayoutLoaded extends LayoutState {
   const LayoutLoaded({required super.stack});
 }

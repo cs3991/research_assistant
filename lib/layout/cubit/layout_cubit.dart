@@ -9,7 +9,7 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   void _push(LayoutPage page, int fromIndex) {
     var newStack = state.stack.sublist(0, fromIndex + 1) + [page];
-    emit(LayoutLoaded(stack: newStack));
+    emit(LayoutLoading(stack: newStack));
   }
 
   void showPublication({required int fromIndex, required Work work}) {
@@ -24,11 +24,17 @@ class LayoutCubit extends Cubit<LayoutState> {
     _push(SearchPage(index: fromIndex + 1), fromIndex);
   }
 
+  void layoutRendered() {
+    if (state is LayoutLoading) {
+      emit(LayoutLoaded(stack: state.stack));
+    }
+  }
+
   void pop({required int fromIndex}) {
     if (state.stack.length <= 1) {
       return;
     }
     var newStack = state.stack.sublist(0, fromIndex);
-    emit(LayoutLoaded(stack: newStack));
+    emit(LayoutLoading(stack: newStack));
   }
 }

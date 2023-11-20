@@ -12,7 +12,7 @@ class PhoneScreenCubit extends Cubit<bool> {
   }
 
   void constraintChanged(double maxWidth) {
-    if (maxWidth < 900) {
+    if (maxWidth < 650) {
       showPhoneLayout();
     } else {
       showLargeScreenLayout();
