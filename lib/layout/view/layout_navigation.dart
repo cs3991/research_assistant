@@ -14,43 +14,52 @@ class LayoutNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LayoutCubit, LayoutState>(
       builder: (context, layoutState) {
-        return BlocBuilder<PhoneScreenCubit, bool>(
-          builder: (context, isPhoneScreen) {
-            if (!isPhoneScreen) {
-              return Scrollbar(
-                controller: _scrollController,
-                thumbVisibility: true,
-                trackVisibility: true,
-                child: ListView.builder(
-                  controller: _scrollController,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: layoutState.stack.length,
-                  itemBuilder: (context, index) {
-                    return itemBuilder(
-                      context: context,
-                      stack: layoutState.stack,
-                      index: index,
-                      isPhoneScreen: isPhoneScreen,
-                    );
-                  },
-                ),
-              );
-            } else {
-              return Stack(
-                children: List.generate(
-                  layoutState.stack.length,
-                  (index) {
-                    return itemBuilder(
-                      context: context,
-                      stack: layoutState.stack,
-                      index: index,
-                      isPhoneScreen: isPhoneScreen,
-                    );
-                  },
-                ),
-              );
+        return WillPopScope(
+          onWillPop: () async {
+            if (layoutState.stack.length <= 1) {
+              return true;
             }
+            context.read<LayoutCubit>().pop(fromIndex: layoutState.stack.length - 1);
+            return false;
           },
+          child: BlocBuilder<PhoneScreenCubit, bool>(
+            builder: (context, isPhoneScreen) {
+              if (!isPhoneScreen) {
+                return Scrollbar(
+                  controller: _scrollController,
+                  thumbVisibility: true,
+                  trackVisibility: true,
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: layoutState.stack.length,
+                    itemBuilder: (context, index) {
+                      return itemBuilder(
+                        context: context,
+                        stack: layoutState.stack,
+                        index: index,
+                        isPhoneScreen: isPhoneScreen,
+                      );
+                    },
+                  ),
+                );
+              } else {
+                return Stack(
+                  children: List.generate(
+                    layoutState.stack.length,
+                    (index) {
+                      return itemBuilder(
+                        context: context,
+                        stack: layoutState.stack,
+                        index: index,
+                        isPhoneScreen: isPhoneScreen,
+                      );
+                    },
+                  ),
+                );
+              }
+            },
+          ),
         );
       },
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/collection/view/collection.dart';
 import 'package:research_assistant/layout/cubit/layout_cubit.dart';
@@ -13,9 +14,28 @@ class NavigationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: MultiBlocProvider(
+    // SystemChrome.setSystemUIOverlayStyle(
+    //   SystemUiOverlayStyle(
+    //     // statusBarColor: Theme.of(context).colorScheme.secondaryContainer,
+    //     statusBarColor: Colors.transparent,
+    //     // systemNavigationBarColor: Theme.of(context).colorScheme.
+    //     systemNavigationBarColor: Colors.transparent,
+    //   ),
+    // );
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+        // statusBarColor: Theme.of(context).colorScheme.secondaryContainer,
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: ElevationOverlay.applySurfaceTint(
+          Theme.of(context).colorScheme.surface,
+          Theme.of(context).colorScheme.surfaceTint,
+          3,
+        ),
+        statusBarIconBrightness: Brightness.dark, // todo : brightness
+        // systemNavigationBarColor: Colors.transparent,
+      ),
+      child: Scaffold(
+        body: MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => NavigationCubit()),
             BlocProvider(create: (context) => SearchCubit()),
@@ -65,25 +85,32 @@ class NavigationPage extends StatelessWidget {
                             Expanded(
                               child: navigationBody,
                             ),
-                            NavigationBar(
-                              destinations: const [
-                                NavigationDestination(
-                                  icon: Icon(Icons.search_rounded),
-                                  label: 'Rechercher',
+                            Builder(builder: (BuildContext context) {
+                              final NavigationBarThemeData currentNavBarTheme =
+                                  NavigationBarTheme.of(context);
+                              return MediaQuery(
+                                data: MediaQuery.of(context).removePadding(removeTop: true),
+                                child: NavigationBar(
+                                  destinations: const [
+                                    NavigationDestination(
+                                      icon: Icon(Icons.search_rounded),
+                                      label: 'Rechercher',
+                                    ),
+                                    NavigationDestination(
+                                      icon: Icon(Icons.rss_feed_rounded),
+                                      label: 'Nouveautés',
+                                    ),
+                                    NavigationDestination(
+                                      icon: Icon(Icons.library_books_rounded),
+                                      label: 'Collection',
+                                    ),
+                                  ],
+                                  selectedIndex: index,
+                                  onDestinationSelected: (int newIndex) =>
+                                      BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
                                 ),
-                                NavigationDestination(
-                                  icon: Icon(Icons.rss_feed_rounded),
-                                  label: 'Nouveautés',
-                                ),
-                                NavigationDestination(
-                                  icon: Icon(Icons.library_books_rounded),
-                                  label: 'Collection',
-                                ),
-                              ],
-                              selectedIndex: index,
-                              onDestinationSelected: (int newIndex) =>
-                                  BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
-                            ),
+                              );
+                            }),
                           ],
                         );
                       }

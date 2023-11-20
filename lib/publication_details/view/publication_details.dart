@@ -62,6 +62,7 @@ class PublicationDetails extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(isPhoneScreen ? 0 : 12),
                       child: ListView(
+                        padding: EdgeInsets.zero,
                         children: [
                           Container(
                             decoration: BoxDecoration(
@@ -70,32 +71,34 @@ class PublicationDetails extends StatelessWidget {
                             padding: const EdgeInsets.all(16),
                             child: Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    SquareButton(
-                                      onPressed: () {
-                                        if (work.bestOaUrl != null) {
-                                          log('Open ${work.bestOaUrl}');
-                                          launchUrl(work.bestOaUrl!);
-                                        }
-                                      },
-                                      child: Icon(
-                                        Icons.open_in_new_rounded,
-                                        size: 20,
-                                        color: Theme.of(context).colorScheme.onSurface,
+                                SafeArea(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      SquareButton(
+                                        onPressed: () {
+                                          if (work.bestOaUrl != null) {
+                                            log('Open ${work.bestOaUrl}');
+                                            launchUrl(work.bestOaUrl!);
+                                          }
+                                        },
+                                        child: Icon(
+                                          Icons.open_in_new_rounded,
+                                          size: 20,
+                                          color: Theme.of(context).colorScheme.onSurface,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    SquareButton(
-                                      onPressed: () {},
-                                      child: Icon(
-                                        Icons.more_vert_rounded,
-                                        size: 20,
-                                        color: Theme.of(context).colorScheme.onSurface,
+                                      const SizedBox(width: 8),
+                                      SquareButton(
+                                        onPressed: () {},
+                                        child: Icon(
+                                          Icons.more_vert_rounded,
+                                          size: 20,
+                                          color: Theme.of(context).colorScheme.onSurface,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                                 const SizedBox(height: 16),
                                 Text(
@@ -108,112 +111,131 @@ class PublicationDetails extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: 50,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: work.authors.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(4),
-                                  child: Chip(
-                                    label: Text(
-                                      work.authors[index],
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Row(
+                          ColoredBox(
+                            color: Theme.of(context).colorScheme.surface,
+                            child: Column(
                               children: [
-                                Expanded(
-                                  child: Text(
-                                    'Publié le ${dateFormat.format(work.publicationDate)} par ${work.primaryLocation}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium
-                                        ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                SizedBox(
+                                  height: 50,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: work.authors.length + 1,
+                                    itemBuilder: (context, index) {
+                                      if (index == 0) {
+                                        return SizedBox(
+                                          width: 12,
+                                        );
+                                      }
+                                      index -= 1;
+                                      return Padding(
+                                        padding: const EdgeInsets.all(4),
+                                        child: Chip(
+                                          label: Text(
+                                            work.authors[index],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium
+                                                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
-                                Icon(
-                                  work.isOpenAccess ? Icons.lock_open_rounded : Icons.lock_rounded,
-                                  color: Theme.of(context).colorScheme.onSurface,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.surface,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                const SizedBox(height: 16),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: Row(
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 4),
-                                        child: Icon(
-                                          Icons.format_quote_rounded,
-                                          size: 16,
-                                          color: Theme.of(context).colorScheme.onSurface,
+                                      Expanded(
+                                        child: Text(
+                                          'Publié le ${dateFormat.format(work.publicationDate)} par ${work.primaryLocation}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium
+                                              ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
                                         ),
                                       ),
-                                      Text(
-                                        work.citedByCount.toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                      Icon(
+                                        work.isOpenAccess ? Icons.lock_open_rounded : Icons.lock_rounded,
+                                        color: Theme.of(context).colorScheme.onSurface,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context).colorScheme.surface,
+                                          borderRadius: BorderRadius.circular(50),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(horizontal: 4),
+                                              child: Icon(
+                                                Icons.format_quote_rounded,
+                                                size: 16,
+                                                color: Theme.of(context).colorScheme.onSurface,
+                                              ),
+                                            ),
+                                            Text(
+                                              work.citedByCount.toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelMedium
+                                                  ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
+                                const SizedBox(height: 16),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  child: Text(
+                                    work.abstract,
+                                    textAlign: TextAlign.justify,
+                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                          color: Theme.of(context).colorScheme.onSurface,
+                                        ),
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
+                                SizedBox(
+                                  height: 50,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: work.conceptsNames.length + 1,
+                                    itemBuilder: (context, index) {
+                                      if (index == 0) {
+                                        return SizedBox(
+                                          width: 12,
+                                        );
+                                      }
+                                      index -= 1;
+                                      return Padding(
+                                        padding: const EdgeInsets.all(4),
+                                        child: Chip(
+                                          label: Text(
+                                            work.conceptsNames[index],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium
+                                                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    context.read<LayoutCubit>().pop(fromIndex: index);
+                                  },
+                                  child: Text('Retour'),
+                                ),
                               ],
                             ),
-                          ),
-                          const SizedBox(height: 16),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Text(
-                              work.abstract,
-                              textAlign: TextAlign.justify,
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Theme.of(context).colorScheme.onSurface,
-                                  ),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          SizedBox(
-                            height: 50,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: work.conceptsNames.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(4),
-                                  child: Chip(
-                                    label: Text(
-                                      work.conceptsNames[index],
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              context.read<LayoutCubit>().pop(fromIndex: index);
-                            },
-                            child: Text('Retour'),
                           ),
                         ],
                       ),

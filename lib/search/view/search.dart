@@ -21,15 +21,21 @@ class Search extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: isPhoneScreen ? double.infinity : 500,
             ),
-            padding: const EdgeInsets.all(16),
-            child: const Column(
-              children: [
-                SearchField(),
-                SizedBox(
-                  height: 16,
-                ),
-                SearchResults(),
-              ],
+            padding: const EdgeInsets.only(
+              top: 16,
+              left: 16,
+              right: 16,
+            ),
+            child: const SafeArea(
+              child: Column(
+                children: [
+                  SearchField(),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  SearchResults(),
+                ],
+              ),
             ),
           ),
         );
