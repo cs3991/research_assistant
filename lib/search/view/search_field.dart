@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
 
 class SearchField extends StatelessWidget {
-  const SearchField({Key? key}) : super(key: key);
+  const SearchField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class SearchField extends StatelessWidget {
               contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
             ),
             onSubmitted: (value) {
-              context.read<SearchCubit>().search(value);
+              context.read<SearchCubit>().updateQuery(query: value);
             },
           ),
         ),

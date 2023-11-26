@@ -8,7 +8,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   LayoutCubit({required LayoutPage page}) : super(LayoutInitial(stack: [page]));
 
   void _push(LayoutPage page, int fromIndex) {
-    var newStack = state.stack.sublist(0, fromIndex + 1) + [page];
+    final newStack = state.stack.sublist(0, fromIndex + 1) + [page];
     emit(LayoutLoading(stack: newStack));
   }
 
@@ -34,7 +34,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     if (state.stack.length <= 1) {
       return;
     }
-    var newStack = state.stack.sublist(0, fromIndex);
+    final newStack = state.stack.sublist(0, fromIndex);
     emit(LayoutLoading(stack: newStack));
   }
 }

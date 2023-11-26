@@ -25,6 +25,7 @@ class Work {
   Uri? bestOaUrl;
   Uri? doiUrl;
 
+  @override
   String toString() {
     return 'Work(title: $title)';
   }

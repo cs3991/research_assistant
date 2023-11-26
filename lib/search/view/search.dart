@@ -5,7 +5,7 @@ import 'package:research_assistant/search/view/search_field.dart';
 import 'package:research_assistant/search/view/search_results.dart';
 
 class Search extends StatelessWidget {
-  const Search({Key? key}) : super(key: key);
+  const Search({super.key});
 
   @override
   Widget build(BuildContext context) {

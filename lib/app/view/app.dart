@@ -19,7 +19,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffd95d3c), brightness: brightness),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffd95d3c)),
       ),
       localizationsDelegates: const [
         AppLocalizations.delegate,

@@ -86,8 +86,7 @@ class NavigationPage extends StatelessWidget {
                               child: navigationBody,
                             ),
                             Builder(builder: (BuildContext context) {
-                              final NavigationBarThemeData currentNavBarTheme =
-                                  NavigationBarTheme.of(context);
+                              final currentNavBarTheme = NavigationBarTheme.of(context);
                               return MediaQuery(
                                 data: MediaQuery.of(context).removePadding(removeTop: true),
                                 child: NavigationBar(
@@ -100,17 +99,18 @@ class NavigationPage extends StatelessWidget {
                                       icon: Icon(Icons.rss_feed_rounded),
                                       label: 'Nouveautés',
                                     ),
-                                    NavigationDestination(
-                                      icon: Icon(Icons.library_books_rounded),
-                                      label: 'Collection',
-                                    ),
-                                  ],
-                                  selectedIndex: index,
-                                  onDestinationSelected: (int newIndex) =>
-                                      BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
-                                ),
-                              );
-                            }),
+                                      NavigationDestination(
+                                        icon: Icon(Icons.library_books_rounded),
+                                        label: 'Collection',
+                                      ),
+                                    ],
+                                    selectedIndex: index,
+                                    onDestinationSelected: (int newIndex) =>
+                                        BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         );
                       }
@@ -140,8 +140,8 @@ class NavigationBody extends StatelessWidget {
       index: index,
       children: [
         LayoutNavigation(),
-        NewsFeed(),
-        Collection(),
+        const NewsFeed(),
+        const Collection(),
       ],
     );
   }

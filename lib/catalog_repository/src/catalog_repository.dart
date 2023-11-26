@@ -10,9 +10,9 @@ class CatalogRepository {
   Work WorkFromApi(openAlexApi.Work work) {
     var abstractList = <String>[];
     if (work.abstractInvertedIndex != null) {
-      int abstractLength = 0;
+      var abstractLength = 0;
       for (final positions in work.abstractInvertedIndex!.values) {
-        for (var position in positions) {
+        for (final position in positions) {
           if (position > abstractLength) {
             abstractLength = position;
           }

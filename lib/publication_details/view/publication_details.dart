@@ -123,7 +123,7 @@ class PublicationDetails extends StatelessWidget {
                                     itemCount: work.authors.length + 1,
                                     itemBuilder: (context, index) {
                                       if (index == 0) {
-                                        return SizedBox(
+                                        return const SizedBox(
                                           width: 12,
                                         );
                                       }
@@ -170,7 +170,7 @@ class PublicationDetails extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: 4),
+                                              padding: const EdgeInsets.symmetric(horizontal: 4),
                                               child: Icon(
                                                 Icons.format_quote_rounded,
                                                 size: 16,
@@ -209,7 +209,7 @@ class PublicationDetails extends StatelessWidget {
                                     itemCount: work.conceptsNames.length + 1,
                                     itemBuilder: (context, index) {
                                       if (index == 0) {
-                                        return SizedBox(
+                                        return const SizedBox(
                                           width: 12,
                                         );
                                       }
@@ -233,7 +233,7 @@ class PublicationDetails extends StatelessWidget {
                                   onPressed: () {
                                     context.read<LayoutCubit>().pop(fromIndex: index);
                                   },
-                                  child: Text('Retour'),
+                                  child: const Text('Retour'),
                                 ),
                               ],
                             ),
