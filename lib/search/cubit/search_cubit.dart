@@ -21,7 +21,6 @@ class SearchCubit extends Cubit<SearchState> {
     }
     emit(SearchResultLoading(query: query, page: page));
     try {
-      log('SearchCubit.search: query=$query, page=$page');
       final results = await _catalogRepository.searchWork(query, page: page, itemsPerPage: itemsPerPage);
       emit(SearchResultLoaded(query: query, page: page, results: results));
     } on Exception catch (e) {

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:intl/intl.dart';
 import 'package:research_assistant/catalog_repository/src/model/work.dart';
 import 'package:research_assistant/layout/cubit/layout_cubit.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
@@ -17,6 +18,11 @@ class SearchResults extends StatefulWidget {
 class _SearchResultsState extends State<SearchResults> {
   static const _pageSize = 25;
   final PagingController<int, Work> _pagingController = PagingController(firstPageKey: 1);
+  static final _numberFormatter = NumberFormat.compactCurrency(
+    locale: 'fr',
+    symbol: '',
+    decimalDigits: 0,
+  )..maximumFractionDigits = 1;
 
   @override
   void initState() {
@@ -109,7 +115,7 @@ class _SearchResultsState extends State<SearchResults> {
                                       ),
                                     ),
                                     Text(
-                                      work.citedByCount.toString(),
+                                      _numberFormatter.format(work.citedByCount),
                                       style: Theme.of(context)
                                           .textTheme
                                           .labelMedium
