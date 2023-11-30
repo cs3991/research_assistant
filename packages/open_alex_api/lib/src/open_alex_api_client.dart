@@ -108,9 +108,11 @@ class OpenAlexApiClient {
       throw ConceptRequestFailure();
     }
   }
+
   /// Searches for [Work]s by a query.
-  Future<List<Work>> searchWorks(String query) async {
-    final searchResponse = await _get(Uri.https(_baseUrl, 'works', {'search': query}));
+  Future<List<Work>> searchWorks(String query, {required int page}) async {
+    final searchResponse =
+        await _get(Uri.https(_baseUrl, 'works', {'search': query, 'page': page.toString()}));
     if (searchResponse.statusCode == 200) {
       final searchResults = jsonDecode(searchResponse.body);
       final List<Work> works = [];

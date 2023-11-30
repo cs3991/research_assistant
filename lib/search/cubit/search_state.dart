@@ -8,11 +8,11 @@ class SearchState {
 }
 
 class SearchInitial extends SearchState {
-  const SearchInitial() : super(query: '', page: 0);
+  const SearchInitial() : super(query: '', page: 1);
 }
 
 class SearchWaitingRequest extends SearchState {
-  const SearchWaitingRequest({required this.query}) : super(query: query, page: 0);
+  const SearchWaitingRequest({required this.query}) : super(query: query, page: 1);
 
   final String query;
 }
