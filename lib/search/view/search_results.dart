@@ -3,10 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:research_assistant/catalog_repository/src/model/work.dart';
 import 'package:research_assistant/layout/cubit/layout_cubit.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
-
-import '../../catalog_repository/src/model/work.dart';
 
 class SearchResults extends StatefulWidget {
   const SearchResults({super.key});
@@ -22,8 +21,11 @@ class _SearchResultsState extends State<SearchResults> {
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      log('listener called');
-      context.read<SearchCubit>().search(query: context.read<SearchCubit>().state.query, page: pageKey);
+      context.read<SearchCubit>().search(
+            query: context.read<SearchCubit>().state.query,
+            page: pageKey,
+            itemsPerPage: _pageSize,
+          );
     });
     super.initState();
   }
@@ -32,9 +34,7 @@ class _SearchResultsState extends State<SearchResults> {
   Widget build(BuildContext context) {
     return BlocConsumer<SearchCubit, SearchState>(
       listener: (context, state) {
-        log('state changed: $state');
         if (state is SearchWaitingRequest) {
-          log('query changed: ${state.query}');
           _pagingController.refresh();
           log(_pagingController.value.status.toString());
         }
@@ -56,8 +56,6 @@ class _SearchResultsState extends State<SearchResults> {
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<Work>(
               noItemsFoundIndicatorBuilder: (context) => Center(
-                heightFactor: 1,
-                widthFactor: 10,
                 child: Text(
                   'Aucun résultat',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(

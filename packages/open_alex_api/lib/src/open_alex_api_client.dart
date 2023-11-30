@@ -110,9 +110,9 @@ class OpenAlexApiClient {
   }
 
   /// Searches for [Work]s by a query.
-  Future<List<Work>> searchWorks(String query, {required int page}) async {
-    final searchResponse =
-        await _get(Uri.https(_baseUrl, 'works', {'search': query, 'page': page.toString()}));
+  Future<List<Work>> searchWorks(String query, {required int page, required int itemsPerPage}) async {
+    final searchResponse = await _get(Uri.https(
+        _baseUrl, 'works', {'search': query, 'page': page.toString(), 'per-page': itemsPerPage.toString()}));
     if (searchResponse.statusCode == 200) {
       final searchResults = jsonDecode(searchResponse.body);
       final List<Work> works = [];

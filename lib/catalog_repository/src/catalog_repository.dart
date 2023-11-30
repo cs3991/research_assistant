@@ -43,8 +43,8 @@ class CatalogRepository {
     );
   }
 
-  Future<List<Work>> searchWork(String query, {int page = 0}) async {
-    final works = await _openAlex.searchWorks(query, page: page);
+  Future<List<Work>> searchWork(String query, {int page = 0, required int itemsPerPage}) async {
+    final works = await _openAlex.searchWorks(query, page: page, itemsPerPage: itemsPerPage);
     return works.map(WorkFromApi).toList();
   }
 

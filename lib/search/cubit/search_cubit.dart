@@ -14,7 +14,7 @@ class SearchCubit extends Cubit<SearchState> {
     emit(SearchWaitingRequest(query: query));
   }
 
-  Future<void> search({required String query, required int page}) async {
+  Future<void> search({required String query, required int page, required int itemsPerPage}) async {
     if (query.isEmpty) {
       emit(SearchResultLoaded(query: query, page: page, results: []));
       return;
@@ -22,26 +22,7 @@ class SearchCubit extends Cubit<SearchState> {
     emit(SearchResultLoading(query: query, page: page));
     try {
       log('SearchCubit.search: query=$query, page=$page');
-      final results = await _catalogRepository.searchWork(query, page: page);
-      // final results = page < 5
-      //     ? await Future.delayed(
-      //         Duration(seconds: 1),
-      //         () => List.generate(
-      //             25,
-      //             (index) => Work(
-      //                   title: 'Title page $page $index',
-      //                   authors: List.generate(3, (index) => 'Author $index'),
-      //                   publicationDate: DateTime(2021, 1, 1),
-      //                   abstract: 'Abstract page $page $index',
-      //                   citedByCount: 0,
-      //                   conceptsNames: List.generate(3, (index) => 'Concept $index'),
-      //                   doiUrl: Uri.parse('https://doi.org/10.1000/xyz123'),
-      //                   isOpenAccess: true,
-      //                   primaryLocation: 'Primary location page $page $index',
-      //                   publicationYear: 2021,
-      //                   bestOaUrl: Uri.parse('https://doi.org/10.1000/xyz123'),
-      //                 )))
-      //     : <Work>[];
+      final results = await _catalogRepository.searchWork(query, page: page, itemsPerPage: itemsPerPage);
       emit(SearchResultLoaded(query: query, page: page, results: results));
     } on Exception catch (e) {
       log('Erreur : query=$query, page=$page, error=$e');
