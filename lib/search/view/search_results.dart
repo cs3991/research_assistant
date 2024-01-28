@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:research_assistant/catalog_repository/src/model/work.dart';
-import 'package:research_assistant/layout/cubit/layout_cubit.dart';
+import 'package:research_assistant/layout/cubit/page_stack_cubit.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
 
 class SearchResults extends StatefulWidget {
@@ -71,80 +71,98 @@ class _SearchResultsState extends State<SearchResults> {
               ),
               animateTransitions: true,
               itemBuilder: (context, work, index) {
-                return Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    child: InkResponse(
-                      highlightShape: BoxShape.rectangle,
-                      onTap: () {
-                        final index = context
-                            .read<LayoutCubit>()
-                            .state
-                            .stack
-                            .indexWhere((element) => element is SearchPage);
-                        context.read<LayoutCubit>().showPublication(fromIndex: index, work: work);
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  '${work.publicationYear} - ${work.primaryLocation}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelSmall
-                                      ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.surface,
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                                child: Row(
+                return BlocBuilder<PageStackCubit, PageStackState>(
+                  builder: (context, pageStackState) {
+                    final nextPage = pageStackState.stack.last;
+                    final isSelected = nextPage is PublicationDetailsPage && nextPage.work == work;
+                    return Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? Theme.of(context).colorScheme.outline.withOpacity(0.1)
+                            : Colors.transparent,
+                        border: Border.all(
+                          color: isSelected ? Theme.of(context).colorScheme.outline : Colors.transparent,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          child: InkResponse(
+                            highlightShape: BoxShape.rectangle,
+                            onTap: () {
+                              final index = context
+                                  .read<PageStackCubit>()
+                                  .state
+                                  .stack
+                                  .indexWhere((element) => element is SearchPage);
+                              context.read<PageStackCubit>().showPublication(fromIndex: index, work: work);
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                                      child: Icon(
-                                        Icons.format_quote_rounded,
-                                        size: 16,
-                                        color: Theme.of(context).colorScheme.onSurface,
+                                    Expanded(
+                                      child: Text(
+                                        '${work.publicationYear} - ${work.primaryLocation}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelSmall
+                                            ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
                                       ),
                                     ),
-                                    Text(
-                                      _numberFormatter.format(work.citedByCount),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).colorScheme.surface,
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                                            child: Icon(
+                                              Icons.format_quote_rounded,
+                                              size: 16,
+                                              color: Theme.of(context).colorScheme.onSurface,
+                                            ),
+                                          ),
+                                          Text(
+                                            _numberFormatter.format(work.citedByCount),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium
+                                                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            work.title,
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                const SizedBox(height: 4),
+                                Text(
+                                  work.title,
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                      ),
                                 ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            work.authors.take(5).join(', '),
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                const SizedBox(height: 5),
+                                Text(
+                                  work.authors.take(5).join(', '),
+                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                      ),
                                 ),
+                                const SizedBox(height: 25),
+                              ],
+                            ),
                           ),
-                          const SizedBox(height: 25),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 );
               },
             ),

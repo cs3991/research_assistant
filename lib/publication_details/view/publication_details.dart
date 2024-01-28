@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:research_assistant/catalog_repository/src/model/work.dart';
-import 'package:research_assistant/layout/cubit/layout_cubit.dart';
+import 'package:research_assistant/layout/cubit/page_stack_cubit.dart';
 import 'package:research_assistant/layout/cubit/responsive_cubit.dart';
 import 'package:research_assistant/publication_details/publication_cubit/publication_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,7 +24,7 @@ class PublicationDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PublicationCubit(work: work),
-      child: BlocListener<LayoutCubit, LayoutState>(
+      child: BlocListener<PageStackCubit, PageStackState>(
         listener: (context, state) {
           if (index >= state.stack.length) {
             return;
@@ -231,7 +231,7 @@ class PublicationDetails extends StatelessWidget {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    context.read<LayoutCubit>().pop(fromIndex: index);
+                                    context.read<PageStackCubit>().pop(fromIndex: index);
                                   },
                                   child: const Text('Retour'),
                                 ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/collection/view/collection.dart';
-import 'package:research_assistant/layout/cubit/layout_cubit.dart';
 import 'package:research_assistant/layout/cubit/navigation_cubit.dart';
+import 'package:research_assistant/layout/cubit/page_stack_cubit.dart';
 import 'package:research_assistant/layout/cubit/responsive_cubit.dart';
 import 'package:research_assistant/layout/view/layout_navigation.dart';
 import 'package:research_assistant/newsfeed/view/newsfeed.dart';
@@ -40,7 +40,7 @@ class NavigationPage extends StatelessWidget {
             BlocProvider(create: (context) => NavigationCubit()),
             BlocProvider(create: (context) => SearchCubit()),
             BlocProvider(create: (context) => PhoneScreenCubit()),
-            BlocProvider(create: (context) => LayoutCubit(page: SearchPage(index: 0))),
+            BlocProvider(create: (context) => PageStackCubit(page: SearchPage(index: 0))),
           ],
           child: LayoutBuilder(
             builder: (context, constraints) {

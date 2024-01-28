@@ -1,21 +1,21 @@
-part of 'layout_cubit.dart';
+part of 'page_stack_cubit.dart';
 
 @immutable
-abstract class LayoutState {
-  const LayoutState({required this.stack});
+abstract class PageStackState {
+  const PageStackState({required this.stack});
 
   final List<LayoutPage> stack;
 }
 
-class LayoutInitial extends LayoutState {
+class LayoutInitial extends PageStackState {
   const LayoutInitial({required super.stack});
 }
 
-class LayoutLoading extends LayoutState {
+class LayoutLoading extends PageStackState {
   const LayoutLoading({required super.stack});
 }
 
-class LayoutLoaded extends LayoutState {
+class LayoutLoaded extends PageStackState {
   const LayoutLoaded({required super.stack});
 }
 

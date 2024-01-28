@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:research_assistant/layout/cubit/layout_cubit.dart';
+import 'package:research_assistant/layout/cubit/page_stack_cubit.dart';
 import 'package:research_assistant/layout/cubit/responsive_cubit.dart';
 import 'package:research_assistant/publication_details/view/publication_details.dart';
 import 'package:research_assistant/search/view/search.dart';
@@ -10,7 +10,7 @@ class LayoutNavigation extends StatelessWidget {
 
   final _scrollController = ScrollController();
 
-  Future<void> _runsAfterBuild(LayoutCubit layoutCubit) async {
+  Future<void> _runsAfterBuild(PageStackCubit layoutCubit) async {
     await Future(() {});
     layoutCubit.layoutRendered();
     print('layout rendered');
@@ -18,7 +18,7 @@ class LayoutNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LayoutCubit, LayoutState>(
+    return BlocConsumer<PageStackCubit, PageStackState>(
       listener: (context, layoutState) {
         if (layoutState is LayoutLoaded) {
           _scrollController.animateTo(
@@ -34,7 +34,7 @@ class LayoutNavigation extends StatelessWidget {
             if (layoutState.stack.length <= 1) {
               return true;
             }
-            context.read<LayoutCubit>().pop(fromIndex: layoutState.stack.length - 1);
+            context.read<PageStackCubit>().pop(fromIndex: layoutState.stack.length - 1);
             return false;
           },
           child: BlocBuilder<PhoneScreenCubit, bool>(
@@ -50,7 +50,7 @@ class LayoutNavigation extends StatelessWidget {
                     itemCount: layoutState.stack.length,
                     itemBuilder: (context, index) {
                       if (index == layoutState.stack.length - 1) {
-                        context.read<LayoutCubit>().layoutRendered();
+                        context.read<PageStackCubit>().layoutRendered();
                       }
                       return itemBuilder(
                         context: context,

@@ -2,10 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:research_assistant/catalog_repository/catalog_repository.dart';
 
-part 'layout_state.dart';
+part 'page_stack_state.dart';
 
-class LayoutCubit extends Cubit<LayoutState> {
-  LayoutCubit({required LayoutPage page}) : super(LayoutInitial(stack: [page]));
+class PageStackCubit extends Cubit<PageStackState> {
+  PageStackCubit({required LayoutPage page}) : super(LayoutInitial(stack: [page]));
 
   void _push(LayoutPage page, int fromIndex) {
     final newStack = state.stack.sublist(0, fromIndex + 1) + [page];
