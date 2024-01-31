@@ -10,6 +10,7 @@ class Work {
     required this.isOpenAccess,
     required this.conceptsNames,
     required this.doiUrl,
+    required this.citationsCountByYear,
     this.bestOaUrl,
   });
 
@@ -24,6 +25,7 @@ class Work {
   List<String> conceptsNames;
   Uri? bestOaUrl;
   Uri? doiUrl;
+  List<int> citationsCountByYear;
 
   @override
   String toString() {

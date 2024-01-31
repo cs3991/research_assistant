@@ -73,8 +73,18 @@ class PublicationDetails extends StatelessWidget {
                               children: [
                                 SafeArea(
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    // mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
+                                      SquareButton(
+                                        onPressed: () {
+                                          context.read<PageStackCubit>().pop(fromIndex: index);
+                                        },
+                                        child: const Icon(
+                                          Icons.arrow_back_rounded,
+                                          size: 20,
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
                                       if (work.doiUrl != null)
                                         SquareButton(
                                           onPressed: () {
@@ -143,6 +153,19 @@ class PublicationDetails extends StatelessWidget {
                                     },
                                   ),
                                 ),
+                                const SizedBox(height: 8),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  child: Row(
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {},
+                                          child: Text('Voir les ${work.citedByCount.toString()} citations')),
+                                      Expanded(child: Container()),
+                                      CountByYearGraph(work: work, maxHeight: 40),
+                                    ],
+                                  ),
+                                ),
                                 const SizedBox(height: 16),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -160,32 +183,6 @@ class PublicationDetails extends StatelessWidget {
                                       Icon(
                                         work.isOpenAccess ? Icons.lock_open_rounded : Icons.lock_rounded,
                                         color: Theme.of(context).colorScheme.onSurface,
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context).colorScheme.surface,
-                                          borderRadius: BorderRadius.circular(50),
-                                        ),
-                                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 4),
-                                              child: Icon(
-                                                Icons.format_quote_rounded,
-                                                size: 16,
-                                                color: Theme.of(context).colorScheme.onSurface,
-                                              ),
-                                            ),
-                                            Text(
-                                              work.citedByCount.toString(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .labelMedium
-                                                  ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
-                                            ),
-                                          ],
-                                        ),
                                       ),
                                     ],
                                   ),
@@ -229,12 +226,6 @@ class PublicationDetails extends StatelessWidget {
                                     },
                                   ),
                                 ),
-                                TextButton(
-                                  onPressed: () {
-                                    context.read<PageStackCubit>().pop(fromIndex: index);
-                                  },
-                                  child: const Text('Retour'),
-                                ),
                               ],
                             ),
                           ),
@@ -248,6 +239,37 @@ class PublicationDetails extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class CountByYearGraph extends StatelessWidget {
+  const CountByYearGraph({
+    super.key,
+    required this.work,
+    required this.maxHeight,
+  });
+
+  final Work work;
+  final double maxHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    final heightRatio =
+        work.citationsCountByYear.reduce((value, element) => value > element ? value : element) / maxHeight;
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        for (final countByYear in work.citationsCountByYear)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Container(
+              width: 15,
+              height: countByYear / heightRatio,
+              color: Theme.of(context).colorScheme.inversePrimary,
+            ),
+          ),
+      ],
     );
   }
 }

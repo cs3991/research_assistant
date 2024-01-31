@@ -25,7 +25,11 @@ class CatalogRepository {
         }
       }
     }
-
+    final citationCountByYear = <int>[];
+    final currentYear = DateTime.now().year;
+    for (var year = currentYear - 10; year >= currentYear; year += 1) {
+      citationCountByYear.add(work.countsByYear.firstWhere((e) => e.year == year).citedByCount);
+    }
     return Work(
       title: work.title ?? '',
       authors: work.authorships.map((e) => e.author.displayName).toList(),
@@ -40,6 +44,7 @@ class CatalogRepository {
       bestOaUrl: work.bestOaLocation != null && work.bestOaLocation!.pdfUrl != null
           ? Uri.parse(work.bestOaLocation!.pdfUrl!)
           : null,
+      citationsCountByYear: work.countsByYear.map((e) => e.citedByCount).toList(),
     );
   }
 
