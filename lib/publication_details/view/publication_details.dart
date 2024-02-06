@@ -159,8 +159,13 @@ class PublicationDetails extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       TextButton(
-                                          onPressed: () {},
-                                          child: Text('Voir les ${work.citedByCount.toString()} citations')),
+                                        onPressed: () {
+                                          context.read<PageStackCubit>().showSearch(
+                                                fromIndex: index,
+                                              );
+                                        },
+                                        child: Text('Cité ${work.citedByCount} fois'),
+                                      ),
                                       Expanded(child: Container()),
                                       CountByYearGraph(work: work, maxHeight: 40),
                                     ],
@@ -255,8 +260,13 @@ class CountByYearGraph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final heightRatio =
-        work.citationsCountByYear.reduce((value, element) => value > element ? value : element) / maxHeight;
+    double? heightRatio;
+    if (work.citationsCountByYear.isEmpty) {
+      heightRatio = 1;
+    } else {
+      heightRatio =
+          work.citationsCountByYear.reduce((value, element) => value > element ? value : element) / maxHeight;
+    }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [

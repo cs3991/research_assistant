@@ -9,10 +9,13 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Checkbox(
-          value: false,
-          activeColor: Theme.of(context).colorScheme.onSurfaceVariant,
-          onChanged: (bool? value) {},
+        Padding(
+          padding: const EdgeInsets.only(right: 12),
+          child: Checkbox(
+            value: false,
+            activeColor: Theme.of(context).colorScheme.onSurfaceVariant,
+            onChanged: (bool? value) {},
+          ),
         ),
         Expanded(
           child: TextField(
