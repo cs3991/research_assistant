@@ -12,9 +12,11 @@ class SearchCubit extends Cubit<SearchState> {
 
   final CatalogRepository _catalogRepository;
   int _requestId = 0;
+  final _pages = <int, List<Work>>{};
 
   void updateQuery({required String query}) {
     _requestId++;
+    _pages.clear();
     emit(SearchWaitingRequest(query: query));
   }
 
@@ -24,11 +26,13 @@ class SearchCubit extends Cubit<SearchState> {
     required int itemsPerPage,
   }) async {
     final requestId = ++_requestId;
+    if (page == 1 || query != state.query) _pages.clear();
+    final previousWorks = _pages.values.expand((works) => works).toList();
     if (query.trim().isEmpty) {
       emit(SearchResultLoaded(query: query, page: page, results: []));
       return;
     }
-    emit(SearchResultLoading(query: query, page: page));
+    emit(SearchResultLoading(query: query, page: page, works: previousWorks));
     try {
       final results = await _catalogRepository.searchWork(
         query,
@@ -36,11 +40,27 @@ class SearchCubit extends Cubit<SearchState> {
         itemsPerPage: itemsPerPage,
       );
       if (isClosed || requestId != _requestId) return;
-      emit(SearchResultLoaded(query: query, page: page, results: results));
+      _pages[page] = results;
+      final pages = _pages.keys.toList()..sort();
+      emit(
+        SearchResultLoaded(
+          query: query,
+          page: page,
+          results: results,
+          works: List.unmodifiable(pages.expand((page) => _pages[page]!)),
+        ),
+      );
     } catch (e) {
       if (isClosed || requestId != _requestId) return;
       log('Erreur : query=$query, page=$page, error=$e');
-      emit(SearchResultError(query: query, error: e, page: page));
+      emit(
+        SearchResultError(
+          query: query,
+          error: e,
+          page: page,
+          works: previousWorks,
+        ),
+      );
     }
   }
 }

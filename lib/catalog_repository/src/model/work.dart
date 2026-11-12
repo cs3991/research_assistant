@@ -12,7 +12,12 @@ class Work {
     required this.doiUrl,
     required this.citationsCountByYear,
     this.bestOaUrl,
+    this.id,
+    this.referencedWorkIds = const [],
   });
+
+  final String? id;
+  final List<String> referencedWorkIds;
 
   String title;
   List<String> authors;

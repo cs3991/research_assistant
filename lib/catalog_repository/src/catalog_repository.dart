@@ -19,6 +19,12 @@ class CatalogRepository {
     final topics = _names(json['topics']);
     final date = json['publication_date'] as String?;
     return Work(
+      id: _text(json['id']),
+      referencedWorkIds: (json['referenced_works'] as List? ?? const [])
+          .whereType<String>()
+          .map((id) => id.trim())
+          .where((id) => id.isNotEmpty)
+          .toList(),
       title:
           _text(json['title']) ?? _text(json['display_name']) ?? 'Sans titre',
       authors: _objects(json['authorships']).map((authorship) {

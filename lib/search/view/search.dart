@@ -27,7 +27,7 @@ class _SearchState extends State<Search> {
     return Padding(
       padding: EdgeInsets.all(isPhoneScreen ? 0 : 16),
       child: Container(
-        width: isPhoneScreen ? double.infinity : (showGraph ? 796 : 500),
+        width: isPhoneScreen ? double.infinity : (showGraph ? 1136 : 500),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(isPhoneScreen ? 0 : 12),
           color: Theme.of(context).colorScheme.surfaceVariant,
