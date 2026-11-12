@@ -17,7 +17,9 @@ class SearchResults extends StatefulWidget {
 
 class _SearchResultsState extends State<SearchResults> {
   static const _pageSize = 25;
-  final PagingController<int, Work> _pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, Work> _pagingController = PagingController(
+    firstPageKey: 1,
+  );
   static final _numberFormatter = NumberFormat.compactCurrency(
     locale: 'fr',
     symbol: '',
@@ -28,10 +30,10 @@ class _SearchResultsState extends State<SearchResults> {
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
       context.read<SearchCubit>().search(
-            query: context.read<SearchCubit>().state.query,
-            page: pageKey,
-            itemsPerPage: _pageSize,
-          );
+        query: context.read<SearchCubit>().state.query,
+        page: pageKey,
+        itemsPerPage: _pageSize,
+      );
     });
     super.initState();
   }
@@ -65,8 +67,8 @@ class _SearchResultsState extends State<SearchResults> {
                 child: Text(
                   'Aucun résultat',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ),
               animateTransitions: true,
@@ -74,15 +76,21 @@ class _SearchResultsState extends State<SearchResults> {
                 return BlocBuilder<PageStackCubit, PageStackState>(
                   builder: (context, pageStackState) {
                     final nextPage = pageStackState.stack.last;
-                    final isSelected = nextPage is PublicationDetailsPage && nextPage.work == work;
+                    final isSelected =
+                        nextPage is PublicationDetailsPage &&
+                        nextPage.work == work;
                     return Container(
                       padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? Theme.of(context).colorScheme.outline.withOpacity(0.1)
+                            ? Theme.of(
+                                context,
+                              ).colorScheme.outline.withOpacity(0.1)
                             : Colors.transparent,
                         border: Border.all(
-                          color: isSelected ? Theme.of(context).colorScheme.outline : Colors.transparent,
+                          color: isSelected
+                              ? Theme.of(context).colorScheme.outline
+                              : Colors.transparent,
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -96,8 +104,13 @@ class _SearchResultsState extends State<SearchResults> {
                                   .read<PageStackCubit>()
                                   .state
                                   .stack
-                                  .indexWhere((element) => element is SearchPage);
-                              context.read<PageStackCubit>().showPublication(fromIndex: index, work: work);
+                                  .indexWhere(
+                                    (element) => element is SearchPage,
+                                  );
+                              context.read<PageStackCubit>().showPublication(
+                                fromIndex: index,
+                                work: work,
+                              );
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,35 +119,56 @@ class _SearchResultsState extends State<SearchResults> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        '${work.publicationYear} - ${work.primaryLocation}',
+                                        '${work.publicationYear ?? 'Année inconnue'} - ${work.primaryLocation}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelSmall
-                                            ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+                                            ?.copyWith(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onSurfaceVariant,
+                                            ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Theme.of(context).colorScheme.surface,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.surface,
                                         borderRadius: BorderRadius.circular(50),
                                       ),
-                                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 4,
+                                        horizontal: 8,
+                                      ),
                                       child: Row(
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 4,
+                                            ),
                                             child: Icon(
                                               Icons.format_quote_rounded,
                                               size: 16,
-                                              color: Theme.of(context).colorScheme.onSurface,
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onSurface,
                                             ),
                                           ),
                                           Text(
-                                            _numberFormatter.format(work.citedByCount),
+                                            work.citedByCount == null
+                                                ? '—'
+                                                : _numberFormatter.format(
+                                                    work.citedByCount,
+                                                  ),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                                ?.copyWith(
+                                                  color: Theme.of(
+                                                    context,
+                                                  ).colorScheme.onSurface,
+                                                ),
                                           ),
                                         ],
                                       ),
@@ -144,15 +178,21 @@ class _SearchResultsState extends State<SearchResults> {
                                 const SizedBox(height: 4),
                                 Text(
                                   work.title,
-                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                  style: Theme.of(context).textTheme.titleMedium
+                                      ?.copyWith(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSurfaceVariant,
                                       ),
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
                                   work.authors.take(5).join(', '),
-                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSurfaceVariant,
                                       ),
                                 ),
                                 const SizedBox(height: 25),

@@ -85,11 +85,16 @@ class OpenAlexApiClient {
 
   /// Fetches a [Work] by its OpenAlex ID.
   Future<Work> getWork(String id) async {
+    return Work.fromJson(await getWorkData(id));
+  }
+
+  /// Raw work data for consumers that only need a subset of the full model.
+  Future<Map<String, dynamic>> getWorkData(String id) async {
     final workResponse = await _get(
       Uri.https(_baseUrl, 'works/${_entityId(id)}'),
     );
     if (workResponse.statusCode == 200) {
-      return Work.fromJson(jsonDecode(workResponse.body));
+      return jsonDecode(workResponse.body) as Map<String, dynamic>;
     } else if (workResponse.statusCode == 404) {
       throw WorkNotFoundFailure();
     } else {
@@ -172,6 +177,20 @@ class OpenAlexApiClient {
     required int page,
     required int itemsPerPage,
   }) async {
+    final results = await searchWorksData(
+      query,
+      page: page,
+      itemsPerPage: itemsPerPage,
+    );
+    return results.map(Work.fromJson).toList();
+  }
+
+  /// Raw results let consumers avoid decoding unrelated nested metadata.
+  Future<List<Map<String, dynamic>>> searchWorksData(
+    String query, {
+    required int page,
+    required int itemsPerPage,
+  }) async {
     if (page < 1 || page * itemsPerPage > 10000) {
       throw ArgumentError.value(
         page,
@@ -195,11 +214,9 @@ class OpenAlexApiClient {
     );
     if (searchResponse.statusCode == 200) {
       final searchResults = jsonDecode(searchResponse.body);
-      final List<Work> works = [];
-      for (final result in searchResults['results']) {
-        works.add(Work.fromJson(result));
-      }
-      return works;
+      return (searchResults['results'] as List)
+          .map((result) => result as Map<String, dynamic>)
+          .toList();
     } else {
       throw WorkRequestFailure();
     }

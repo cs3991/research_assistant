@@ -11,7 +11,7 @@ part of 'author.dart';
 AuthorDehydrated _$AuthorDehydratedFromJson(Map<String, dynamic> json) =>
     $checkedCreate('AuthorDehydrated', json, ($checkedConvert) {
       final val = AuthorDehydrated(
-        id: $checkedConvert('id', (v) => v as String),
+        id: $checkedConvert('id', (v) => v as String?),
         displayName: $checkedConvert('display_name', (v) => v as String),
         orcid: $checkedConvert('orcid', (v) => v as String?),
       );

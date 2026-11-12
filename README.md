@@ -61,6 +61,14 @@ dart run tool/openalex_smoke.dart
 
 This checks search, pagination, detail loading, and conversion to the app's
 publication model. It also accepts an `OPENALEX_API_KEY` environment variable.
+Pass a query to check a specific search, for example
+`dart run tool/openalex_smoke.dart TMR` (25 results per page).
+
+Search and detail decode only the metadata used by the application. Nullable
+dates, counts and access flags remain unknown rather than becoming zero or
+false. Targeted offline tests cover the TMR regression, metadata-poor records
+and UI fallbacks. See the
+[field audit and nullability contract](docs/openalex-nullability.md).
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 

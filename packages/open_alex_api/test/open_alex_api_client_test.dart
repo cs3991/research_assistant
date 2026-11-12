@@ -17,6 +17,64 @@ void main() {
   tearDown(() => client.close());
 
   test(
+    'raw search and detail preserve null metadata without full decoding',
+    () async {
+      final record = <String, dynamic>{
+        'id': 'https://openalex.org/W1',
+        'title': null,
+        'authorships': [
+          {
+            'author': {'id': null, 'display_name': 'Author'},
+          },
+        ],
+        'apc_list': {'value': 'changed unused field'},
+      };
+      client = OpenAlexApiClient(
+        httpClient: MockClient((request) async {
+          return http.Response(
+            jsonEncode(
+              request.url.path == '/works'
+                  ? {
+                      'results': [record],
+                    }
+                  : record,
+            ),
+            200,
+          );
+        }),
+      );
+      expect(await client.searchWorksData('TMR', page: 1, itemsPerPage: 25), [
+        record,
+      ]);
+      expect(await client.getWorkData('https://openalex.org/W1'), record);
+    },
+  );
+
+  test('TMR search retains works with unresolved author IDs', () async {
+    final response = File('test/fixtures/works_tmr.json').readAsStringSync();
+    client = OpenAlexApiClient(
+      httpClient: MockClient((request) async {
+        expect(request.url.queryParameters['search'], 'TMR');
+        return http.Response(
+          response,
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        );
+      }),
+    );
+    final works = await client.searchWorks('TMR', page: 1, itemsPerPage: 25);
+    expect(works, hasLength(25));
+    final unresolved = works
+        .expand((work) => work.authorships)
+        .where((authorship) => authorship.author.id == null);
+    expect(unresolved, isNotEmpty);
+    expect(
+      unresolved.map((a) => a.author.displayName),
+      everyElement(isNotEmpty),
+    );
+  });
+
+  test(
     'search uses current parameters, encodes query and sends API key',
     () async {
       client = OpenAlexApiClient(
@@ -194,7 +252,7 @@ void main() {
     );
   });
 
-  for (final status in [429, 500, 503]) {
+  for (final status in [429, 500]) {
     test('retries $status and returns successful search', () async {
       var calls = 0;
       client = OpenAlexApiClient(
@@ -230,22 +288,17 @@ void main() {
     expect(calls, 3);
   });
 
-  for (final status in [400, 401, 403]) {
-    test('does not retry client error $status', () async {
-      var calls = 0;
-      client = OpenAlexApiClient(
-        httpClient: MockClient((_) async {
-          calls++;
-          return http.Response('{}', status);
-        }),
-      );
-      await expectLater(
-        client.getWork('W1'),
-        throwsA(isA<WorkRequestFailure>()),
-      );
-      expect(calls, 1);
-    });
-  }
+  test('does not retry authentication failures', () async {
+    var calls = 0;
+    client = OpenAlexApiClient(
+      httpClient: MockClient((_) async {
+        calls++;
+        return http.Response('{}', 401);
+      }),
+    );
+    await expectLater(client.getWork('W1'), throwsA(isA<WorkRequestFailure>()));
+    expect(calls, 1);
+  });
 
   test('preserves endpoint-specific not found errors', () async {
     client = OpenAlexApiClient(

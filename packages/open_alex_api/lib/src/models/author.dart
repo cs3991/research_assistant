@@ -5,29 +5,32 @@ import 'models.dart';
 part 'author.g.dart';
 
 abstract class AuthorBase {
-  AuthorBase({required this.id, required this.displayName, this.orcid});
+  AuthorBase({required this.displayName, this.orcid});
 
-  final String id;
+  String? get id;
   final String displayName;
   final String? orcid;
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class AuthorDehydrated extends AuthorBase {
+  // OpenAlex can retain an author's name without a resolved author ID.
+  @override
+  final String? id;
+
   factory AuthorDehydrated.fromJson(Map<String, dynamic> json) =>
       _$AuthorDehydratedFromJson(json);
 
-  AuthorDehydrated({
-    required super.id,
-    required super.displayName,
-    super.orcid,
-  });
+  AuthorDehydrated({required this.id, required super.displayName, super.orcid});
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Author extends AuthorBase {
+  @override
+  final String id;
+
   Author({
-    required super.id,
+    required this.id,
     required super.displayName,
     required this.displayNameAlternatives,
     required this.worksCount,

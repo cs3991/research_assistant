@@ -66,6 +66,12 @@ Coordonner les Cubits explicitement depuis l’interface : une réussite dans le
 
 La navigation reste simple, avec `Navigator`, `MaterialPageRoute` et des résultats de dialogue typés lorsque cela suffit. Désactiver les actions pendant les opérations concernées et afficher les erreurs depuis l’état.
 
+## Tests
+
+Tester uniquement les comportements importants et les régressions concrètes, avec le minimum de cas nécessaire. Privilégier des tests ciblés sur le comportement observable plutôt que sur les détails d’implémentation, les simples accesseurs ou le code généré. Éviter les doublons entre couches, les variantes équivalentes et les parcours exhaustifs de données sans risque identifié. Une correction doit conserver un test de régression utile, sans multiplier les tests pour augmenter leur nombre.
+
+Exécuter les tests concernés par le changement. Élargir la validation seulement si sa portée, une modification transversale ou un échec le justifie ; ne pas relancer systématiquement toute la suite ni reconstruire toutes les plateformes après une petite modification.
+
 ## Écriture et interface
 
 Utiliser des noms anglais descriptifs : fichiers en `snake_case`, classes en `PascalCase`, méthodes et champs en `camelCase`, membres privés préfixés par `_`. Préférer les retours anticipés, les petites méthodes ciblées, les paramètres nommés pour clarifier les appels, et les expressions `switch` lorsqu’elles rendent une correspondance lisible.

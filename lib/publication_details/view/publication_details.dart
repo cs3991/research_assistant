@@ -10,11 +10,7 @@ import 'package:research_assistant/publication_details/publication_cubit/publica
 import 'package:url_launcher/url_launcher.dart';
 
 class PublicationDetails extends StatelessWidget {
-  PublicationDetails({
-    super.key,
-    required this.index,
-    required this.work,
-  });
+  PublicationDetails({super.key, required this.index, required this.work});
 
   final int index;
   final dateFormat = DateFormat('dd/MM/yyyy');
@@ -31,15 +27,15 @@ class PublicationDetails extends StatelessWidget {
           }
           final page = state.stack[index];
           if (page is PublicationDetailsPage) {
-            BlocProvider.of<PublicationCubit>(context).showPublication(page.work);
+            BlocProvider.of<PublicationCubit>(
+              context,
+            ).showPublication(page.work);
           }
         },
         child: BlocBuilder<PublicationCubit, Work?>(
           builder: (context, work) {
             if (work == null) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
             }
             return BlocBuilder<PhoneScreenCubit, bool>(
               builder: (context, isPhoneScreen) {
@@ -53,20 +49,26 @@ class PublicationDetails extends StatelessWidget {
                               color: Theme.of(context).colorScheme.onSurface,
                             )
                           : null,
-                      borderRadius: BorderRadius.circular(isPhoneScreen ? 0 : 12),
+                      borderRadius: BorderRadius.circular(
+                        isPhoneScreen ? 0 : 12,
+                      ),
                       color: Theme.of(context).colorScheme.surface,
                     ),
                     constraints: BoxConstraints(
                       maxWidth: isPhoneScreen ? double.infinity : 500,
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(isPhoneScreen ? 0 : 12),
+                      borderRadius: BorderRadius.circular(
+                        isPhoneScreen ? 0 : 12,
+                      ),
                       child: ListView(
                         padding: EdgeInsets.zero,
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.tertiaryContainer,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.tertiaryContainer,
                             ),
                             padding: const EdgeInsets.all(16),
                             child: Column(
@@ -77,7 +79,9 @@ class PublicationDetails extends StatelessWidget {
                                     children: [
                                       SquareButton(
                                         onPressed: () {
-                                          context.read<PageStackCubit>().pop(fromIndex: index);
+                                          context.read<PageStackCubit>().pop(
+                                            fromIndex: index,
+                                          );
                                         },
                                         child: const Icon(
                                           Icons.arrow_back_rounded,
@@ -94,7 +98,9 @@ class PublicationDetails extends StatelessWidget {
                                           child: Icon(
                                             Icons.open_in_new_rounded,
                                             size: 20,
-                                            color: Theme.of(context).colorScheme.onSurface,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onSurface,
                                           ),
                                         )
                                       else
@@ -105,7 +111,9 @@ class PublicationDetails extends StatelessWidget {
                                         child: Icon(
                                           Icons.more_vert_rounded,
                                           size: 20,
-                                          color: Theme.of(context).colorScheme.onSurface,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSurface,
                                         ),
                                       ),
                                     ],
@@ -117,7 +125,11 @@ class PublicationDetails extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium
-                                      ?.copyWith(color: Theme.of(context).colorScheme.onTertiaryContainer),
+                                      ?.copyWith(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onTertiaryContainer,
+                                      ),
                                 ),
                               ],
                             ),
@@ -133,9 +145,7 @@ class PublicationDetails extends StatelessWidget {
                                     itemCount: work.authors.length + 1,
                                     itemBuilder: (context, index) {
                                       if (index == 0) {
-                                        return const SizedBox(
-                                          width: 12,
-                                        );
+                                        return const SizedBox(width: 12);
                                       }
                                       index -= 1;
                                       return Padding(
@@ -146,7 +156,11 @@ class PublicationDetails extends StatelessWidget {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                                ?.copyWith(
+                                                  color: Theme.of(
+                                                    context,
+                                                  ).colorScheme.onSurface,
+                                                ),
                                           ),
                                         ),
                                       );
@@ -155,51 +169,79 @@ class PublicationDetails extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 8),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                  ),
                                   child: Row(
                                     children: [
                                       TextButton(
                                         onPressed: () {
-                                          context.read<PageStackCubit>().showSearch(
-                                                fromIndex: index,
-                                              );
+                                          context
+                                              .read<PageStackCubit>()
+                                              .showSearch(fromIndex: index);
                                         },
-                                        child: Text('Cité ${work.citedByCount} fois'),
+                                        child: Text(
+                                          work.citedByCount == null
+                                              ? 'Citations inconnues'
+                                              : 'Cité ${work.citedByCount} fois',
+                                        ),
                                       ),
                                       Expanded(child: Container()),
-                                      CountByYearGraph(work: work, maxHeight: 40),
+                                      CountByYearGraph(
+                                        work: work,
+                                        maxHeight: 40,
+                                      ),
                                     ],
                                   ),
                                 ),
                                 const SizedBox(height: 16),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                  ),
                                   child: Row(
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          'Publié le ${dateFormat.format(work.publicationDate)} par ${work.primaryLocation}',
+                                          '${work.publicationDate == null ? 'Date de publication inconnue' : 'Publié le ${dateFormat.format(work.publicationDate!)}'}${work.primaryLocation.isEmpty ? '' : ' par ${work.primaryLocation}'}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .labelMedium
-                                              ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                              ?.copyWith(
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.onSurface,
+                                              ),
                                         ),
                                       ),
                                       Icon(
-                                        work.isOpenAccess ? Icons.lock_open_rounded : Icons.lock_rounded,
-                                        color: Theme.of(context).colorScheme.onSurface,
+                                        switch (work.isOpenAccess) {
+                                          true => Icons.lock_open_rounded,
+                                          false => Icons.lock_rounded,
+                                          null => Icons.help_outline_rounded,
+                                        },
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSurface,
                                       ),
                                     ],
                                   ),
                                 ),
                                 const SizedBox(height: 16),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                  ),
                                   child: Text(
                                     work.abstract,
                                     textAlign: TextAlign.justify,
-                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                          color: Theme.of(context).colorScheme.onSurface,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSurface,
                                         ),
                                   ),
                                 ),
@@ -211,9 +253,7 @@ class PublicationDetails extends StatelessWidget {
                                     itemCount: work.conceptsNames.length + 1,
                                     itemBuilder: (context, index) {
                                       if (index == 0) {
-                                        return const SizedBox(
-                                          width: 12,
-                                        );
+                                        return const SizedBox(width: 12);
                                       }
                                       index -= 1;
                                       return Padding(
@@ -224,7 +264,11 @@ class PublicationDetails extends StatelessWidget {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium
-                                                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                                                ?.copyWith(
+                                                  color: Theme.of(
+                                                    context,
+                                                  ).colorScheme.onSurface,
+                                                ),
                                           ),
                                         ),
                                       );
@@ -265,7 +309,10 @@ class CountByYearGraph extends StatelessWidget {
       heightRatio = 1;
     } else {
       heightRatio =
-          work.citationsCountByYear.reduce((value, element) => value > element ? value : element) / maxHeight;
+          work.citationsCountByYear.reduce(
+            (value, element) => value > element ? value : element,
+          ) /
+          maxHeight;
     }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -275,7 +322,7 @@ class CountByYearGraph extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: Container(
               width: 15,
-              height: countByYear / heightRatio,
+              height: heightRatio == 0 ? 0 : countByYear / heightRatio,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),
@@ -285,11 +332,7 @@ class CountByYearGraph extends StatelessWidget {
 }
 
 class SquareButton extends StatelessWidget {
-  const SquareButton({
-    super.key,
-    required this.onPressed,
-    required this.child,
-  });
+  const SquareButton({super.key, required this.onPressed, required this.child});
 
   final Null Function() onPressed;
   final Widget child;
@@ -306,16 +349,10 @@ class SquareButton extends StatelessWidget {
           Theme.of(context).colorScheme.onSurface,
         ),
         shape: MaterialStateProperty.all<OutlinedBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
-        fixedSize: MaterialStateProperty.all<Size>(
-          const Size(48, 48),
-        ),
-        minimumSize: MaterialStateProperty.all<Size>(
-          const Size(40, 40),
-        ),
+        fixedSize: MaterialStateProperty.all<Size>(const Size(48, 48)),
+        minimumSize: MaterialStateProperty.all<Size>(const Size(40, 40)),
         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
           const EdgeInsets.all(0),
         ),

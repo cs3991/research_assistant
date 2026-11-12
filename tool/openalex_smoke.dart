@@ -4,25 +4,26 @@ import 'package:open_alex_api/open_alex_api.dart';
 import 'package:research_assistant/catalog_repository/catalog_repository.dart';
 
 /// Optional live check. Unit tests use recorded responses and require no key.
-Future<void> main() async {
+Future<void> main(List<String> arguments) async {
+  final query = arguments.isEmpty ? 'machine learning' : arguments.join(' ');
   final client = OpenAlexApiClient(
     apiKey: Platform.environment['OPENALEX_API_KEY'],
   );
   final repository = CatalogRepository(openAlex: client);
   try {
-    final works = await client.searchWorks(
-      'machine learning',
+    final works = await client.searchWorksData(
+      query,
       page: 1,
-      itemsPerPage: 3,
+      itemsPerPage: 25,
     );
     if (works.isEmpty) {
       throw StateError('The search returned no works');
     }
-    final detail = await repository.getWork(works.first.id);
+    final detail = await repository.getWork(works.first['id'] as String);
     final secondPage = await repository.searchWork(
-      'machine learning',
+      query,
       page: 2,
-      itemsPerPage: 3,
+      itemsPerPage: 25,
     );
     if (secondPage.isEmpty) {
       throw StateError('The second page returned no works');

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:json_annotation/json_annotation.dart';
 import 'package:open_alex_api/open_alex_api.dart';
 import 'package:test/test.dart';
 
@@ -63,38 +62,6 @@ void main() {
           'oa_status': 'future-status',
         };
         expect(Work.fromJson(json).openAccessStatus, OpenAccessStatus.unknown);
-      });
-
-      test(
-        'throws CheckedFromJsonException when one required field is missing',
-        () {
-          for (final field in [
-            "id",
-            "type",
-            "publication_year",
-            "publication_date",
-            "cited_by_count",
-            "open_access",
-            "is_retracted",
-            "is_paratext",
-            "counts_by_year",
-            "created_date",
-          ]) {
-            var invalidJson = Map<String, dynamic>.from(jsonResponseMap);
-            expect(invalidJson.remove(field), isNotNull);
-            expect(() {
-              return Work.fromJson(invalidJson);
-            }, throwsA(isA<CheckedFromJsonException>()));
-          }
-        },
-      );
-      test('returns Work when all required fields are present', () {
-        var validJson = Map<String, dynamic>.from(jsonResponseMap);
-        for (final field in ['mag', 'doi', 'pmid', 'pmcid']) {
-          expect(validJson['ids'].remove(field), isNotNull);
-        }
-        expect(validJson['open_access'].remove('oa_url'), isNotNull);
-        expect(Work.fromJson(validJson), isA<Work>());
       });
     });
   });

@@ -24,7 +24,7 @@ void main() {
   });
 
   test('preserves DOI URLs and uses current Topics', () {
-    final work = repository.workFromApi(api.Work.fromJson(json));
+    final work = repository.workFromJson(json);
     expect(work.doiUrl.toString(), json['doi']);
     expect(
       work.conceptsNames,
@@ -36,10 +36,26 @@ void main() {
     expect(work.abstract, isNotEmpty);
   });
 
+  test('converts all TMR results including authors without OpenAlex IDs', () {
+    final response =
+        jsonDecode(
+              File(
+                'packages/open_alex_api/test/fixtures/works_tmr.json',
+              ).readAsStringSync(),
+            )
+            as Map<String, dynamic>;
+    final results = (response['results'] as List)
+        .map((json) => repository.workFromJson(json as Map<String, dynamic>))
+        .toList();
+    expect(results, hasLength(25));
+    expect(results.map((work) => work.title), everyElement(isNotEmpty));
+    expect(results.map((work) => work.authors), everyElement(isNotEmpty));
+  });
+
   test('handles missing locations and uses the OA landing page', () {
     json['primary_location'] = null;
     (json['best_oa_location'] as Map)['pdf_url'] = null;
-    final work = repository.workFromApi(api.Work.fromJson(json));
+    final work = repository.workFromJson(json);
     expect(work.primaryLocation, isEmpty);
     expect(
       work.bestOaUrl.toString(),
@@ -49,7 +65,7 @@ void main() {
 
   test('falls back to OA URL when there is no best location', () {
     json['best_oa_location'] = null;
-    final work = repository.workFromApi(api.Work.fromJson(json));
+    final work = repository.workFromJson(json);
     expect(
       work.bestOaUrl.toString(),
       (json['open_access'] as Map<String, dynamic>)['oa_url'],
@@ -63,7 +79,7 @@ void main() {
       'for': [2],
     };
     (json['ids'] as Map<String, dynamic>)['doi'] = '10.1234/example';
-    final work = repository.workFromApi(api.Work.fromJson(json));
+    final work = repository.workFromJson(json);
     expect(work.abstract, 'Open science for science');
     expect(work.doiUrl.toString(), 'https://doi.org/10.1234/example');
   });

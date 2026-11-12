@@ -18,10 +18,10 @@ class Work {
   List<String> authors;
   String abstract;
   String primaryLocation;
-  int citedByCount;
-  int publicationYear;
-  DateTime publicationDate;
-  bool isOpenAccess;
+  int? citedByCount;
+  int? publicationYear;
+  DateTime? publicationDate;
+  bool? isOpenAccess;
   List<String> conceptsNames;
   Uri? bestOaUrl;
   Uri? doiUrl;

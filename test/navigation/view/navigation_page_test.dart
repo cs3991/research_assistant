@@ -1,4 +1,3 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:research_assistant/collection/view/collection.dart';
@@ -7,74 +6,26 @@ import 'package:research_assistant/newsfeed/view/newsfeed.dart';
 
 import '../../helpers/helpers.dart';
 
-class MockNavigationCubit extends MockCubit<int> implements NavigationCubit {}
-
 void main() {
-  group('NavigationPage', () {
-    testWidgets('renders NavigationBar', (WidgetTester tester) async {
-      tester.view.physicalSize = const Size(400, 1100);
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.reset);
-      await tester.pumpApp(const NavigationPage());
-      expect(find.byType(NavigationBar), findsOneWidget);
-      expect(find.byType(NavigationRail), findsNothing);
-    });
-
-    testWidgets('renders NavigationRail', (WidgetTester tester) async {
-      tester.view.physicalSize = const Size(1000, 1100);
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.reset);
-      await tester.pumpApp(const NavigationPage());
-      expect(find.byType(NavigationRail), findsOneWidget);
-      expect(find.byType(NavigationBar), findsNothing);
-    });
-
-    testWidgets('renders Collection when selected (rail)', (
-      WidgetTester tester,
-    ) async {
-      tester.view.physicalSize = const Size(1000, 1100);
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.reset);
-      await tester.pumpApp(const NavigationPage());
-      await tester.tap(find.byIcon(Icons.library_books_rounded));
-      await tester.pump();
-      expect(find.byType(Collection), findsOneWidget);
-    });
-
-    testWidgets('renders Collection when selected (bar)', (
-      WidgetTester tester,
-    ) async {
-      tester.view.physicalSize = const Size(400, 1100);
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.reset);
-      await tester.pumpApp(const NavigationPage());
-      await tester.tap(find.byIcon(Icons.library_books_rounded));
-      await tester.pump();
-      expect(find.byType(Collection), findsOneWidget);
-    });
-
-    testWidgets('renders NewsFeed when selected (rail)', (
-      WidgetTester tester,
-    ) async {
-      tester.view.physicalSize = const Size(1000, 1100);
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.reset);
-      await tester.pumpApp(const NavigationPage());
-      await tester.tap(find.byIcon(Icons.rss_feed_rounded));
-      await tester.pump();
-      expect(find.byType(NewsFeed), findsOneWidget);
-    });
-
-    testWidgets('renders NewsFeed when selected (bar)', (
-      WidgetTester tester,
-    ) async {
-      tester.view.physicalSize = const Size(400, 1100);
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.reset);
-      await tester.pumpApp(const NavigationPage());
-      await tester.tap(find.byIcon(Icons.rss_feed_rounded));
-      await tester.pump();
-      expect(find.byType(NewsFeed), findsOneWidget);
-    });
-  });
+  for (final width in [400.0, 1000.0]) {
+    testWidgets(
+      'switches sections on ${width < 650 ? 'phone' : 'desktop'} layout',
+      (tester) async {
+        tester.view.physicalSize = Size(width, 1100);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.reset);
+        await tester.pumpApp(const NavigationPage());
+        expect(
+          find.byType(width < 650 ? NavigationBar : NavigationRail),
+          findsOneWidget,
+        );
+        await tester.tap(find.byIcon(Icons.library_books_rounded));
+        await tester.pump();
+        expect(find.byType(Collection), findsOneWidget);
+        await tester.tap(find.byIcon(Icons.rss_feed_rounded));
+        await tester.pump();
+        expect(find.byType(NewsFeed), findsOneWidget);
+      },
+    );
+  }
 }
