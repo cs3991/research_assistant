@@ -6,8 +6,12 @@ import 'package:research_assistant/collection/model/citation_network.dart';
 
 /// Citations attract horizontally; year bands keep recent papers above older ones.
 class CitationLayout {
-  CitationLayout(CitationNetwork network) {
+  CitationLayout(CitationNetwork network, {Work? focusWork}) {
     final count = network.nodes.length;
+    final focusIndex = focusWork == null
+        ? -1
+        : network.nodes.indexOf(focusWork);
+
     final side = math.max<double>(560, math.sqrt(count) * 115);
     final years =
         network.nodes
@@ -27,6 +31,18 @@ class CitationLayout {
         targets[year] = span == 0
             ? side / 2
             : 80 + (years.last - year) / span * (side - 160);
+      }
+    }
+    if (focusWork?.publicationYear != null && years.isNotEmpty) {
+      final year = focusWork!.publicationYear!;
+      final extent = math.max(
+        (years.first - year).abs(),
+        (years.last - year).abs(),
+      );
+      for (final entry in years) {
+        targets[entry] =
+            side / 2 +
+            (extent == 0 ? 0 : (year - entry) / extent * (side / 2 - 80));
       }
     }
     final bands = List.generate(count, (i) {
@@ -71,8 +87,33 @@ class CitationLayout {
     );
     for (var step = 0; step < 220; step++) {
       final forces = List.filled(count, Offset.zero);
+      // Local spatial buckets avoid all-pairs repulsion on larger networks.
+      final buckets = <(int, int), List<int>>{};
+      if (count > 100) {
+        for (var i = 0; i < count; i++) {
+          final cell = (
+            (points[i].dx / 150).floor(),
+            (points[i].dy / 150).floor(),
+          );
+          (buckets[cell] ??= []).add(i);
+        }
+      }
       for (var i = 0; i < count; i++) {
-        for (var j = i + 1; j < count; j++) {
+        final Iterable<int> neighbors;
+        if (count <= 100) {
+          neighbors = Iterable.generate(
+            count - i - 1,
+            (offset) => i + offset + 1,
+          );
+        } else {
+          final x = (points[i].dx / 150).floor();
+          final y = (points[i].dy / 150).floor();
+          neighbors = [
+            for (var dx = -1; dx <= 1; dx++)
+              for (var dy = -1; dy <= 1; dy++) ...?buckets[(x + dx, y + dy)],
+          ].where((j) => j > i);
+        }
+        for (final j in neighbors) {
           final delta = points[i] - points[j];
           final distance = math.max<double>(1, delta.distance);
           final direction = delta / distance;
@@ -94,6 +135,10 @@ class CitationLayout {
       }
       final cooling = 1 - step / 260;
       for (var i = 0; i < count; i++) {
+        if (i == focusIndex) {
+          points[i] = Offset(side / 2, side / 2);
+          continue;
+        }
         var force = forces[i] + (size.center(Offset.zero) - points[i]) * .001;
         if (force.distance > 12) force = force / force.distance * 12;
         final next = points[i] + force * cooling;

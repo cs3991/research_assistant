@@ -1,4 +1,5 @@
-import 'package:open_alex_api/open_alex_api.dart' show OpenAlexApiClient;
+import 'package:open_alex_api/open_alex_api.dart'
+    show OpenAlexApiClient, defaultListPageSize;
 import 'package:research_assistant/catalog_repository/src/model/model.dart';
 
 class CatalogRepository {
@@ -10,7 +11,7 @@ class CatalogRepository {
   // Decode only the metadata used by search and publication details. In
   // particular, unresolved author/source IDs and institution metadata must not
   // prevent a publication from being displayed.
-  Work workFromJson(Map<String, dynamic> json) {
+  Work workFromJson(Map<String, dynamic> json, {bool summary = false}) {
     final primary = json['primary_location'] as Map?;
     final source = primary?['source'] as Map?;
     final bestOa = json['best_oa_location'] as Map?;
@@ -19,6 +20,7 @@ class CatalogRepository {
     final topics = _names(json['topics']);
     final date = json['publication_date'] as String?;
     return Work(
+      isSummary: summary,
       id: _text(json['id']),
       referencedWorkIds: (json['referenced_works'] as List? ?? const [])
           .whereType<String>()
@@ -98,7 +100,7 @@ class CatalogRepository {
   Future<List<Work>> searchWork(
     String query, {
     int page = 1,
-    required int itemsPerPage,
+    int itemsPerPage = defaultListPageSize,
   }) async {
     final works = await _openAlex.searchWorksData(
       query,
@@ -108,6 +110,72 @@ class CatalogRepository {
     return works.map(workFromJson).toList();
   }
 
+  Future<CitationNeighborhood> getCitationNeighborhood(
+    Work work, {
+    int page = 1,
+    int pageSize = defaultListPageSize,
+  }) async {
+    final id = work.id;
+    if (id == null || id.isEmpty) {
+      throw ArgumentError('Article sans identifiant OpenAlex');
+    }
+    if (page < 1 || pageSize < 1 || pageSize > 100) {
+      throw ArgumentError('Pagination invalide');
+    }
+    final start = (page - 1) * pageSize;
+    final references = work.referencedWorkIds
+        .skip(start)
+        .take(pageSize)
+        .toList();
+    final responses = await Future.wait([
+      if (page * pageSize <= 10000)
+        _openAlex.getFilteredWorksData(
+          'cites:${id.split('/').last}',
+          page: page,
+          itemsPerPage: pageSize,
+        )
+      else
+        Future.value(<String, dynamic>{
+          'results': <dynamic>[],
+          'meta': {'count': 0},
+        }),
+      if (references.isNotEmpty)
+        _openAlex.getFilteredWorksData(
+          'openalex:${references.map((id) => id.split('/').last).join('|')}',
+          itemsPerPage: pageSize,
+        ),
+    ]);
+    final incoming = responses.first;
+    final works = <Work>[
+      // The cites filter already proves this edge. Do not download each
+      // citing article's entire bibliography just to rediscover it.
+      ..._objects(incoming['results']).map(
+        (json) => workFromJson({
+          ...Map<String, dynamic>.from(json),
+          'referenced_works': [id],
+        }, summary: true),
+      ),
+      if (responses.length > 1)
+        ..._objects(responses[1]['results']).map(
+          (json) =>
+              workFromJson(Map<String, dynamic>.from(json), summary: true),
+        ),
+    ];
+    final total = (incoming['meta'] as Map?)?['count'] as int? ?? 0;
+    return CitationNeighborhood(
+      works: works,
+      hasMore:
+          page * pageSize < work.referencedWorkIds.length ||
+          page * pageSize < total && (page + 1) * pageSize <= 10000,
+    );
+  }
+
   Future<Work> getWork(String id) async =>
       workFromJson(await _openAlex.getWorkData(id));
+}
+
+class CitationNeighborhood {
+  const CitationNeighborhood({required this.works, required this.hasMore});
+  final List<Work> works;
+  final bool hasMore;
 }

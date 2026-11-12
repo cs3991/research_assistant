@@ -5,7 +5,8 @@ import 'package:research_assistant/catalog_repository/catalog_repository.dart';
 part 'page_stack_state.dart';
 
 class PageStackCubit extends Cubit<PageStackState> {
-  PageStackCubit({required LayoutPage page}) : super(LayoutInitial(stack: [page]));
+  PageStackCubit({required LayoutPage page})
+    : super(LayoutInitial(stack: [page]));
 
   void _push(LayoutPage page, int fromIndex) {
     final newStack = state.stack.sublist(0, fromIndex + 1) + [page];
@@ -14,6 +15,10 @@ class PageStackCubit extends Cubit<PageStackState> {
 
   void showPublication({required int fromIndex, required Work work}) {
     _push(PublicationDetailsPage(index: fromIndex + 1, work: work), fromIndex);
+  }
+
+  void showCitationNetwork({required int fromIndex, required Work work}) {
+    _push(CitationNetworkPage(index: fromIndex + 1, work: work), fromIndex);
   }
 
   void showAuthor({required int fromIndex}) {

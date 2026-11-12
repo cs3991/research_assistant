@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:research_assistant/citation_neighborhood/citation_neighborhood_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/layout/cubit/page_stack_cubit.dart';
 import 'package:research_assistant/layout/cubit/responsive_cubit.dart';
@@ -34,7 +35,9 @@ class LayoutNavigation extends StatelessWidget {
             if (layoutState.stack.length <= 1) {
               return true;
             }
-            context.read<PageStackCubit>().pop(fromIndex: layoutState.stack.length - 1);
+            context.read<PageStackCubit>().pop(
+              fromIndex: layoutState.stack.length - 1,
+            );
             return false;
           },
           child: BlocBuilder<PhoneScreenCubit, bool>(
@@ -63,17 +66,14 @@ class LayoutNavigation extends StatelessWidget {
                 );
               } else {
                 return Stack(
-                  children: List.generate(
-                    layoutState.stack.length,
-                    (index) {
-                      return itemBuilder(
-                        context: context,
-                        stack: layoutState.stack,
-                        index: index,
-                        isPhoneScreen: isPhoneScreen,
-                      );
-                    },
-                  ),
+                  children: List.generate(layoutState.stack.length, (index) {
+                    return itemBuilder(
+                      context: context,
+                      stack: layoutState.stack,
+                      index: index,
+                      isPhoneScreen: isPhoneScreen,
+                    );
+                  }),
                 );
               }
             },
@@ -91,14 +91,18 @@ class LayoutNavigation extends StatelessWidget {
   }) {
     if (stack[index] is SearchPage) {
       return const Search();
+    } else if (stack[index] is CitationNetworkPage) {
+      return CitationNeighborhoodPage(
+        key: ValueKey(stack[index]),
+        work: (stack[index] as CitationNetworkPage).work,
+        index: index,
+      );
     } else if (stack[index] is AuthorDetailsPage) {
       return Padding(
         padding: EdgeInsets.all(isPhoneScreen ? 0 : 16),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              isPhoneScreen ? 0 : 12,
-            ),
+            borderRadius: BorderRadius.circular(isPhoneScreen ? 0 : 12),
             color: Theme.of(context).colorScheme.surfaceVariant,
           ),
           constraints: BoxConstraints(

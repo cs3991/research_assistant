@@ -17,6 +17,34 @@ void main() {
   tearDown(() => client.close());
 
   test(
+    'citation requests select graph metadata and preserve pagination',
+    () async {
+      client = OpenAlexApiClient(
+        httpClient: MockClient((request) async {
+          expect(request.url.queryParameters['filter'], 'cites:W1');
+          expect(request.url.queryParameters['page'], '2');
+          expect(request.url.queryParameters['per_page'], '50');
+          expect(
+            request.url.queryParameters['select'],
+            'id,title,authorships,publication_year,cited_by_count',
+          );
+          return http.Response(
+            jsonEncode({
+              'meta': {'count': 26},
+              'results': [
+                {'id': 'W2'},
+              ],
+            }),
+            200,
+          );
+        }),
+      );
+      final result = await client.getFilteredWorksData('cites:W1', page: 2);
+      expect((result['meta'] as Map)['count'], 26);
+    },
+  );
+
+  test(
     'raw search and detail preserve null metadata without full decoding',
     () async {
       final record = <String, dynamic>{

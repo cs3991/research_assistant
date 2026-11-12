@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
-import 'package:research_assistant/catalog_repository/src/model/work.dart';
+import 'package:research_assistant/catalog_repository/catalog_repository.dart';
 import 'package:research_assistant/layout/cubit/page_stack_cubit.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
 
@@ -16,7 +16,7 @@ class SearchResults extends StatefulWidget {
 }
 
 class _SearchResultsState extends State<SearchResults> {
-  static const _pageSize = 25;
+  static const _pageSize = defaultListPageSize;
   final PagingController<int, Work> _pagingController = PagingController(
     firstPageKey: 1,
   );

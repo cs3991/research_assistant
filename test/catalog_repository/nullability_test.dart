@@ -24,10 +24,10 @@ void main() {
         'counts_by_year': null,
       };
       when(
-        () => client.searchWorksData('minimal', page: 1, itemsPerPage: 25),
+        () => client.searchWorksData('minimal', page: 1, itemsPerPage: 50),
       ).thenAnswer((_) async => [minimal]);
       when(() => client.getWorkData('W1')).thenAnswer((_) async => minimal);
-      final search = await repository.searchWork('minimal', itemsPerPage: 25);
+      final search = await repository.searchWork('minimal', itemsPerPage: 50);
       final detail = await repository.getWork('W1');
       for (final work in [search.single, detail]) {
         expect(work.title, 'Sans titre');

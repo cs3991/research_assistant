@@ -18,17 +18,17 @@ void main() {
   tearDown(() => cubit.close());
 
   Future<void> search(String query) =>
-      cubit.search(query: query, page: 1, itemsPerPage: 25);
+      cubit.search(query: query, page: 1, itemsPerPage: 50);
 
   test('forwards search and pagination and emits results', () async {
     when(
-      () => repository.searchWork('science', page: 2, itemsPerPage: 25),
+      () => repository.searchWork('science', page: 2, itemsPerPage: 50),
     ).thenAnswer((_) async => []);
     final states = expectLater(
       cubit.stream,
       emitsInOrder([isA<SearchResultLoading>(), isA<SearchResultLoaded>()]),
     );
-    await cubit.search(query: 'science', page: 2, itemsPerPage: 25);
+    await cubit.search(query: 'science', page: 2, itemsPerPage: 50);
     await states;
     expect(cubit.state.query, 'science');
     expect(cubit.state.page, 2);
@@ -44,12 +44,12 @@ void main() {
   for (final error in [Exception('Network unavailable'), TypeError()]) {
     test('reports ${error.runtimeType} and allows retry', () async {
       when(
-        () => repository.searchWork('science', page: 1, itemsPerPage: 25),
+        () => repository.searchWork('science', page: 1, itemsPerPage: 50),
       ).thenAnswer((_) async => throw error);
       await search('science');
       expect((cubit.state as SearchResultError).error, same(error));
       when(
-        () => repository.searchWork('science', page: 1, itemsPerPage: 25),
+        () => repository.searchWork('science', page: 1, itemsPerPage: 50),
       ).thenAnswer((_) async => []);
       await search('science');
       expect(cubit.state, isA<SearchResultLoaded>());
@@ -60,10 +60,10 @@ void main() {
     test('ignores obsolete ${fails ? 'errors' : 'results'}', () async {
       final pending = Completer<List<Work>>();
       when(
-        () => repository.searchWork('old', page: 1, itemsPerPage: 25),
+        () => repository.searchWork('old', page: 1, itemsPerPage: 50),
       ).thenAnswer((_) => pending.future);
       when(
-        () => repository.searchWork('new', page: 1, itemsPerPage: 25),
+        () => repository.searchWork('new', page: 1, itemsPerPage: 50),
       ).thenAnswer((_) async => []);
       final oldSearch = search('old');
       cubit.updateQuery(query: 'new');
@@ -82,7 +82,7 @@ void main() {
   test('can close while a request is pending', () async {
     final pending = Completer<List<Work>>();
     when(
-      () => repository.searchWork('science', page: 1, itemsPerPage: 25),
+      () => repository.searchWork('science', page: 1, itemsPerPage: 50),
     ).thenAnswer((_) => pending.future);
     final request = search('science');
     await cubit.close();

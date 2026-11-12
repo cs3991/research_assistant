@@ -22,7 +22,7 @@ void main() {
     addTearDown(tester.view.reset);
     final repository = _Repository();
     when(
-      () => repository.searchWork('TMR', page: 1, itemsPerPage: 25),
+      () => repository.searchWork('TMR', page: 1, itemsPerPage: 50),
     ).thenAnswer((_) async => []);
     final search = SearchCubit(catalogRepository: repository);
     addTearDown(search.close);
@@ -84,13 +84,13 @@ void main() {
     final second = decoder.workFromJson({'id': 'W2', 'title': 'Second paper'});
     final repository = _Repository();
     when(
-      () => repository.searchWork('query', page: 1, itemsPerPage: 25),
+      () => repository.searchWork('query', page: 1, itemsPerPage: 50),
     ).thenAnswer((_) async => [first, second]);
     final search = SearchCubit(catalogRepository: repository);
     final navigation = PageStackCubit(page: SearchPage(index: 0));
     addTearDown(search.close);
     addTearDown(navigation.close);
-    await search.search(query: 'query', page: 1, itemsPerPage: 25);
+    await search.search(query: 'query', page: 1, itemsPerPage: 50);
     navigation.showPublication(fromIndex: 0, work: second);
     await tester.pumpWidget(
       MaterialApp(

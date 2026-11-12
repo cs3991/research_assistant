@@ -19,7 +19,7 @@ void main() {
     final work = CatalogRepository(openAlex: client).workFromJson({});
     final repository = MockCatalogRepository();
     when(
-      () => repository.searchWork('test', page: 1, itemsPerPage: 25),
+      () => repository.searchWork('test', page: 1, itemsPerPage: 50),
     ).thenAnswer((_) async => [work]);
     final cubit = SearchCubit(catalogRepository: repository);
     addTearDown(cubit.close);

@@ -23,7 +23,7 @@ class SearchCubit extends Cubit<SearchState> {
   Future<void> search({
     required String query,
     required int page,
-    required int itemsPerPage,
+    int itemsPerPage = defaultListPageSize,
   }) async {
     final requestId = ++_requestId;
     if (page == 1 || query != state.query) _pages.clear();

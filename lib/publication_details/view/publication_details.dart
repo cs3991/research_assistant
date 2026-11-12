@@ -178,7 +178,10 @@ class PublicationDetails extends StatelessWidget {
                                         onPressed: () {
                                           context
                                               .read<PageStackCubit>()
-                                              .showSearch(fromIndex: index);
+                                              .showCitationNetwork(
+                                                fromIndex: index,
+                                                work: work,
+                                              );
                                         },
                                         child: Text(
                                           work.citedByCount == null

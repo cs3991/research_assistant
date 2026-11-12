@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:research_assistant/catalog_repository/catalog_repository.dart';
 import 'package:research_assistant/collection/view/library_sidebar.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,7 +40,12 @@ class NavigationPage extends StatelessWidget {
         body: MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => NavigationCubit()),
-            BlocProvider(create: (context) => SearchCubit()),
+            RepositoryProvider(create: (_) => CatalogRepository()),
+            BlocProvider(
+              create: (context) => SearchCubit(
+                catalogRepository: context.read<CatalogRepository>(),
+              ),
+            ),
             BlocProvider(create: (context) => PhoneScreenCubit()),
             BlocProvider(
               create: (context) => PageStackCubit(page: SearchPage(index: 0)),

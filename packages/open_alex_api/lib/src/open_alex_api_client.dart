@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:open_alex_api/open_alex_api.dart';
 
+const defaultListPageSize = 50;
+
 class WorkRequestFailure implements Exception {}
 
 class WorkNotFoundFailure implements Exception {}
@@ -171,11 +173,35 @@ class OpenAlexApiClient {
     }
   }
 
+  /// A page of filtered works, including metadata for pagination.
+  Future<Map<String, dynamic>> getFilteredWorksData(
+    String filter, {
+    int page = 1,
+    int itemsPerPage = defaultListPageSize,
+  }) async {
+    if (page < 1 ||
+        page * itemsPerPage > 10000 ||
+        itemsPerPage < 1 ||
+        itemsPerPage > 100) {
+      throw ArgumentError('Invalid works pagination');
+    }
+    final response = await _get(
+      Uri.https(_baseUrl, 'works', {
+        'filter': filter,
+        'select': 'id,title,authorships,publication_year,cited_by_count',
+        'page': '$page',
+        'per_page': '$itemsPerPage',
+      }),
+    );
+    if (response.statusCode != 200) throw WorkRequestFailure();
+    return jsonDecode(response.body) as Map<String, dynamic>;
+  }
+
   /// Searches for [Work]s by a query.
   Future<List<Work>> searchWorks(
     String query, {
     required int page,
-    required int itemsPerPage,
+    int itemsPerPage = defaultListPageSize,
   }) async {
     final results = await searchWorksData(
       query,
@@ -189,7 +215,7 @@ class OpenAlexApiClient {
   Future<List<Map<String, dynamic>>> searchWorksData(
     String query, {
     required int page,
-    required int itemsPerPage,
+    int itemsPerPage = defaultListPageSize,
   }) async {
     if (page < 1 || page * itemsPerPage > 10000) {
       throw ArgumentError.value(

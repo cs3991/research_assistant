@@ -13,10 +13,12 @@ class Work {
     required this.citationsCountByYear,
     this.bestOaUrl,
     this.id,
+    this.isSummary = false,
     this.referencedWorkIds = const [],
   });
 
   final String? id;
+  final bool isSummary;
   final List<String> referencedWorkIds;
 
   String title;

@@ -39,3 +39,8 @@ class AuthorDetailsPage extends LayoutPage {
 class SearchPage extends LayoutPage {
   SearchPage({required super.index});
 }
+
+class CitationNetworkPage extends LayoutPage {
+  CitationNetworkPage({required super.index, required this.work});
+  final Work work;
+}
