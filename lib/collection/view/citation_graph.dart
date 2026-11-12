@@ -1,53 +1,38 @@
 import 'package:flutter/material.dart';
 
+/// Graph content shares the search panel's background and search scope.
 class CitationGraph extends StatelessWidget {
-  const CitationGraph({super.key});
+  const CitationGraph({required this.onCollapse, super.key});
+
+  final VoidCallback onCollapse;
 
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.fromLTRB(0, 16, 16, 16),
-    child: Container(
-      width: 280,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceVariant,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Connexions', style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 16),
-          const Row(
-            children: [
-              Expanded(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFFFCFB),
-                    borderRadius: BorderRadius.all(Radius.circular(24)),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(6),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Icon(Icons.search_rounded, size: 18),
-                    ),
-                  ),
-                ),
+  Widget build(BuildContext context) => SizedBox(
+    width: 280,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                'Connexions',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-              SizedBox(width: 8),
-              Icon(Icons.filter_list_rounded, size: 18),
-              SizedBox(width: 8),
-              Icon(Icons.sort_by_alpha_rounded, size: 18),
-            ],
-          ),
-          const Expanded(
-            child: SizedBox.expand(
-              child: CustomPaint(painter: _CitationGraphPainter()),
             ),
+            IconButton(
+              tooltip: 'Rétracter le graphe de citations',
+              onPressed: onCollapse,
+              icon: const Icon(Icons.chevron_left_rounded),
+            ),
+          ],
+        ),
+        const Expanded(
+          child: SizedBox.expand(
+            child: CustomPaint(painter: _CitationGraphPainter()),
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }

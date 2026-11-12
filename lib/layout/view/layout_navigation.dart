@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:research_assistant/collection/view/citation_graph.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/layout/cubit/page_stack_cubit.dart';
 import 'package:research_assistant/layout/cubit/responsive_cubit.dart';
@@ -91,11 +90,7 @@ class LayoutNavigation extends StatelessWidget {
     required bool isPhoneScreen,
   }) {
     if (stack[index] is SearchPage) {
-      if (isPhoneScreen) return const Search();
-      return const Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [Search(), CitationGraph()],
-      );
+      return const Search();
     } else if (stack[index] is AuthorDetailsPage) {
       return Padding(
         padding: EdgeInsets.all(isPhoneScreen ? 0 : 16),

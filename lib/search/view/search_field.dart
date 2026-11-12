@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/search/cubit/search_cubit.dart';
 
 class SearchField extends StatelessWidget {
-  const SearchField({super.key});
+  const SearchField({this.trailing, super.key});
+
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,10 @@ class SearchField extends StatelessWidget {
               isDense: true,
               filled: true,
               fillColor: Theme.of(context).colorScheme.surface,
-              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 16,
+              ),
             ),
             onSubmitted: (value) {
               context.read<SearchCubit>().updateQuery(query: value);
@@ -49,6 +54,7 @@ class SearchField extends StatelessWidget {
           icon: const Icon(Icons.sort_by_alpha_rounded),
           color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
+        if (trailing != null) trailing!,
       ],
     );
   }
