@@ -1,1482 +1,297 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
-import 'package:mocktail/mocktail.dart';
+import 'package:http/testing.dart';
 import 'package:open_alex_api/open_alex_api.dart';
 import 'package:test/test.dart';
 
 import 'models/json_response.dart';
 
-class MockHttpClient extends Mock implements http.Client {}
-
-class MockResponse extends Mock implements http.Response {}
-
-class FakeUri extends Fake implements Uri {}
+Map<String, dynamic> fixture(String name) =>
+    jsonDecode(File('test/fixtures/${name}_current.json').readAsStringSync())
+        as Map<String, dynamic>;
 
 void main() {
-  group('OpenAlexApiClient', () {
-    late http.Client httpClient;
-    late OpenAlexApiClient metaWorkApiClient;
+  late OpenAlexApiClient client;
+  tearDown(() => client.close());
 
-    setUpAll(() {
-      registerFallbackValue(FakeUri());
+  test(
+    'search uses current parameters, encodes query and sends API key',
+    () async {
+      client = OpenAlexApiClient(
+        apiKey: 'test-key',
+        httpClient: MockClient((request) async {
+          expect(request.url.path, '/works');
+          expect(request.url.queryParameters, {
+            'search': 'climate & health',
+            'page': '2',
+            'per_page': '25',
+          });
+          expect(request.headers['Authorization'], 'Bearer test-key');
+          expect(request.url.toString(), isNot(contains('test-key')));
+          return http.Response(
+            jsonEncode(fixture('works')),
+            200,
+            headers: {'content-type': 'application/json; charset=utf-8'},
+          );
+        }),
+      );
+      final works = await client.searchWorks(
+        'climate & health',
+        page: 2,
+        itemsPerPage: 25,
+      );
+      expect(works, hasLength(2));
+      expect(works.first.topics, isNotEmpty);
+      expect(works.first.grants, isEmpty);
+      expect(works.first.ngramsUrl, isEmpty);
+    },
+  );
+
+  test(
+    'supports unauthenticated requests without a misleading polite pool',
+    () async {
+      client = OpenAlexApiClient(
+        apiKey: '',
+        httpClient: MockClient((request) async {
+          expect(request.headers.containsKey('Authorization'), isFalse);
+          return http.Response('{"results":[]}', 200);
+        }),
+      );
+      expect(
+        await client.searchWorks('unmatched', page: 1, itemsPerPage: 100),
+        isEmpty,
+      );
+    },
+  );
+
+  test(
+    'accepts short and full work IDs and decodes current responses',
+    () async {
+      client = OpenAlexApiClient(
+        httpClient: MockClient((request) async {
+          expect(request.url.path, '/works/W4232533539');
+          return http.Response(
+            jsonEncode(fixture('works')['results'][0]),
+            200,
+            headers: {'content-type': 'application/json; charset=utf-8'},
+          );
+        }),
+      );
+      for (final id in ['W4232533539', 'https://openalex.org/W4232533539']) {
+        final work = await client.getWork(id);
+        expect(work.title, 'Machine Learning');
+        expect(work.authorships.first.rawAffiliationString, isNotEmpty);
+      }
+    },
+  );
+
+  test('continues to decode legacy work responses', () async {
+    client = OpenAlexApiClient(
+      httpClient: MockClient(
+        (_) async => http.Response(
+          workJsonResponse,
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        ),
+      ),
+    );
+    final work = await client.getWork('W2741809807');
+    expect(
+      work.title,
+      'The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles',
+    );
+    expect(work.concepts, isNotEmpty);
+    expect(work.topics, isEmpty);
+  });
+
+  test(
+    'source endpoint decodes APC arrays and summary statistics object',
+    () async {
+      client = OpenAlexApiClient(
+        httpClient: MockClient((request) async {
+          expect(request.url.path, '/sources/S137519996');
+          return http.Response(
+            jsonEncode(fixture('source')),
+            200,
+            headers: {'content-type': 'application/json; charset=utf-8'},
+          );
+        }),
+      );
+      final source = await client.getSource('https://openalex.org/S137519996');
+      expect(source.displayName, 'Electronic Markets');
+      expect(source.apcPrices, isA<List<SourceApcPrice>>());
+      expect(source.summaryStats!.hIndex, greaterThan(0));
+      expect(source.apcPrices.first.price, greaterThan(0));
+      // Keep existing callers working while they migrate to getSource.
+      // ignore: deprecated_member_use_from_same_package
+      expect((await client.getVenue('S137519996')).id, source.id);
+    },
+  );
+
+  test('author endpoint decodes plural current affiliations', () async {
+    client = OpenAlexApiClient(
+      httpClient: MockClient((request) async {
+        expect(request.url.path, '/authors/A5100621138');
+        return http.Response(
+          jsonEncode(fixture('author')),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        );
+      }),
+    );
+    final author = await client.getAuthor('https://openalex.org/A5100621138');
+    expect(author.lastKnownInstitutions, isNotEmpty);
+    expect(author.lastKnownInstitution, isNull);
+  });
+
+  test('institution endpoint decodes current payload', () async {
+    client = OpenAlexApiClient(
+      httpClient: MockClient((request) async {
+        expect(request.url.path, '/institutions/I881766915');
+        return http.Response(
+          jsonEncode(fixture('institution')),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        );
+      }),
+    );
+    expect(
+      (await client.getInstitution(
+        'https://openalex.org/I881766915',
+      )).displayName,
+      'Nanjing University',
+    );
+  });
+
+  test('topic endpoint decodes hierarchy', () async {
+    client = OpenAlexApiClient(
+      httpClient: MockClient((request) async {
+        expect(request.url.path, '/topics/T10001');
+        return http.Response(
+          jsonEncode(fixture('topic')),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        );
+      }),
+    );
+    final topic = await client.getTopic('https://openalex.org/T10001');
+    expect(topic.domain!.displayName, isNotEmpty);
+    expect(topic.description, isNotEmpty);
+  });
+
+  test('legacy concepts endpoint remains available', () async {
+    client = OpenAlexApiClient(
+      httpClient: MockClient((request) async {
+        expect(request.url.path, '/concepts/C2778407487');
+        return http.Response(conceptJsonResponse, 200);
+      }),
+    );
+    expect(
+      (await client.getConcept('https://openalex.org/C2778407487')).id,
+      'https://openalex.org/C2778407487',
+    );
+  });
+
+  for (final status in [429, 500, 503]) {
+    test('retries $status and returns successful search', () async {
+      var calls = 0;
+      client = OpenAlexApiClient(
+        retryDelay: Duration.zero,
+        httpClient: MockClient((_) async {
+          calls++;
+          return calls < 3
+              ? http.Response('{}', status)
+              : http.Response('{"results":[]}', 200);
+        }),
+      );
+      expect(
+        await client.searchWorks('test', page: 1, itemsPerPage: 25),
+        isEmpty,
+      );
+      expect(calls, 3);
     });
+  }
 
-    setUp(() {
-      httpClient = MockHttpClient();
-      metaWorkApiClient = OpenAlexApiClient(httpClient: httpClient);
+  test('stops retrying persistent rate limits', () async {
+    var calls = 0;
+    client = OpenAlexApiClient(
+      retryDelay: Duration.zero,
+      httpClient: MockClient((_) async {
+        calls++;
+        return http.Response('{}', 429);
+      }),
+    );
+    await expectLater(
+      client.searchWorks('test', page: 1, itemsPerPage: 25),
+      throwsA(isA<WorkRequestFailure>()),
+    );
+    expect(calls, 3);
+  });
+
+  for (final status in [400, 401, 403]) {
+    test('does not retry client error $status', () async {
+      var calls = 0;
+      client = OpenAlexApiClient(
+        httpClient: MockClient((_) async {
+          calls++;
+          return http.Response('{}', status);
+        }),
+      );
+      await expectLater(
+        client.getWork('W1'),
+        throwsA(isA<WorkRequestFailure>()),
+      );
+      expect(calls, 1);
     });
+  }
 
-    group('constructor', () {
-      test('does not require an httpClient', () {
-        expect(OpenAlexApiClient(), isNotNull);
-      });
-    });
+  test('preserves endpoint-specific not found errors', () async {
+    client = OpenAlexApiClient(
+      httpClient: MockClient((_) async => http.Response('{}', 404)),
+    );
+    await expectLater(
+      client.getWork('W1'),
+      throwsA(isA<WorkNotFoundFailure>()),
+    );
+    await expectLater(
+      client.getAuthor('A1'),
+      throwsA(isA<AuthorNotFoundFailure>()),
+    );
+    await expectLater(
+      client.getSource('S1'),
+      throwsA(isA<VenueNotFoundFailure>()),
+    );
+    await expectLater(
+      client.getInstitution('I1'),
+      throwsA(isA<InstitutionNotFoundFailure>()),
+    );
+    await expectLater(
+      client.getTopic('T1'),
+      throwsA(isA<TopicNotFoundFailure>()),
+    );
+    await expectLater(
+      client.getConcept('C1'),
+      throwsA(isA<ConceptNotFoundFailure>()),
+    );
+  });
 
-    group('getWork', () {
-      const workId = 'https://openalex.org/W2741809807';
-
-      test('pass the mail address in the User-Agent header', () async {
-        final mailClient =
-            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await mailClient.getWork(workId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'works/$workId',
-            ),
-            headers: {
-              'User-Agent': 'address@mail.com',
-            },
-          ),
-        ).called(1);
-      });
-
-      test('makes correct http request', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await metaWorkApiClient.getWork(workId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'works/$workId',
-            ),
-            headers: {},
-          ),
-        ).called(1);
-      });
-
-      test('throws WorkRequestFailure on non-200 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getWork(workId),
-          throwsA(isA<WorkRequestFailure>()),
-        );
-      });
-
-      test('throws WorkNotFoundFailure on 404 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(404);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getWork(workId),
-          throwsA(isA<WorkNotFoundFailure>()),
-        );
-      });
-
-      test('returns work on valid response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn(workJsonResponse);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        final actual = await metaWorkApiClient.getWork(workId);
-        expect(
-          actual,
-          isA<Work>()
-              .having(
-                (work) => work.id,
-                'openAlexId',
-                'https://openalex.org/W2741809807',
-              )
-              .having(
-                (work) => work.doiId,
-                'doiId',
-                'https://doi.org/10.7717/peerj.4375',
-              )
-              .having(
-                (work) => work.magId,
-                'magId',
-                '2741809807',
-              )
-              .having(
-                (work) => work.pmidId,
-                'pmid',
-                'https://pubmed.ncbi.nlm.nih.gov/29456894',
-              )
-              .having(
-                (work) => work.pmcId,
-                'pmcid',
-                'https://www.ncbi.nlm.nih.gov/pmc/articles/5815332',
-              )
-              .having(
-                (work) => work.title,
-                'title',
-                'éThe state of OA: a large-scale analysis of the prevalence and impact of Open Access articles',
-              )
-              .having(
-                (work) => work.displayName,
-                'displayName',
-                'The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles',
-              )
-              .having(
-                (work) => work.publicationYear,
-                'publicationYear',
-                2018,
-              )
-              .having(
-                (work) => work.publicationDate,
-                'publicationDate',
-                DateTime(2018, 2, 13),
-              )
-              .having(
-                (work) => work.hostVenue,
-                'hostVenue',
-                isA<HostVenue>()
-                    .having(
-                      (hostVenue) => hostVenue.id,
-                      'id',
-                      'https://openalex.org/V1983995261',
-                    )
-                    .having(
-                      (hostVenue) => hostVenue.displayName,
-                      'name',
-                      'PeerJ',
-                    )
-                    .having(
-                      (hostVenue) => hostVenue.url,
-                      'url',
-                      "https://doi.org/10.7717/peerj.4375",
-                    )
-                    .having(
-                      (hostVenue) => hostVenue.isOpenAccess,
-                      'isOpenAccess',
-                      true,
-                    )
-                    .having(
-                      (hostVenue) => hostVenue.license,
-                      'license',
-                      'cc-by',
-                    )
-                    .having(
-                      (hostVenue) => hostVenue.version,
-                      'version',
-                      HostVenueVersion.publishedVersion,
-                    )
-                    .having(
-                  (hostVenue) => hostVenue.issn,
-                  'issn',
-                  ["2167-8359"],
-                ).having(
-                  (hostVenue) => hostVenue.linkingIssn,
-                  'linkingIssn',
-                  '2167-8359',
-                ),
-              )
-              .having(
-                (work) => work.type,
-                'type',
-                WorkType.article,
-              )
-              .having(
-                (work) => work.isOpenAccess,
-                'isOpenAccess',
-                true,
-              )
-              .having(
-                (work) => work.openAccessStatus,
-                'openAccessStatus',
-                OpenAccessStatus.gold,
-              )
-              .having(
-                (work) => work.openAccessUrl,
-                'openAccessUrl',
-                'https://peerj.com/articles/4375.pdf',
-              )
-              .having(
-                (work) => work.citedByCount,
-                'citedByCount',
-                394,
-              )
-              .having(
-                (work) => work.isRetracted,
-                'isRetracted',
-                false,
-              )
-              .having(
-                (work) => work.isParatext,
-                'isParatext',
-                false,
-              )
-              .having(
-                (work) => work.citedByApiUrl,
-                'citedByApiUrl',
-                'https://api.openalex.org/works?filter=cites:W2741809807',
-              )
-              .having(
-                (work) => work.countsByYear,
-                'citedByCountsByYear',
-                [
-                  isA<YearWork>()
-                      .having((year) => year.year, 'year', 2022)
-                      .having((year) => year.citedByCount, 'citedByCount', 13),
-                  isA<YearWork>()
-                      .having((year) => year.year, 'year', 2021)
-                      .having((year) => year.citedByCount, 'citedByCount', 108),
-                ],
-              )
-              .having(
-                (work) => work.updatedDate,
-                'updatedDate',
-                DateTime(2022, 5, 27),
-              )
-              .having(
-                (work) => work.createdDate,
-                'createdDate',
-                DateTime(2017, 8, 8),
-              )
-              .having(
-                (work) => work.biblio,
-                'biblio',
-                {
-                  "volume": "6",
-                  "issue": null,
-                  "first_page": null,
-                  "last_page": null
-                },
-              )
-              .having(
-                (work) => work.authorships,
-                'authors',
-                [
-                  isA<Authorship>()
-                      .having(
-                        (authorship) => authorship.authorPosition,
-                        'position',
-                        AuthorshipPosition.First,
-                      )
-                      .having(
-                        (authorship) => authorship.author,
-                        'author',
-                        isA<AuthorDehydrated>()
-                            .having(
-                              (author) => author.id,
-                              'id',
-                              'https://openalex.org/A1969205032',
-                            )
-                            .having(
-                              (author) => author.displayName,
-                              'name',
-                              'Heather A. Piwowar',
-                            )
-                            .having(
-                              (author) => author.orcid,
-                              'orcid',
-                              'https://orcid.org/0000-0003-1613-5981',
-                            ),
-                      )
-                      .having(
-                    (authorship) => authorship.institutions,
-                    'institution',
-                    [
-                      isA<InstitutionDehydrated>()
-                          .having(
-                            (institution) => institution.id,
-                            'id',
-                            'https://openalex.org/I4200000001',
-                          )
-                          .having(
-                            (institution) => institution.displayName,
-                            'name',
-                            'Our Research',
-                          )
-                          .having(
-                            (institution) => institution.type,
-                            'type',
-                            InstitutionType.Nonprofit,
-                          )
-                          .having(
-                            (institution) => institution.countryCode,
-                            'country',
-                            'CA',
-                          )
-                          .having(
-                            (institution) => institution.ror,
-                            'ror',
-                            'https://ror.org/02nr0ka47',
-                          )
-                    ],
-                  ).having(
-                          (authorship) => authorship.rawAffiliationString,
-                          'rawAffiliationString',
-                          'Impactstory, Sanford, NC, USA'),
-                  isA<Authorship>()
-                      .having(
-                        (authorship) => authorship.authorPosition,
-                        'position',
-                        AuthorshipPosition.Middle,
-                      )
-                      .having(
-                        (authorship) => authorship.author,
-                        'author',
-                        isA<AuthorDehydrated>()
-                            .having(
-                              (author) => author.id,
-                              'id',
-                              'https://openalex.org/A2208157607',
-                            )
-                            .having(
-                              (author) => author.displayName,
-                              'name',
-                              'Jason Priem',
-                            )
-                            .having(
-                              (author) => author.orcid,
-                              'orcid',
-                              'https://orcid.org/0000-0001-6187-6610',
-                            ),
-                      )
-                      .having(
-                    (authorship) => authorship.institutions,
-                    'institution',
-                    [
-                      isA<InstitutionDehydrated>()
-                          .having(
-                            (institution) => institution.id,
-                            'id',
-                            'https://openalex.org/I4200000001',
-                          )
-                          .having(
-                            (institution) => institution.displayName,
-                            'name',
-                            'Our Research',
-                          )
-                          .having(
-                            (institution) => institution.type,
-                            'type',
-                            InstitutionType.Nonprofit,
-                          )
-                          .having(
-                            (institution) => institution.countryCode,
-                            'country',
-                            'CA',
-                          )
-                          .having(
-                            (institution) => institution.ror,
-                            'ror',
-                            'https://ror.org/02nr0ka47',
-                          )
-                    ],
-                  ).having(
-                    (authorship) => authorship.rawAffiliationString,
-                    'rawAffiliationString',
-                    'Impactstory, Sanford, NC, USA',
-                  ),
-                ],
-              ) // todo: add more tests
-              .having(
-                (work) => work.abstractInvertedIndex,
-                'abstractInvertedIndex',
-                {
-                  "Despite": [0],
-                  "growing": [1],
-                  "interest": [2],
-                  "in": [3, 57, 73, 110, 122]
-                },
-              )
-              .having((work) => work.relatedWorks, 'relatedWorks', [
-                "https://openalex.org/W1655306493",
-                "https://openalex.org/W1970217003"
-              ])
-              .having(
-                (work) => work.referencedWorks,
-                'referencedWorks',
-                [
-                  "https://openalex.org/W1560783210",
-                  "https://openalex.org/W1724212071"
-                ],
-              )
-              .having(
-                (work) => work.concepts,
-                'concepts',
-                [
-                  isA<ConceptDehydrated>()
-                      .having(
-                        (concept) => concept.id,
-                        'id',
-                        'https://openalex.org/C2778805511',
-                      )
-                      .having(
-                        (concept) => concept.displayName,
-                        'name',
-                        'Citation',
-                      )
-                      .having(
-                        (concept) => concept.level,
-                        'level',
-                        2,
-                      )
-                      .having(
-                        (concept) => concept.wikidata,
-                        'relatedWorks',
-                        'https://www.wikidata.org/wiki/Q1713',
-                      ),
-                  isA<ConceptDehydrated>()
-                      .having(
-                        (concept) => concept.id,
-                        'id',
-                        'https://openalex.org/C178315738',
-                      )
-                      .having(
-                        (concept) => concept.displayName,
-                        'name',
-                        'Bibliometrics',
-                      )
-                      .having(
-                        (concept) => concept.level,
-                        'level',
-                        2,
-                      )
-                      .having(
-                        (concept) => concept.wikidata,
-                        'relatedWorks',
-                        'https://www.wikidata.org/wiki/Q603441',
-                      ),
-                ],
-              )
-              .having(
-                (work) => work.alternateHostVenues,
-                'alternateHostVenues',
-                [
-                  isA<HostVenue>()
-                      .having(
-                        (hostVenue) => hostVenue.id,
-                        'id',
-                        'https://openalex.org/V1983995261',
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.displayName,
-                        'name',
-                        'PeerJ',
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.url,
-                        'url',
-                        "https://peerj.com/articles/4375.pdf",
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.isOpenAccess,
-                        'isOpenAccess',
-                        true,
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.license,
-                        'license',
-                        'cc-by',
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.version,
-                        'version',
-                        HostVenueVersion.publishedVersion,
-                      ),
-                  isA<HostVenue>()
-                      .having(
-                        (hostVenue) => hostVenue.id,
-                        'id',
-                        null,
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.displayName,
-                        'name',
-                        'Europe PMC',
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.url,
-                        'url',
-                        "http://europepmc.org/articles/pmc5815332?pdf=render",
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.isOpenAccess,
-                        'isOpenAccess',
-                        true,
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.license,
-                        'license',
-                        'cc-by',
-                      )
-                      .having(
-                        (hostVenue) => hostVenue.version,
-                        'version',
-                        HostVenueVersion.publishedVersion,
-                      ),
-                ],
-              )
-              .having(
-                (work) => work.mesh,
-                'mesh',
-                [],
-              ),
-        );
-      });
-    });
-    group('getAuthor', () {
-      const authorId = 'https://openalex.org/A1969205032';
-
-      test('pass the mail address in the User-Agent header', () async {
-        final mailClient =
-            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await mailClient.getAuthor(authorId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'authors/$authorId',
-            ),
-            headers: {
-              'User-Agent': 'address@mail.com',
-            },
-          ),
-        ).called(1);
-      });
-
-      test('makes correct http request', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await metaWorkApiClient.getAuthor(authorId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'authors/$authorId',
-            ),
-            headers: {},
-          ),
-        ).called(1);
-      });
-
-      test('throws AuthorRequestFailure on non-200 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getAuthor(authorId),
-          throwsA(isA<AuthorRequestFailure>()),
-        );
-      });
-
-      test('throws AuthorNotFoundFailure on 404 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(404);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getAuthor(authorId),
-          throwsA(isA<AuthorNotFoundFailure>()),
-        );
-      });
-
-      test('returns author on valid response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn(authorJsonResponse);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        final actual = await metaWorkApiClient.getAuthor(authorId);
-        expect(
-          actual,
-          isA<Author>()
-              .having(
-                (author) => author.id,
-                'openAlexId',
-                'https://openalex.org/A1969205032',
-              )
-              .having(
-                (author) => author.orcid,
-                'orcid',
-                'https://orcid.org/0000-0003-1613-5981',
-              )
-              .having(
-                (author) => author.displayName,
-                'displayName',
-                'Heather A. Piwowar',
-              )
-              .having(
-                (author) => author.displayNameAlternatives,
-                'displayNameAlternatives',
-                [],
-              )
-              .having(
-                (author) => author.worksCount,
-                'worksCount',
-                50,
-              )
-              .having(
-                (author) => author.citedByCount,
-                'citedByCount',
-                2691,
-              )
-              .having(
-                (author) => author.magId,
-                'mag',
-                '1969205032',
-              )
-              .having(
-                (author) => author.twitterId,
-                'twitter',
-                'http://twitter.com/researchremix',
-              )
-              .having(
-                (author) => author.scopusId,
-                'scopus',
-                'http://www.scopus.com/inward/authorDetails.url?authorID=25122628200&partnerID=MN8TOARS',
-              )
-              .having(
-                  (author) => author.lastKnownInstitution,
-                  'lastKnownInstitution',
-                  isA<InstitutionDehydrated>()
-                      .having(
-                        (institution) => institution.id,
-                        'id',
-                        'https://openalex.org/I4200000001',
-                      )
-                      .having(
-                        (institution) => institution.ror,
-                        'ror',
-                        'https://ror.org/02nr0ka47',
-                      )
-                      .having(
-                        (institution) => institution.displayName,
-                        'displayName',
-                        'Our Research',
-                      )
-                      .having(
-                        (institution) => institution.countryCode,
-                        'countryCode',
-                        'CA',
-                      )
-                      .having(
-                        (institution) => institution.type,
-                        'type',
-                        InstitutionType.Nonprofit,
-                      ))
-              .having(
-                (author) => author.worksApiUrl,
-                'worksApiUrl',
-                'https://api.openalex.org/works?filter=author.id:A1969205032',
-              )
-              .having(
-                (author) => author.updatedDate,
-                'updatedDate',
-                DateTime(2022, 03, 09),
-              )
-              .having(
-                (author) => author.createdDate,
-                'createdDate',
-                DateTime(2016, 06, 24),
-              )
-              .having((author) => author.countsByYear, 'citedByCountsByYear', [
-                isA<Year>()
-                    .having((year) => year.year, 'year', 2022)
-                    .having((year) => year.worksCount, 'worksCount', 0)
-                    .having((year) => year.citedByCount, 'citedByCount', 52),
-                isA<Year>()
-                    .having((year) => year.year, 'year', 2021)
-                    .having((year) => year.worksCount, 'worksCount', 1)
-                    .having((year) => year.citedByCount, 'citedByCount', 299),
-              ]),
-        );
-      });
-    });
-    group('getVenue', () {
-      const venueId = 'https://openalex.org/V1983995261';
-
-      test('pass the mail address in the User-Agent header', () async {
-        final mailClient =
-            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await mailClient.getVenue(venueId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'venues/$venueId',
-            ),
-            headers: {
-              'User-Agent': 'address@mail.com',
-            },
-          ),
-        ).called(1);
-      });
-
-      test('makes correct http request', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await metaWorkApiClient.getVenue(venueId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'venues/$venueId',
-            ),
-            headers: {},
-          ),
-        ).called(1);
-      });
-
-      test('throws VenueRequestFailure on non-200 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getVenue(venueId),
-          throwsA(isA<VenueRequestFailure>()),
-        );
-      });
-
-      test('throws VenueNotFoundFailure on 404 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(404);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getVenue(venueId),
-          throwsA(isA<VenueNotFoundFailure>()),
-        );
-      });
-      test('returns venue on valid response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn(venueJsonResponse);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        final actual = await metaWorkApiClient.getVenue(venueId);
-        expect(
-            actual,
-            isA<Source>()
-                .having(
-                  (venue) => venue.id,
-                  'openAlexId',
-                  'https://openalex.org/V1983995261',
-                )
-                .having(
-                  (venue) => venue.linkingIssn,
-                  'linkingIssn',
-                  '2167-8359',
-                )
-                .having(
-                  (venue) => venue.issn,
-                  'issn',
-                  ['2167-8359'],
-                )
-                .having(
-                  (venue) => venue.displayName,
-                  'displayName',
-                  'PeerJ',
-                )
-                .having(
-                  (venue) => venue.publisher,
-                  'publisher',
-                  'PeerJ',
-                )
-                .having(
-                  (venue) => venue.worksCount,
-                  'worksCount',
-                  21215,
-                )
-                .having(
-                  (venue) => venue.citedByCount,
-                  'citedByCount',
-                  153850,
-                )
-                .having(
-                  (venue) => venue.isOa,
-                  'isOa',
-                  true,
-                )
-                .having(
-                  (venue) => venue.isInDoaj,
-                  'isInDoaj',
-                  true,
-                )
-                .having(
-                  (venue) => venue.homepageUrl,
-                  'homepageUrl',
-                  'http://www.peerj.com/',
-                )
-                .having(
-                  (venue) => venue.magId,
-                  'magId',
-                  '1983995261',
-                )
-                .having(
-                  (venue) => venue.worksApiUrl,
-                  'worksApiUrl',
-                  'https://api.openalex.org/works?filter=host_venue.id:V1983995261',
-                )
-                .having(
-                  (venue) => venue.updatedDate,
-                  'updatedDate',
-                  DateTime.parse('2022-06-18'),
-                )
-                .having(
-                  (venue) => venue.createdDate,
-                  'createdDate',
-                  DateTime.parse('2016-06-24'),
-                )
-                .having(
-                  (venue) => venue.countsByYear,
-                  'countsByYear',
-                  [
-                    isA<Year>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2022)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 883)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 18439),
-                    isA<Year>()
-                        .having((yearVenue) => yearVenue.year, 'year', 2021)
-                        .having((yearVenue) => yearVenue.worksCount,
-                            'worksCount', 4325)
-                        .having((yearVenue) => yearVenue.citedByCount,
-                            'citedByCount', 46571),
-                  ],
-                ));
-      });
-    });
-    group('getInstitution', () {
-      const institutionId = 'https://openalex.org/I114027177';
-
-      test('pass the mail address in the User-Agent header', () async {
-        final mailClient =
-            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await mailClient.getInstitution(institutionId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'institutions/$institutionId',
-            ),
-            headers: {
-              'User-Agent': 'address@mail.com',
-            },
-          ),
-        ).called(1);
-      });
-
-      test('makes correct http request', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await metaWorkApiClient.getInstitution(institutionId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'institutions/$institutionId',
-            ),
-            headers: {},
-          ),
-        ).called(1);
-      });
-
-      test('throws InstitutionRequestFailure on non-200 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getInstitution(institutionId),
-          throwsA(isA<InstitutionRequestFailure>()),
-        );
-      });
-
-      test('throws InstitutionNotFoundFailure on 404 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(404);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getInstitution(institutionId),
-          throwsA(isA<InstitutionNotFoundFailure>()),
-        );
-      });
-      test('returns institution on valid response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn(institutionJsonResponse);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        final actual = await metaWorkApiClient.getInstitution(institutionId);
-
-        expect(
-            actual,
-            isA<Institution>()
-                .having(
-                  (institution) => institution.id,
-                  'openAlexId',
-                  'https://openalex.org/I114027177',
-                )
-                .having(
-                  (institution) => institution.ror,
-                  'ror',
-                  'https://ror.org/0130frc33',
-                )
-                .having(
-                  (institution) => institution.countryCode,
-                  'countryCode',
-                  'US',
-                )
-                .having(
-                  (institution) => institution.type,
-                  'type',
-                  InstitutionType.Education,
-                )
-                .having(
-                  (institution) => institution.homepageUrl,
-                  'homepageUrl',
-                  'http://www.unc.edu/',
-                )
-                .having(
-                  (institution) => institution.imageUrl,
-                  'imageUrl',
-                  'https://upload.wikimedia.org/wikipedia/en/5/5c/University_of_North_Carolina_at_Chapel_Hill_seal.svg',
-                )
-                .having(
-                  (institution) => institution.imageThumbnailUrl,
-                  'imageThumbnailUrl',
-                  'https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/University_of_North_Carolina_at_Chapel_Hill_seal.svg/100px-University_of_North_Carolina_at_Chapel_Hill_seal.svg.png',
-                )
-                .having(
-                  (institution) => institution.displayNameAcronyms,
-                  'displayNameAcronyms',
-                  ['UNC'],
-                )
-                .having(
-                  (institution) => institution.displayNameAlternatives,
-                  'displayNameAlternatives',
-                  ['UNC-Chapel Hill'],
-                )
-                .having(
-                  (institution) => institution.worksCount,
-                  'worksCount',
-                  200714,
-                )
-                .having(
-                  (institution) => institution.citedByCount,
-                  'citedByCount',
-                  20698095,
-                )
-                .having(
-                  (institution) => institution.magId,
-                  'magId',
-                  '114027177',
-                )
-                .having(
-                  (institution) => institution.gridId,
-                  'gridId',
-                  'grid.10698.36',
-                )
-                .having(
-                  (institution) => institution.wikipediaId,
-                  'wikipediaId',
-                  'https://en.wikipedia.org/wiki/University%20of%20North%20Carolina%20at%20Chapel%20Hill',
-                )
-                .having(
-                  (institution) => institution.wikidataId,
-                  'wikidataId',
-                  'https://www.wikidata.org/wiki/Q192334',
-                )
-                .having(
-                  (institution) => institution.geo,
-                  'geo',
-                  isA<Geo>()
-                      .having(
-                        (geo) => geo.city,
-                        'city',
-                        'Chapel Hill',
-                      )
-                      .having(
-                        (geo) => geo.geonamesCityId,
-                        'geonamesCityId',
-                        '4460162',
-                      )
-                      .having(
-                        (geo) => geo.region,
-                        'region',
-                        'North Carolina',
-                      )
-                      .having(
-                        (geo) => geo.countryCode,
-                        'countryCode',
-                        'US',
-                      )
-                      .having(
-                        (geo) => geo.country,
-                        'country',
-                        'United States',
-                      )
-                      .having(
-                        (geo) => geo.latitude,
-                        'latitude',
-                        35.905163,
-                      )
-                      .having(
-                        (geo) => geo.longitude,
-                        'longitude',
-                        -79.04694,
-                      ),
-                )
-                .having(
-                  (institution) => institution.international,
-                  'international',
-                  isA<International>().having(
-                    (international) => international.displayName,
-                    'displayName',
-                    {
-                      "ar":
-                          "\u062c\u0627\u0645\u0639\u0629 \u0646\u0648\u0631\u062b \u0643\u0627\u0631\u0648\u0644\u064a\u0646\u0627 \u0641\u064a \u062a\u0634\u0627\u0628\u0644 \u0647\u064a\u0644",
-                      "arz":
-                          "\u062c\u0627\u0645\u0639\u0629 \u0646\u0648\u0631\u062b \u0643\u0627\u0631\u0648\u0644\u0627\u064a\u0646\u0627 \u0641\u0649 \u062a\u0634\u0627\u0628\u0644 \u0647\u064a\u0644"
-                    },
-                  ),
-                )
-                .having(
-                  (institution) => institution.associatedInstitutions,
-                  'associatedInstitutions',
-                  [
-                    isA<InstitutionDehydrated>()
-                        .having(
-                          (institution) => institution.displayName,
-                          'displayName',
-                          'Carolina Institute for NanoMedicine',
-                        )
-                        .having(
-                          (institution) => institution.id,
-                          'openAlexId',
-                          'https://openalex.org/I4210157879',
-                        )
-                        .having(
-                          (institution) => institution.ror,
-                          'ror',
-                          'https://ror.org/04q5n7269',
-                        )
-                        .having(
-                          (institution) => institution.countryCode,
-                          'countryCode',
-                          'US',
-                        )
-                        .having(
-                          (institution) => institution.type,
-                          'type',
-                          InstitutionType.Facility,
-                        ),
-                  ],
-                )
-                .having(
-                  (institution) => institution.countsByYear,
-                  'countsByYear',
-                  [
-                    isA<Year>()
-                        .having(
-                          (countByYear) => countByYear.year,
-                          'year',
-                          2022,
-                        )
-                        .having(
-                          (countByYear) => countByYear.worksCount,
-                          'worksCount',
-                          5518,
-                        )
-                        .having(
-                          (countByYear) => countByYear.citedByCount,
-                          'citedByCount',
-                          771027,
-                        ),
-                    isA<Year>()
-                        .having(
-                          (countByYear) => countByYear.year,
-                          'year',
-                          2021,
-                        )
-                        .having(
-                          (countByYear) => countByYear.worksCount,
-                          'worksCount',
-                          12787,
-                        )
-                        .having(
-                          (countByYear) => countByYear.citedByCount,
-                          'citedByCount',
-                          2119577,
-                        ),
-                  ],
-                )
-                .having(
-                  (institution) => institution.worksApiUrl,
-                  'worksApiUrl',
-                  'https://api.openalex.org/works?filter=institutions.id:I114027177',
-                )
-                .having(
-                  (institution) => institution.updatedDate,
-                  'updatedDate',
-                  DateTime(2022, 06, 18),
-                )
-                .having(
-                  (institution) => institution.createdDate,
-                  'createdDate',
-                  DateTime(2016, 06, 24),
-                ));
-      });
-    });
-    group('getConcept', () {
-      const conceptId = 'https://openalex.org/C2778407487';
-
-      test('pass the mail address in the User-Agent header', () async {
-        final mailClient =
-            OpenAlexApiClient(mail: 'address@mail.com', httpClient: httpClient);
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await mailClient.getConcept(conceptId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'concepts/$conceptId',
-            ),
-            headers: {
-              'User-Agent': 'address@mail.com',
-            },
-          ),
-        ).called(1);
-      });
-
-      test('makes correct http request', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        try {
-          await metaWorkApiClient.getConcept(conceptId);
-        } catch (_) {}
-        verify(
-          () => httpClient.get(
-            Uri.https(
-              'api.openalex.org',
-              'concepts/$conceptId',
-            ),
-            headers: {},
-          ),
-        ).called(1);
-      });
-
-      test('throws ConceptRequestFailure on non-200 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(400);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getConcept(conceptId),
-          throwsA(isA<ConceptRequestFailure>()),
-        );
-      });
-
-      test('throws ConceptNotFoundFailure on 404 response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(404);
-        when(() => response.body).thenReturn('{}');
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        expect(
-          () async => await metaWorkApiClient.getConcept(conceptId),
-          throwsA(isA<ConceptNotFoundFailure>()),
-        );
-      });
-      test('returns concept on valid response', () async {
-        final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
-        when(() => response.body).thenReturn(conceptJsonResponse);
-        when(() => httpClient.get(any(), headers: any(named: 'headers')))
-            .thenAnswer((_) async => response);
-        final actual = await metaWorkApiClient.getConcept(conceptId);
-        expect(
-            actual,
-            isA<Concept>()
-                .having(
-                  (concept) => concept.id,
-                  'id',
-                  'https://openalex.org/C2778407487',
-                )
-                .having(
-                  (concept) => concept.wikidata,
-                  'wikidata',
-                  'https://www.wikidata.org/wiki/Q14565201',
-                )
-                // .having(
-                //   (concept) => concept.displayName,
-                //   'display_name',
-                //   'Altmetrics',
-                // )
-                .having(
-                  (concept) => concept.level,
-                  'level',
-                  2,
-                )
-                // .having(
-                //   (concept) => concept.description,
-                //   'description',
-                //   'study of alternative metrics for analyzing and informing scholarship',
-                // )
-                .having(
-                  (concept) => concept.worksCount,
-                  'works_count',
-                  3481,
-                )
-                .having(
-                  (concept) => concept.citedByCount,
-                  'cited_by_count',
-                  19968,
-                )
-                .having(
-                  (concept) => concept.magId,
-                  'magId',
-                  '2778407487',
-                )
-                .having(
-                  (concept) => concept.wikipediaId,
-                  'wikipediaId',
-                  'https://en.wikipedia.org/wiki/Altmetrics',
-                )
-                .having(
-                  (concept) => concept.imageUrl,
-                  'imageUrl',
-                  'https://upload.wikimedia.org/wikipedia/commons/f/f1/Altmetrics.svg',
-                )
-                .having(
-                  (concept) => concept.imageThumbnailUrl,
-                  'imageThumbnailUrl',
-                  'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Altmetrics.svg/100px-Altmetrics.svg.png',
-                )
-                .having(
-                  (concept) => concept.international,
-                  'international',
-                  isA<InternationalWithDescription>().having(
-                    (international) => international.displayName,
-                    'displayName',
-                    {
-                      'ca': 'Altmetrics',
-                      'cs': 'altmetrika',
-                    },
-                  ).having(
-                    (concept) => concept.description,
-                    'description',
-                    {
-                      'ca': 'mètriques alternatives',
-                      'en':
-                          'study of alternative metrics for analyzing and informing scholarship',
-                    },
-                  ),
-                )
-                .having(
-                  (concept) => concept.ancestors,
-                  'ancestors',
-                  [
-                    isA<ConceptDehydrated>()
-                        .having(
-                          (concept) => concept.id,
-                          'id',
-                          'https://openalex.org/C2522767166',
-                        )
-                        .having(
-                          (concept) => concept.displayName,
-                          'displayName',
-                          'Data science',
-                        )
-                        .having(
-                          (concept) => concept.level,
-                          'level',
-                          1,
-                        )
-                        .having(
-                          (concept) => concept.wikidata,
-                          'wikidata',
-                          'https://www.wikidata.org/wiki/Q2374463',
-                        ),
-                    isA<ConceptDehydrated>()
-                        .having(
-                          (concept) => concept.id,
-                          'id',
-                          'https://openalex.org/C161191863',
-                        )
-                        .having(
-                          (concept) => concept.displayName,
-                          'displayName',
-                          'Library science',
-                        )
-                        .having(
-                          (concept) => concept.level,
-                          'level',
-                          1,
-                        )
-                        .having(
-                          (concept) => concept.wikidata,
-                          'wikidata',
-                          'https://www.wikidata.org/wiki/Q199655',
-                        ),
-                  ],
-                )
-                .having(
-                  (concept) => concept.relatedConcepts,
-                  'relatedConcepts',
-                  [
-                    isA<ConceptDehydrated>()
-                        .having(
-                          (concept) => concept.id,
-                          'id',
-                          'https://openalex.org/C2778793908',
-                        )
-                        .having(
-                          (concept) => concept.displayName,
-                          'displayName',
-                          'Citation impact',
-                        )
-                        .having(
-                          (concept) => concept.level,
-                          'level',
-                          3,
-                        )
-                        .having(
-                          (concept) => concept.wikidata,
-                          'wikidata',
-                          null,
-                        ),
-                  ],
-                )
-                .having(
-                  (concept) => concept.countsByYear,
-                  'countsByYear',
-                  [
-                    isA<Year>()
-                        .having(
-                          (yearConcept) => yearConcept.year,
-                          'year',
-                          2022,
-                        )
-                        .having(
-                          (yearConcept) => yearConcept.worksCount,
-                          'works_count',
-                          83,
-                        )
-                        .having(
-                          (yearConcept) => yearConcept.citedByCount,
-                          'cited_by_count',
-                          1143,
-                        ),
-                    isA<Year>()
-                        .having(
-                          (yearConcept) => yearConcept.year,
-                          'year',
-                          2021,
-                        )
-                        .having(
-                          (yearConcept) => yearConcept.worksCount,
-                          'works_count',
-                          204,
-                        )
-                        .having(
-                          (yearConcept) => yearConcept.citedByCount,
-                          'cited_by_count',
-                          3395,
-                        ),
-                  ],
-                )
-                .having(
-                  (concept) => concept.worksApiUrl,
-                  'works_api_url',
-                  'https://api.openalex.org/works?filter=concepts.id:C2778407487',
-                )
-                .having(
-                  (concept) => concept.updatedDate,
-                  'updated_date',
-                  DateTime(2022, 6, 19),
-                )
-                .having(
-                  (concept) => concept.createdDate,
-                  'created_date',
-                  DateTime(2018, 1, 5),
-                ));
-      });
-    });
+  test('validates page size and the basic pagination limit locally', () async {
+    client = OpenAlexApiClient(
+      httpClient: MockClient((_) async => fail('Unexpected request')),
+    );
+    for (final page in [0, -1, 401]) {
+      await expectLater(
+        client.searchWorks('test', page: page, itemsPerPage: 25),
+        throwsArgumentError,
+      );
+    }
+    for (final size in [0, -1, 101]) {
+      await expectLater(
+        client.searchWorks('test', page: 1, itemsPerPage: size),
+        throwsArgumentError,
+      );
+    }
   });
 }

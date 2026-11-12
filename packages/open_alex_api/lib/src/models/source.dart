@@ -13,10 +13,12 @@ enum SourceType {
   ebookPlatform,
   @JsonValue('book series')
   bookSeries,
+  other,
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class SummaryStat {
+  @JsonKey(name: '2yr_mean_citedness')
   final double twoYearMeanCitedness;
   final int hIndex;
   final int i10Index;
@@ -27,7 +29,8 @@ class SummaryStat {
     required this.i10Index,
   });
 
-  factory SummaryStat.fromJson(Map<String, dynamic> json) => _$SummaryStatFromJson(json);
+  factory SummaryStat.fromJson(Map<String, dynamic> json) =>
+      _$SummaryStatFromJson(json);
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -35,12 +38,10 @@ class Society {
   final String url;
   final String organization;
 
-  Society({
-    required this.url,
-    required this.organization,
-  });
+  Society({required this.url, required this.organization});
 
-  factory Society.fromJson(Map<String, dynamic> json) => _$SocietyFromJson(json);
+  factory Society.fromJson(Map<String, dynamic> json) =>
+      _$SocietyFromJson(json);
 }
 
 abstract class SourceBase {
@@ -65,10 +66,12 @@ abstract class SourceBase {
   final String? linkingIssn;
   final List<String>? issn;
   final String? hostOrganization;
+  @JsonKey(defaultValue: [])
   final List<String> hostOrganizationLineage;
   final String? HostOrganizationName;
   final bool isInDoaj;
   final bool isOa;
+  @JsonKey(unknownEnumValue: SourceType.other)
   final SourceType type;
 }
 
@@ -87,7 +90,8 @@ class SourceDehydrated extends SourceBase {
     required super.type,
   });
 
-  factory SourceDehydrated.fromJson(Map<String, dynamic> json) => _$SourceDehydratedFromJson(json);
+  factory SourceDehydrated.fromJson(Map<String, dynamic> json) =>
+      _$SourceDehydratedFromJson(json);
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -96,14 +100,14 @@ class Source extends SourceBase {
   final String? magId;
   final int worksCount;
   final int citedByCount;
-  final String homepageUrl;
-  final Apc apcPrices;
-  final int apcUsd;
+  final String? homepageUrl;
+  final List<SourceApcPrice> apcPrices;
+  final int? apcUsd;
   final String? abbreviatedTitle;
   final List<String>? alternateTitles;
   final String? countryCode;
   final List<Society>? societies;
-  final List<SummaryStat>? summaryStats;
+  final SummaryStat? summaryStats;
   final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
@@ -137,7 +141,19 @@ class Source extends SourceBase {
     this.magId,
   });
 
-  static Object? _readId(Map<dynamic, dynamic> json, String key) => json['ids'][key];
+  static Object? _readId(Map<dynamic, dynamic> json, String key) =>
+      json['ids'][key];
 
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class SourceApcPrice {
+  SourceApcPrice({required this.price, required this.currency});
+
+  final int price;
+  final String currency;
+
+  factory SourceApcPrice.fromJson(Map<String, dynamic> json) =>
+      _$SourceApcPriceFromJson(json);
 }

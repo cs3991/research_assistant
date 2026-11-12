@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:research_assistant/app/app.dart';
-import 'package:research_assistant/navigation/navigation.dart';
+import 'package:research_assistant/layout/navigation.dart';
 
 void main() {
   group('App', () {

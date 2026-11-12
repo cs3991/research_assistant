@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:research_assistant/navigation/cubit/navigation_cubit.dart';
-import 'package:research_assistant/navigation/navigation.dart';
+import 'package:research_assistant/layout/cubit/navigation_cubit.dart';
+import 'package:research_assistant/layout/navigation.dart';
 
 void main() {
   group('NavigationCubit', () {

@@ -1,13 +1,14 @@
 import 'package:open_alex_api/open_alex_api.dart' hide Work;
-import 'package:open_alex_api/open_alex_api.dart' as openAlexApi;
+import 'package:open_alex_api/open_alex_api.dart' as open_alex_api;
 import 'package:research_assistant/catalog_repository/src/model/model.dart';
 
 class CatalogRepository {
-  CatalogRepository() : _openAlex = OpenAlexApiClient();
+  CatalogRepository({OpenAlexApiClient? openAlex})
+    : _openAlex = openAlex ?? OpenAlexApiClient();
 
   final OpenAlexApiClient _openAlex;
 
-  Work WorkFromApi(openAlexApi.Work work) {
+  Work workFromApi(open_alex_api.Work work) {
     var abstractList = <String>[];
     if (work.abstractInvertedIndex != null) {
       var abstractLength = 0;
@@ -25,36 +26,55 @@ class CatalogRepository {
         }
       }
     }
-    final citationCountByYear = <int>[];
-    final currentYear = DateTime.now().year;
-    for (var year = currentYear - 10; year >= currentYear; year += 1) {
-      citationCountByYear.add(work.countsByYear.firstWhere((e) => e.year == year).citedByCount);
-    }
     return Work(
       title: work.title ?? '',
       authors: work.authorships.map((e) => e.author.displayName).toList(),
       abstract: abstractList.join(' '),
-      primaryLocation: work.primaryLocation.source?.displayName ?? '',
+      primaryLocation: work.primaryLocation?.source?.displayName ?? '',
       citedByCount: work.citedByCount,
       publicationYear: work.publicationYear,
       publicationDate: work.publicationDate,
       isOpenAccess: work.isOpenAccess,
-      doiUrl: work.doiId != null ? Uri.parse('https://doi.org/${work.doiId}') : null,
-      conceptsNames: work.concepts.map((e) => e.displayName).toList(),
-      bestOaUrl: work.bestOaLocation != null && work.bestOaLocation!.pdfUrl != null
-          ? Uri.parse(work.bestOaLocation!.pdfUrl!)
-          : null,
-      citationsCountByYear: work.countsByYear.map((e) => e.citedByCount).toList(),
+      doiUrl: work.doiId == null
+          ? null
+          : Uri.parse(
+              work.doiId!.startsWith('http')
+                  ? work.doiId!
+                  : 'https://doi.org/${work.doiId}',
+            ),
+      conceptsNames: work.topics.isNotEmpty
+          ? work.topics.map((e) => e.displayName).toList()
+          : work.concepts.map((e) => e.displayName).toList(),
+      bestOaUrl: _bestOaUrl(work),
+      citationsCountByYear: work.countsByYear
+          .map((e) => e.citedByCount)
+          .toList(),
     );
   }
 
-  Future<List<Work>> searchWork(String query, {int page = 0, required int itemsPerPage}) async {
-    final works = await _openAlex.searchWorks(query, page: page, itemsPerPage: itemsPerPage);
-    return works.map(WorkFromApi).toList();
+  static Uri? _bestOaUrl(open_alex_api.Work work) {
+    final url =
+        work.bestOaLocation?.pdfUrl ??
+        work.bestOaLocation?.landingPageUrl ??
+        work.openAccessUrl;
+    return url == null ? null : Uri.tryParse(url);
+  }
+
+  Future<List<Work>> searchWork(
+    String query, {
+    int page = 1,
+    required int itemsPerPage,
+  }) async {
+    final works = await _openAlex.searchWorks(
+      query,
+      page: page,
+      itemsPerPage: itemsPerPage,
+    );
+    return works.map(workFromApi).toList();
   }
 
   Future<Work> getWork(String id) async {
     final work = await _openAlex.getWork(id);
-    return WorkFromApi(work);
+    return workFromApi(work);
   }
 }

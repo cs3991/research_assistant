@@ -1,0 +1,1199 @@
+{
+  "id": "https://openalex.org/S137519996",
+  "issn_l": "1019-6781",
+  "issn": [
+    "1019-6781",
+    "1422-8890"
+  ],
+  "display_name": "Electronic Markets",
+  "host_organization": "https://openalex.org/P4310319900",
+  "host_organization_name": "Springer Science+Business Media",
+  "host_organization_lineage": [
+    "https://openalex.org/P4310319900",
+    "https://openalex.org/P4310319965"
+  ],
+  "works_count": 2853,
+  "oa_works_count": 616,
+  "cited_by_count": 70772,
+  "summary_stats": {
+    "2yr_mean_citedness": 12.258555133079849,
+    "h_index": 113,
+    "i10_index": 921
+  },
+  "is_oa": false,
+  "is_in_doaj": false,
+  "is_in_doaj_since_year": null,
+  "is_high_oa_rate": false,
+  "is_high_oa_rate_since_year": null,
+  "is_in_scielo": false,
+  "is_ojs": false,
+  "is_preprint_repository": false,
+  "is_core": true,
+  "listed_in": [
+    "abdc-a",
+    "anvur-class-a",
+    "anvur-scientific",
+    "cwts-core",
+    "fnege-3",
+    "jufo-1",
+    "norway-1",
+    "poland-140",
+    "russia-white-list-1",
+    "vabb-shw"
+  ],
+  "oa_flip_year": null,
+  "first_publication_year": 1900,
+  "last_publication_year": 2026,
+  "ids": {
+    "openalex": "https://openalex.org/S137519996",
+    "issn_l": "1019-6781",
+    "issn": [
+      "1019-6781",
+      "1422-8890"
+    ],
+    "mag": "137519996",
+    "wikidata": "https://www.wikidata.org/entity/Q1326077"
+  },
+  "homepage_url": "http://www.electronicmarkets.org/",
+  "apc_prices": [
+    {
+      "price": 3590,
+      "currency": "USD"
+    },
+    {
+      "price": 2890,
+      "currency": "EUR"
+    },
+    {
+      "price": 2590,
+      "currency": "GBP"
+    }
+  ],
+  "apc_usd": 3590,
+  "apc_usd_by_year": [
+    {
+      "year": 2025,
+      "price": 3590
+    },
+    {
+      "year": 2024,
+      "price": 3390
+    },
+    {
+      "year": 2023,
+      "price": 3190
+    },
+    {
+      "year": 2022,
+      "price": 2990
+    },
+    {
+      "year": 2021,
+      "price": 2780
+    },
+    {
+      "year": 2020,
+      "price": 2750
+    },
+    {
+      "year": 2019,
+      "price": 2690
+    }
+  ],
+  "country_code": "GB",
+  "societies": [],
+  "alternate_titles": [
+    "Electronic markets (Internet)",
+    "Elektronische Märkte (Internet)",
+    "EM",
+    "EM (Berlin)"
+  ],
+  "type": "journal",
+  "topics": [
+    {
+      "id": "https://openalex.org/T11437",
+      "display_name": "Digital Platforms and Economics",
+      "count": 543,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1408",
+        "display_name": "Strategy and Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10068",
+      "display_name": "Technology Adoption and User Behaviour",
+      "count": 285,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1802",
+        "display_name": "Information Systems and Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10609",
+      "display_name": "Digital Marketing and Social Media",
+      "count": 219,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12885",
+      "display_name": "Digital Innovation in Industries",
+      "count": 198,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1405",
+        "display_name": "Management of Technology and Innovation"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10047",
+      "display_name": "Financial Markets and Investment Strategies",
+      "count": 181,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2003",
+        "display_name": "Finance"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14139",
+      "display_name": "E-commerce and Technology Innovations",
+      "count": 172,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1403",
+        "display_name": "Business and International Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13151",
+      "display_name": "Business Strategies and Innovation",
+      "count": 144,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1408",
+        "display_name": "Strategy and Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14317",
+      "display_name": "Finance, Markets, and Regulation",
+      "count": 143,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2003",
+        "display_name": "Finance"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11161",
+      "display_name": "Consumer Market Behavior and Pricing",
+      "count": 132,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10003",
+      "display_name": "Innovation and Knowledge Management",
+      "count": 119,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1408",
+        "display_name": "Strategy and Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10154",
+      "display_name": "Customer Service Quality and Loyalty",
+      "count": 110,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11572",
+      "display_name": "Information Technology Governance and Strategy",
+      "count": 110,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1404",
+        "display_name": "Management Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11114",
+      "display_name": "Service and Product Innovation",
+      "count": 106,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11995",
+      "display_name": "FinTech, Crowdfunding, Digital Finance",
+      "count": 92,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1404",
+        "display_name": "Management Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11182",
+      "display_name": "Auction Theory and Applications",
+      "count": 88,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1803",
+        "display_name": "Management Science and Operations Research"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10270",
+      "display_name": "Blockchain Technology Applications and Security",
+      "count": 87,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1710",
+        "display_name": "Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11045",
+      "display_name": "Privacy, Security, and Data Protection",
+      "count": 84,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3312",
+        "display_name": "Sociology and Political Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11499",
+      "display_name": "ICT Impact and Policies",
+      "count": 84,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2002",
+        "display_name": "Economics and Econometrics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13355",
+      "display_name": "Marketing and Advertising Strategies",
+      "count": 81,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13402",
+      "display_name": "Business Strategy and Innovation",
+      "count": 77,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1408",
+        "display_name": "Strategy and Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12128",
+      "display_name": "AI in Service Interactions",
+      "count": 73,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10019",
+      "display_name": "Corporate Finance and Governance",
+      "count": 71,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2003",
+        "display_name": "Finance"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11024",
+      "display_name": "Information Systems Theories and Implementation",
+      "count": 71,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1404",
+        "display_name": "Management Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13346",
+      "display_name": "Digital Transformation in Financial Services",
+      "count": 65,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2000",
+        "display_name": "General Economics, Econometrics and Finance"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14094",
+      "display_name": "Italy: Economic History and Contemporary Issues",
+      "count": 65,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2002",
+        "display_name": "Economics and Econometrics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    }
+  ],
+  "topic_share": [
+    {
+      "id": "https://openalex.org/T11437",
+      "display_name": "Digital Platforms and Economics",
+      "value": 0.0044655,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1408",
+        "display_name": "Strategy and Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14139",
+      "display_name": "E-commerce and Technology Innovations",
+      "value": 0.0019279,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1403",
+        "display_name": "Business and International Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12885",
+      "display_name": "Digital Innovation in Industries",
+      "value": 0.0011,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1405",
+        "display_name": "Management of Technology and Innovation"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11182",
+      "display_name": "Auction Theory and Applications",
+      "value": 0.0010539,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1803",
+        "display_name": "Management Science and Operations Research"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13994",
+      "display_name": "The Impact of Diversity and Innovation on Society",
+      "value": 0.0010144,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3312",
+        "display_name": "Sociology and Political Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14094",
+      "display_name": "Italy: Economic History and Contemporary Issues",
+      "value": 0.000889,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2002",
+        "display_name": "Economics and Econometrics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10068",
+      "display_name": "Technology Adoption and User Behaviour",
+      "value": 0.0008232,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1802",
+        "display_name": "Information Systems and Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13274",
+      "display_name": "Expert finding and Q&A systems",
+      "value": 0.0007534,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1710",
+        "display_name": "Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11114",
+      "display_name": "Service and Product Innovation",
+      "value": 0.0006284,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12128",
+      "display_name": "AI in Service Interactions",
+      "value": 0.0006209,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11024",
+      "display_name": "Information Systems Theories and Implementation",
+      "value": 0.0006192,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1404",
+        "display_name": "Management Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14317",
+      "display_name": "Finance, Markets, and Regulation",
+      "value": 0.0005734,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2003",
+        "display_name": "Finance"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13696",
+      "display_name": "Technology's Impact on Media",
+      "value": 0.0005363,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3315",
+        "display_name": "Communication"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12501",
+      "display_name": "Digital Economy and Work Transformation",
+      "value": 0.0005104,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3312",
+        "display_name": "Sociology and Political Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14154",
+      "display_name": "finance, banking, and market dynamics",
+      "value": 0.000494,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2003",
+        "display_name": "Finance"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14424",
+      "display_name": "Economic Analysis and Policy",
+      "value": 0.0004529,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2002",
+        "display_name": "Economics and Econometrics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11572",
+      "display_name": "Information Technology Governance and Strategy",
+      "value": 0.0004468,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1404",
+        "display_name": "Management Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12392",
+      "display_name": "Sharing Economy and Platforms",
+      "value": 0.0004429,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13402",
+      "display_name": "Business Strategy and Innovation",
+      "value": 0.0004417,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1408",
+        "display_name": "Strategy and Management"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11995",
+      "display_name": "FinTech, Crowdfunding, Digital Finance",
+      "value": 0.0004256,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1404",
+        "display_name": "Management Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13346",
+      "display_name": "Digital Transformation in Financial Services",
+      "value": 0.0004064,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2000",
+        "display_name": "General Economics, Econometrics and Finance"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11045",
+      "display_name": "Privacy, Security, and Data Protection",
+      "value": 0.0004063,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3312",
+        "display_name": "Sociology and Political Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11912",
+      "display_name": "Outsourcing and Supply Chain Management",
+      "value": 0.0003939,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1404",
+        "display_name": "Management Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10609",
+      "display_name": "Digital Marketing and Social Media",
+      "value": 0.000391,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1406",
+        "display_name": "Marketing"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13794",
+      "display_name": "Financial Reporting and XBRL",
+      "value": 0.0003665,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1404",
+        "display_name": "Management Information Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/14",
+        "display_name": "Business, Management and Accounting"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    }
+  ],
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "works_count": 87,
+      "oa_works_count": 56,
+      "cited_by_count": 10546
+    },
+    {
+      "year": 2025,
+      "works_count": 114,
+      "oa_works_count": 78,
+      "cited_by_count": 10503
+    },
+    {
+      "year": 2024,
+      "works_count": 62,
+      "oa_works_count": 48,
+      "cited_by_count": 8737
+    },
+    {
+      "year": 2023,
+      "works_count": 64,
+      "oa_works_count": 51,
+      "cited_by_count": 6578
+    },
+    {
+      "year": 2022,
+      "works_count": 105,
+      "oa_works_count": 84,
+      "cited_by_count": 5327
+    },
+    {
+      "year": 2021,
+      "works_count": 103,
+      "oa_works_count": 45,
+      "cited_by_count": 4223
+    },
+    {
+      "year": 2020,
+      "works_count": 110,
+      "oa_works_count": 37,
+      "cited_by_count": 3013
+    },
+    {
+      "year": 2019,
+      "works_count": 114,
+      "oa_works_count": 32,
+      "cited_by_count": 2325
+    },
+    {
+      "year": 2018,
+      "works_count": 61,
+      "oa_works_count": 22,
+      "cited_by_count": 1846
+    },
+    {
+      "year": 2017,
+      "works_count": 59,
+      "oa_works_count": 24,
+      "cited_by_count": 1747
+    },
+    {
+      "year": 2016,
+      "works_count": 51,
+      "oa_works_count": 13,
+      "cited_by_count": 1400
+    },
+    {
+      "year": 2015,
+      "works_count": 66,
+      "oa_works_count": 16,
+      "cited_by_count": 1446
+    },
+    {
+      "year": 2014,
+      "works_count": 76,
+      "oa_works_count": 14,
+      "cited_by_count": 1319
+    },
+    {
+      "year": 2013,
+      "works_count": 71,
+      "oa_works_count": 17,
+      "cited_by_count": 1262
+    },
+    {
+      "year": 2012,
+      "works_count": 85,
+      "oa_works_count": 8,
+      "cited_by_count": 1359
+    },
+    {
+      "year": 2011,
+      "works_count": 73,
+      "oa_works_count": 11,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2010,
+      "works_count": 68,
+      "oa_works_count": 6,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2009,
+      "works_count": 70,
+      "oa_works_count": 12,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2008,
+      "works_count": 86,
+      "oa_works_count": 3,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2007,
+      "works_count": 83,
+      "oa_works_count": 4,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2006,
+      "works_count": 110,
+      "oa_works_count": 4,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2005,
+      "works_count": 109,
+      "oa_works_count": 5,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2004,
+      "works_count": 111,
+      "oa_works_count": 3,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2003,
+      "works_count": 119,
+      "oa_works_count": 3,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2002,
+      "works_count": 110,
+      "oa_works_count": 5,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2001,
+      "works_count": 115,
+      "oa_works_count": 4,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2000,
+      "works_count": 110,
+      "oa_works_count": 5,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1999,
+      "works_count": 98,
+      "oa_works_count": 2,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1998,
+      "works_count": 100,
+      "oa_works_count": 3,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1997,
+      "works_count": 94,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1996,
+      "works_count": 53,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1995,
+      "works_count": 39,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1994,
+      "works_count": 17,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1993,
+      "works_count": 24,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1992,
+      "works_count": 24,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1991,
+      "works_count": 10,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1978,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1974,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    }
+  ],
+  "works_api_url": "https://api.openalex.org/works?filter=primary_location.source.id:S137519996",
+  "updated_date": "2026-11-12T15:15:18",
+  "created_date": "2016-06-24T00:00:00"
+}

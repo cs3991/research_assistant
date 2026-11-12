@@ -1,0 +1,685 @@
+{
+  "id": "https://openalex.org/A5100621138",
+  "orcid": "https://orcid.org/0000-0003-0746-1494",
+  "observed_orcids": [
+    "https://orcid.org/0000-0003-0746-1494"
+  ],
+  "display_name": "Zhi‐Hua Zhou",
+  "raw_author_names": [
+    "Z. H. Zhou",
+    "Z. Zhou",
+    "ZHI-HUA ZHOU",
+    "Zhi-Hua ZHOU",
+    "Zhi-Hua Zhou",
+    "Zhi-hua Zhou",
+    "ZhiHua Zhou",
+    "Zhihua Zhou",
+    "Zhi‐Hua ZHOU",
+    "Zhi‐Hua Zhou",
+    "Zhou, Zhi-Hua"
+  ],
+  "full_name": "Zhi-Hua Zhou",
+  "works_count": 615,
+  "cited_by_count": 68744,
+  "summary_stats": {
+    "2yr_mean_citedness": 7.212765957446808,
+    "h_index": 106,
+    "i10_index": 391
+  },
+  "ids": {
+    "openalex": "https://openalex.org/A5100621138",
+    "orcid": "https://orcid.org/0000-0003-0746-1494",
+    "observed_orcids": [
+      "https://orcid.org/0000-0003-0746-1494"
+    ]
+  },
+  "affiliations": [
+    {
+      "institution": {
+        "id": "https://openalex.org/I1174212",
+        "ror": "https://ror.org/03taz7m60",
+        "display_name": "University of Southern California",
+        "country_code": "US",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I1174212"
+        ]
+      },
+      "years": [
+        2022
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I139759216",
+        "ror": "https://ror.org/04w9fbh59",
+        "display_name": "Beijing University of Posts and Telecommunications",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I139759216"
+        ]
+      },
+      "years": [
+        2013
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I154570441",
+        "ror": "https://ror.org/02t274463",
+        "display_name": "University of California, Santa Barbara",
+        "country_code": "US",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I154570441"
+        ]
+      },
+      "years": [
+        2021
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I200845125",
+        "ror": "https://ror.org/02y0rxk19",
+        "display_name": "Nanjing University of Information Science and Technology",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I200845125"
+        ]
+      },
+      "years": [
+        2014
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I24943067",
+        "ror": "https://ror.org/013q1eq08",
+        "display_name": "Fudan University",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I24943067"
+        ]
+      },
+      "years": [
+        2006
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I3132238960",
+        "ror": "https://ror.org/01n002310",
+        "display_name": "Institute of Electrical and Electronics Engineers",
+        "country_code": "US",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I3132238960"
+        ]
+      },
+      "years": [
+        2007
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I3923682",
+        "ror": "https://ror.org/05t8y2r12",
+        "display_name": "Soochow University",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I3923682"
+        ]
+      },
+      "years": [
+        2013
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I4210095624",
+        "ror": "https://ror.org/00rn0m335",
+        "display_name": "Alibaba Group (United States)",
+        "country_code": "US",
+        "type": "company",
+        "lineage": [
+          "https://openalex.org/I4210095624",
+          "https://openalex.org/I45928872"
+        ]
+      },
+      "years": [
+        2017,
+        2016
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I4210103986",
+        "ror": "https://ror.org/01dkjkq64",
+        "display_name": "Jingdong (China)",
+        "country_code": "CN",
+        "type": "company",
+        "lineage": [
+          "https://openalex.org/I4210103986"
+        ]
+      },
+      "years": [
+        2019
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I4401726818",
+        "ror": "https://ror.org/00x4k9h67",
+        "display_name": "4Thparadigm (China)",
+        "country_code": "CN",
+        "type": "company",
+        "lineage": [
+          "https://openalex.org/I4401726818"
+        ]
+      },
+      "years": [
+        2019
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I56590836",
+        "ror": "https://ror.org/02bfwt286",
+        "display_name": "Monash University",
+        "country_code": "AU",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I56590836"
+        ]
+      },
+      "years": [
+        2008
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I87216513",
+        "ror": "https://ror.org/05hs6h993",
+        "display_name": "Michigan State University",
+        "country_code": "US",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I87216513"
+        ]
+      },
+      "years": [
+        2015,
+        2012
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I881766915",
+        "ror": "https://ror.org/01rxvg760",
+        "display_name": "Nanjing University",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I881766915"
+        ]
+      },
+      "years": [
+        2026,
+        2025,
+        2024,
+        2023,
+        2022,
+        2021,
+        2020,
+        2019,
+        2018,
+        2017,
+        2016,
+        2015,
+        2014,
+        2013,
+        2012,
+        2011,
+        2010,
+        2009,
+        2008,
+        2007,
+        2006,
+        2005,
+        2004,
+        2003,
+        2002,
+        2001,
+        2000,
+        1999
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I9842412",
+        "ror": "https://ror.org/01scyh794",
+        "display_name": "Nanjing University of Aeronautics and Astronautics",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I9842412"
+        ]
+      },
+      "years": [
+        2006
+      ]
+    }
+  ],
+  "last_known_institutions": [
+    {
+      "id": "https://openalex.org/I881766915",
+      "ror": "https://ror.org/01rxvg760",
+      "display_name": "Nanjing University",
+      "country_code": "CN",
+      "type": "education",
+      "lineage": [
+        "https://openalex.org/I881766915"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "https://openalex.org/T12072",
+      "display_name": "Machine Learning and Algorithms",
+      "count": 223,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12535",
+      "display_name": "Machine Learning and Data Classification",
+      "count": 192,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11307",
+      "display_name": "Domain Adaptation and Few-Shot Learning",
+      "count": 122,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11550",
+      "display_name": "Text and Document Classification Technologies",
+      "count": 76,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10057",
+      "display_name": "Face and Expression Recognition",
+      "count": 61,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "topic_share": [
+    {
+      "id": "https://openalex.org/T12072",
+      "display_name": "Machine Learning and Algorithms",
+      "value": 0.0026311,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12535",
+      "display_name": "Machine Learning and Data Classification",
+      "value": 0.0014162,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12761",
+      "display_name": "Data Stream Mining Techniques",
+      "value": 0.0009277,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11612",
+      "display_name": "Stochastic Gradient Optimization Techniques",
+      "value": 0.0006647,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11652",
+      "display_name": "Imbalanced Data Classification Techniques",
+      "value": 0.0006406,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "x_concepts": [
+    {
+      "id": "41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "score": 0.9107958078384399
+    },
+    {
+      "id": "154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "score": 0.8014102578163147
+    },
+    {
+      "id": "153180895",
+      "wikidata": "https://www.wikidata.org/wiki/Q7148389",
+      "display_name": "Pattern recognition (psychology)",
+      "score": 0.7920434474945068
+    },
+    {
+      "id": "119857082",
+      "wikidata": "https://www.wikidata.org/wiki/Q2539",
+      "display_name": "Machine learning",
+      "score": 0.7430427074432373
+    },
+    {
+      "id": "33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "score": 0.7192597985267639
+    }
+  ],
+  "counts_by_year": [
+    {
+      "year": 1999,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2000,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2001,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2002,
+      "works_count": 9,
+      "oa_works_count": 2,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2003,
+      "works_count": 7,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2004,
+      "works_count": 15,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2005,
+      "works_count": 15,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2006,
+      "works_count": 24,
+      "oa_works_count": 2,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2007,
+      "works_count": 26,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2008,
+      "works_count": 20,
+      "oa_works_count": 3,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2009,
+      "works_count": 35,
+      "oa_works_count": 6,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2010,
+      "works_count": 30,
+      "oa_works_count": 8,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2011,
+      "works_count": 28,
+      "oa_works_count": 4,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2012,
+      "works_count": 27,
+      "oa_works_count": 7,
+      "cited_by_count": 1554
+    },
+    {
+      "year": 2013,
+      "works_count": 32,
+      "oa_works_count": 7,
+      "cited_by_count": 1887
+    },
+    {
+      "year": 2014,
+      "works_count": 25,
+      "oa_works_count": 7,
+      "cited_by_count": 2309
+    },
+    {
+      "year": 2015,
+      "works_count": 24,
+      "oa_works_count": 8,
+      "cited_by_count": 2634
+    },
+    {
+      "year": 2016,
+      "works_count": 38,
+      "oa_works_count": 23,
+      "cited_by_count": 2900
+    },
+    {
+      "year": 2017,
+      "works_count": 38,
+      "oa_works_count": 30,
+      "cited_by_count": 3499
+    },
+    {
+      "year": 2018,
+      "works_count": 36,
+      "oa_works_count": 20,
+      "cited_by_count": 4223
+    },
+    {
+      "year": 2019,
+      "works_count": 50,
+      "oa_works_count": 22,
+      "cited_by_count": 5202
+    },
+    {
+      "year": 2020,
+      "works_count": 17,
+      "oa_works_count": 5,
+      "cited_by_count": 5686
+    },
+    {
+      "year": 2021,
+      "works_count": 44,
+      "oa_works_count": 22,
+      "cited_by_count": 6435
+    },
+    {
+      "year": 2022,
+      "works_count": 12,
+      "oa_works_count": 7,
+      "cited_by_count": 5922
+    },
+    {
+      "year": 2023,
+      "works_count": 8,
+      "oa_works_count": 5,
+      "cited_by_count": 5975
+    },
+    {
+      "year": 2024,
+      "works_count": 17,
+      "oa_works_count": 15,
+      "cited_by_count": 5881
+    },
+    {
+      "year": 2025,
+      "works_count": 23,
+      "oa_works_count": 9,
+      "cited_by_count": 5358
+    },
+    {
+      "year": 2026,
+      "works_count": 7,
+      "oa_works_count": 6,
+      "cited_by_count": 4476
+    }
+  ],
+  "display_name_alternatives": [
+    "Z. H. Zhou",
+    "Z. Zhou",
+    "ZHI-HUA ZHOU",
+    "Zhi-Hua ZHOU",
+    "Zhi-Hua Zhou",
+    "Zhi-hua Zhou",
+    "ZhiHua Zhou",
+    "Zhihua Zhou",
+    "Zhi‐Hua ZHOU",
+    "Zhi‐Hua Zhou",
+    "Zhou, Zhi-Hua"
+  ],
+  "block_key": "z zhou",
+  "works_api_url": "https://api.openalex.org/works?filter=author.id:A5100621138",
+  "awards_count": 2,
+  "awards_api_url": "https://api.openalex.org/awards?filter=investigators.author.id:A5100621138",
+  "updated_date": "2026-11-12T13:17:38",
+  "created_date": "2016-06-24T00:00:00"
+}

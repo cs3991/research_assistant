@@ -1,0 +1,1733 @@
+{
+  "meta": {
+    "notice": "No API key, so this request shares one free daily budget ($0.10) with everyone on your network's IP address. Get a free key with its own $1/day at https://openalex.org/settings/api and add api_key=YOUR_KEY to your requests. An AI agent can get one for its user in one call: POST https://api.openalex.org/api-keys with {\"email\": \"<your user's email>\"}; we email them a link, and the key works once they click it. Docs for agents: https://help.openalex.org/llms.txt",
+    "count": 6446885,
+    "db_response_time_ms": 482,
+    "page": 1,
+    "per_page": 2,
+    "groups_count": null,
+    "x_query": {
+      "oql": "get works with (machine learning) in the title, abstract, or full text",
+      "x_new_oql": "get works with (machine learning) in the title, abstract, or full text",
+      "oqo": {
+        "get_rows": "works",
+        "filter_rows": [
+          {
+            "column_id": "fulltext.search",
+            "value": "machine learning",
+            "operator": "has"
+          }
+        ]
+      },
+      "url": "/works?filter=fulltext.search:machine learning&per_page=2",
+      "order": "best matches first",
+      "order_default": true
+    },
+    "cost_usd": 0.001
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W4232533539",
+      "doi": "https://doi.org/10.1007/978-981-15-1967-3",
+      "title": "Machine Learning",
+      "display_name": "Machine Learning",
+      "relevance_score": 172.10179,
+      "publication_year": 2021,
+      "publication_date": "2021-01-01",
+      "ids": {
+        "openalex": "https://openalex.org/W4232533539",
+        "doi": "https://doi.org/10.1007/978-981-15-1967-3"
+      },
+      "language": "en",
+      "primary_location": {
+        "id": "doi:10.1007/978-981-15-1967-3",
+        "doi": "https://doi.org/10.1007/978-981-15-1967-3",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1007/978-981-15-1967-3",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S4306463937",
+          "display_name": "Springer eBooks",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": false,
+          "listed_in": [],
+          "host_organization": "https://openalex.org/P4310319965",
+          "host_organization_name": "Springer Nature",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310319965"
+          ],
+          "host_organization_lineage_names": [
+            "Springer Nature"
+          ],
+          "type": "ebook platform"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": null,
+        "raw_type": "book"
+      },
+      "volume": null,
+      "type": "book",
+      "is_traditional": true,
+      "indexed_in": [
+        "crossref"
+      ],
+      "open_access": {
+        "is_oa": false,
+        "oa_status": "closed",
+        "oa_url": null,
+        "any_repository_has_fulltext": false
+      },
+      "authorships": [
+        {
+          "author_position": "first",
+          "author": {
+            "id": "https://openalex.org/A5100621138",
+            "display_name": "Zhi‐Hua Zhou",
+            "orcid": "https://orcid.org/0000-0003-0746-1494",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-0746-1494"
+            ]
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I881766915",
+              "display_name": "Nanjing University",
+              "ror": "https://ror.org/01rxvg760",
+              "country_code": "CN",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I881766915"
+              ]
+            }
+          ],
+          "countries": [
+            "CN"
+          ],
+          "is_corresponding": true,
+          "raw_author_name": "Zhi-Hua Zhou",
+          "raw_affiliation_strings": [
+            "Nanjing University, Nanjing, China"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Nanjing University, Nanjing, China",
+              "institution_ids": [
+                "https://openalex.org/I881766915"
+              ]
+            }
+          ]
+        }
+      ],
+      "institutions": [],
+      "countries_distinct_count": 1,
+      "institutions_distinct_count": 1,
+      "corresponding_author_ids": [
+        "https://openalex.org/A5100621138"
+      ],
+      "corresponding_institution_ids": [
+        "https://openalex.org/I881766915"
+      ],
+      "apc_list": null,
+      "apc_paid": null,
+      "fwci": 51.3778,
+      "has_fulltext": false,
+      "cited_by_count": 943,
+      "citation_normalized_percentile": {
+        "value": 1.0,
+        "is_in_top_1_percent": true,
+        "is_in_top_10_percent": true
+      },
+      "cited_by_percentile_year": {
+        "min": 88,
+        "max": 100
+      },
+      "biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": null,
+        "last_page": null
+      },
+      "is_retracted": false,
+      "is_paratext": false,
+      "is_xpac": false,
+      "primary_topic": {
+        "id": "https://openalex.org/T12072",
+        "display_name": "Machine Learning and Algorithms",
+        "score": 0.9965999722480774,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1702",
+          "display_name": "Artificial Intelligence"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      "topics": [
+        {
+          "id": "https://openalex.org/T12072",
+          "display_name": "Machine Learning and Algorithms",
+          "score": 0.9965999722480774,
+          "subfield": {
+            "id": "https://openalex.org/subfields/1702",
+            "display_name": "Artificial Intelligence"
+          },
+          "field": {
+            "id": "https://openalex.org/fields/17",
+            "display_name": "Computer Science"
+          },
+          "domain": {
+            "id": "https://openalex.org/domains/3",
+            "display_name": "Physical Sciences"
+          }
+        },
+        {
+          "id": "https://openalex.org/T11307",
+          "display_name": "Domain Adaptation and Few-Shot Learning",
+          "score": 0.0006000000284984708,
+          "subfield": {
+            "id": "https://openalex.org/subfields/1702",
+            "display_name": "Artificial Intelligence"
+          },
+          "field": {
+            "id": "https://openalex.org/fields/17",
+            "display_name": "Computer Science"
+          },
+          "domain": {
+            "id": "https://openalex.org/domains/3",
+            "display_name": "Physical Sciences"
+          }
+        },
+        {
+          "id": "https://openalex.org/T10320",
+          "display_name": "Neural Networks and Applications",
+          "score": 0.00039999998989515007,
+          "subfield": {
+            "id": "https://openalex.org/subfields/1702",
+            "display_name": "Artificial Intelligence"
+          },
+          "field": {
+            "id": "https://openalex.org/fields/17",
+            "display_name": "Computer Science"
+          },
+          "domain": {
+            "id": "https://openalex.org/domains/3",
+            "display_name": "Physical Sciences"
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "https://openalex.org/keywords/machine-learning",
+          "display_name": "machine learning",
+          "score": 0.9470000267028809
+        },
+        {
+          "id": "https://openalex.org/keywords/supervised-learning",
+          "display_name": "supervised learning",
+          "score": 1.0
+        },
+        {
+          "id": "https://openalex.org/keywords/unsupervised-learning",
+          "display_name": "unsupervised learning",
+          "score": 1.0
+        },
+        {
+          "id": "https://openalex.org/keywords/semi-supervised-learning",
+          "display_name": "semi-supervised learning",
+          "score": 1.0
+        },
+        {
+          "id": "https://openalex.org/keywords/reinforcement-learning",
+          "display_name": "reinforcement learning",
+          "score": 1.0
+        },
+        {
+          "id": "https://openalex.org/keywords/learning-theory",
+          "display_name": "learning theory",
+          "score": 0.9950000047683716
+        }
+      ],
+      "concepts": [
+        {
+          "id": "https://openalex.org/C8038995",
+          "wikidata": "https://www.wikidata.org/wiki/Q1152135",
+          "display_name": "Unsupervised learning",
+          "level": 2,
+          "score": 0.6444829702377319
+        },
+        {
+          "id": "https://openalex.org/C41008148",
+          "wikidata": "https://www.wikidata.org/wiki/Q21198",
+          "display_name": "Computer science",
+          "level": 0,
+          "score": 0.5879329442977905
+        },
+        {
+          "id": "https://openalex.org/C154945302",
+          "wikidata": "https://www.wikidata.org/wiki/Q11660",
+          "display_name": "Artificial intelligence",
+          "level": 1,
+          "score": 0.5749047994613647
+        },
+        {
+          "id": "https://openalex.org/C58973888",
+          "wikidata": "https://www.wikidata.org/wiki/Q1041418",
+          "display_name": "Semi-supervised learning",
+          "level": 2,
+          "score": 0.5537197589874268
+        },
+        {
+          "id": "https://openalex.org/C119857082",
+          "wikidata": "https://www.wikidata.org/wiki/Q2539",
+          "display_name": "Machine learning",
+          "level": 1,
+          "score": 0.551007091999054
+        },
+        {
+          "id": "https://openalex.org/C77967617",
+          "wikidata": "https://www.wikidata.org/wiki/Q4677561",
+          "display_name": "Active learning (machine learning)",
+          "level": 2,
+          "score": 0.5219109058380127
+        },
+        {
+          "id": "https://openalex.org/C97541855",
+          "wikidata": "https://www.wikidata.org/wiki/Q830687",
+          "display_name": "Reinforcement learning",
+          "level": 2,
+          "score": 0.4928410053253174
+        },
+        {
+          "id": "https://openalex.org/C32254414",
+          "wikidata": "https://www.wikidata.org/wiki/Q4724364",
+          "display_name": "Algorithmic learning theory",
+          "level": 3,
+          "score": 0.44028240442276
+        },
+        {
+          "id": "https://openalex.org/C136389625",
+          "wikidata": "https://www.wikidata.org/wiki/Q334384",
+          "display_name": "Supervised learning",
+          "level": 3,
+          "score": 0.4131004512310028
+        },
+        {
+          "id": "https://openalex.org/C47932503",
+          "wikidata": "https://www.wikidata.org/wiki/Q5395689",
+          "display_name": "Error-driven learning",
+          "level": 3,
+          "score": 0.41013461351394653
+        },
+        {
+          "id": "https://openalex.org/C50644808",
+          "wikidata": "https://www.wikidata.org/wiki/Q192776",
+          "display_name": "Artificial neural network",
+          "level": 2,
+          "score": 0.08296647667884827
+        }
+      ],
+      "mesh": [],
+      "locations_count": 1,
+      "locations": [
+        {
+          "id": "doi:10.1007/978-981-15-1967-3",
+          "doi": "https://doi.org/10.1007/978-981-15-1967-3",
+          "is_oa": false,
+          "landing_page_url": "https://doi.org/10.1007/978-981-15-1967-3",
+          "pdf_url": null,
+          "source": {
+            "id": "https://openalex.org/S4306463937",
+            "display_name": "Springer eBooks",
+            "issn_l": null,
+            "issn": null,
+            "is_oa": false,
+            "is_in_doaj": false,
+            "is_core": false,
+            "listed_in": [],
+            "host_organization": "https://openalex.org/P4310319965",
+            "host_organization_name": "Springer Nature",
+            "host_organization_lineage": [
+              "https://openalex.org/P4310319965"
+            ],
+            "host_organization_lineage_names": [
+              "Springer Nature"
+            ],
+            "type": "ebook platform"
+          },
+          "license": null,
+          "license_id": null,
+          "version": "publishedVersion",
+          "is_accepted": true,
+          "is_published": true,
+          "raw_source_name": null,
+          "raw_type": "book"
+        }
+      ],
+      "best_oa_location": null,
+      "sustainable_development_goals": [],
+      "study_designs": [],
+      "awards": [],
+      "funders": [],
+      "has_content": {
+        "pdf": false,
+        "grobid_xml": false
+      },
+      "content_urls": null,
+      "referenced_works_count": 2,
+      "referenced_works": [
+        "https://openalex.org/W4230746397",
+        "https://openalex.org/W4253211195"
+      ],
+      "related_works": [
+        "https://openalex.org/W3131053508",
+        "https://openalex.org/W4389357977",
+        "https://openalex.org/W4389357970",
+        "https://openalex.org/W4285140031",
+        "https://openalex.org/W2790404387",
+        "https://openalex.org/W4410420968",
+        "https://openalex.org/W4241072669",
+        "https://openalex.org/W6991957103",
+        "https://openalex.org/W3204830435",
+        "https://openalex.org/W4312420500"
+      ],
+      "abstract_inverted_index": null,
+      "counts_by_year": [
+        {
+          "year": 2026,
+          "cited_by_count": 151
+        },
+        {
+          "year": 2025,
+          "cited_by_count": 219
+        },
+        {
+          "year": 2024,
+          "cited_by_count": 282
+        },
+        {
+          "year": 2023,
+          "cited_by_count": 223
+        },
+        {
+          "year": 2022,
+          "cited_by_count": 61
+        },
+        {
+          "year": 2021,
+          "cited_by_count": 5
+        },
+        {
+          "year": 2020,
+          "cited_by_count": 1
+        },
+        {
+          "year": 2019,
+          "cited_by_count": 1
+        }
+      ],
+      "updated_date": "2026-11-11T12:16:26.678958",
+      "created_date": "2022-05-12T00:00:00"
+    },
+    {
+      "id": "https://openalex.org/W3153990350",
+      "doi": "https://doi.org/10.1007/s12525-021-00475-2",
+      "title": "Machine learning and deep learning",
+      "display_name": "Machine learning and deep learning",
+      "relevance_score": 171.70819,
+      "publication_year": 2021,
+      "publication_date": "2021-04-08",
+      "ids": {
+        "openalex": "https://openalex.org/W3153990350",
+        "doi": "https://doi.org/10.1007/s12525-021-00475-2",
+        "mag": "3153990350"
+      },
+      "language": "en",
+      "primary_location": {
+        "id": "doi:10.1007/s12525-021-00475-2",
+        "doi": "https://doi.org/10.1007/s12525-021-00475-2",
+        "is_oa": true,
+        "landing_page_url": "https://doi.org/10.1007/s12525-021-00475-2",
+        "pdf_url": "https://link.springer.com/content/pdf/10.1007/s12525-021-00475-2.pdf",
+        "source": {
+          "id": "https://openalex.org/S137519996",
+          "display_name": "Electronic Markets",
+          "issn_l": "1019-6781",
+          "issn": [
+            "1019-6781",
+            "1422-8890"
+          ],
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": true,
+          "listed_in": [
+            "abdc-a",
+            "anvur-class-a",
+            "anvur-scientific",
+            "cwts-core",
+            "fnege-3",
+            "jufo-1",
+            "norway-1",
+            "poland-140",
+            "russia-white-list-1",
+            "vabb-shw"
+          ],
+          "host_organization": "https://openalex.org/P4310319900",
+          "host_organization_name": "Springer Science+Business Media",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310319900",
+            "https://openalex.org/P4310319965"
+          ],
+          "host_organization_lineage_names": [
+            "Springer Science+Business Media",
+            "Springer Nature"
+          ],
+          "type": "journal"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Electronic Markets",
+        "raw_type": "journal-article"
+      },
+      "volume": null,
+      "type": "article",
+      "is_traditional": true,
+      "indexed_in": [
+        "arxiv",
+        "crossref",
+        "datacite"
+      ],
+      "open_access": {
+        "is_oa": true,
+        "oa_status": "hybrid",
+        "oa_url": "https://link.springer.com/content/pdf/10.1007/s12525-021-00475-2.pdf",
+        "any_repository_has_fulltext": true
+      },
+      "authorships": [
+        {
+          "author_position": "first",
+          "author": {
+            "id": "https://openalex.org/A5048865769",
+            "display_name": "Christian Janiesch",
+            "orcid": "https://orcid.org/0000-0002-8050-123X",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-8050-123X"
+            ]
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I25974101",
+              "display_name": "University of Würzburg",
+              "ror": "https://ror.org/00fbnyb24",
+              "country_code": "DE",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I25974101"
+              ]
+            }
+          ],
+          "countries": [
+            "DE"
+          ],
+          "is_corresponding": true,
+          "raw_author_name": "Christian Janiesch",
+          "raw_affiliation_strings": [
+            "Faculty of Business Management & Economics, University of Würzburg, Sanderring 2, 97070, Würzburg, Germany"
+          ],
+          "raw_orcid": "https://orcid.org/0000-0002-8050-123X",
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Faculty of Business Management & Economics, University of Würzburg, Sanderring 2, 97070, Würzburg, Germany",
+              "institution_ids": [
+                "https://openalex.org/I25974101"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5045400933",
+            "display_name": "Patrick Zschech",
+            "orcid": "https://orcid.org/0000-0002-1105-8086",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-1105-8086"
+            ]
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I181369854",
+              "display_name": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+              "ror": "https://ror.org/00f7hpc57",
+              "country_code": "DE",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I181369854"
+              ]
+            }
+          ],
+          "countries": [
+            "DE"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "Patrick Zschech",
+          "raw_affiliation_strings": [
+            "Institute of Information Systems, Friedrich-Alexander University Erlangen-Nürnberg, Lange Gasse 20, 90403, Nürnberg, Germany"
+          ],
+          "raw_orcid": "https://orcid.org/0000-0002-1105-8086",
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Institute of Information Systems, Friedrich-Alexander University Erlangen-Nürnberg, Lange Gasse 20, 90403, Nürnberg, Germany",
+              "institution_ids": [
+                "https://openalex.org/I181369854"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "last",
+          "author": {
+            "id": "https://openalex.org/A5073893595",
+            "display_name": "Kai Heinrich",
+            "orcid": "https://orcid.org/0000-0002-4907-6802",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-4907-6802"
+            ]
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I95793202",
+              "display_name": "Otto-von-Guericke-Universität Magdeburg",
+              "ror": "https://ror.org/00ggpsq73",
+              "country_code": "DE",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I95793202"
+              ]
+            }
+          ],
+          "countries": [
+            "DE"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "Kai Heinrich",
+          "raw_affiliation_strings": [
+            "Faculty of Economics and Management, Otto-von-Guericke-Universität Magdeburg, Universitätsplatz 2, 39106, Magdeburg, Germany"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Faculty of Economics and Management, Otto-von-Guericke-Universität Magdeburg, Universitätsplatz 2, 39106, Magdeburg, Germany",
+              "institution_ids": [
+                "https://openalex.org/I95793202"
+              ]
+            }
+          ]
+        }
+      ],
+      "institutions": [],
+      "countries_distinct_count": 1,
+      "institutions_distinct_count": 3,
+      "corresponding_author_ids": [
+        "https://openalex.org/A5048865769"
+      ],
+      "corresponding_institution_ids": [
+        "https://openalex.org/I25974101"
+      ],
+      "apc_list": {
+        "value": 2780,
+        "currency": "USD",
+        "value_usd": 2780
+      },
+      "apc_paid": {
+        "value": 2780,
+        "currency": "USD",
+        "value_usd": 2780
+      },
+      "fwci": 134.2263,
+      "has_fulltext": true,
+      "cited_by_count": 3563,
+      "citation_normalized_percentile": {
+        "value": 0.9999628,
+        "is_in_top_1_percent": true,
+        "is_in_top_10_percent": true
+      },
+      "cited_by_percentile_year": {
+        "min": 88,
+        "max": 100
+      },
+      "biblio": {
+        "volume": "31",
+        "issue": "3",
+        "first_page": "685",
+        "last_page": "695"
+      },
+      "is_retracted": false,
+      "is_paratext": false,
+      "is_xpac": false,
+      "primary_topic": {
+        "id": "https://openalex.org/T13904",
+        "display_name": "Artificial Intelligence Applications",
+        "score": 0.9477999806404114,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1702",
+          "display_name": "Artificial Intelligence"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      "topics": [
+        {
+          "id": "https://openalex.org/T13904",
+          "display_name": "Artificial Intelligence Applications",
+          "score": 0.9477999806404114,
+          "subfield": {
+            "id": "https://openalex.org/subfields/1702",
+            "display_name": "Artificial Intelligence"
+          },
+          "field": {
+            "id": "https://openalex.org/fields/17",
+            "display_name": "Computer Science"
+          },
+          "domain": {
+            "id": "https://openalex.org/domains/3",
+            "display_name": "Physical Sciences"
+          }
+        },
+        {
+          "id": "https://openalex.org/T10320",
+          "display_name": "Neural Networks and Applications",
+          "score": 0.015799999237060547,
+          "subfield": {
+            "id": "https://openalex.org/subfields/1702",
+            "display_name": "Artificial Intelligence"
+          },
+          "field": {
+            "id": "https://openalex.org/fields/17",
+            "display_name": "Computer Science"
+          },
+          "domain": {
+            "id": "https://openalex.org/domains/3",
+            "display_name": "Physical Sciences"
+          }
+        },
+        {
+          "id": "https://openalex.org/T14260",
+          "display_name": "Impact of AI and Big Data on Business and Society",
+          "score": 0.010499999858438969,
+          "subfield": {
+            "id": "https://openalex.org/subfields/1803",
+            "display_name": "Management Science and Operations Research"
+          },
+          "field": {
+            "id": "https://openalex.org/fields/18",
+            "display_name": "Decision Sciences"
+          },
+          "domain": {
+            "id": "https://openalex.org/domains/2",
+            "display_name": "Social Sciences"
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "https://openalex.org/keywords/machine-learning",
+          "display_name": "machine learning",
+          "score": 0.9990000128746033
+        },
+        {
+          "id": "https://openalex.org/keywords/deep-learning",
+          "display_name": "deep learning",
+          "score": 1.0
+        },
+        {
+          "id": "https://openalex.org/keywords/neural-network",
+          "display_name": "artificial neural networks",
+          "score": 0.9940000176429749
+        },
+        {
+          "id": "https://openalex.org/keywords/intelligent-systems",
+          "display_name": "intelligent systems",
+          "score": 0.9819999933242798
+        },
+        {
+          "id": "https://openalex.org/keywords/networked-business",
+          "display_name": "networked business",
+          "score": 0.9890000224113464
+        },
+        {
+          "id": "https://openalex.org/keywords/human-machine-interaction",
+          "display_name": "human-machine interaction",
+          "score": 0.996999979019165
+        }
+      ],
+      "concepts": [
+        {
+          "id": "https://openalex.org/C154945302",
+          "wikidata": "https://www.wikidata.org/wiki/Q11660",
+          "display_name": "Artificial intelligence",
+          "level": 1,
+          "score": 0.8934999704360962
+        },
+        {
+          "id": "https://openalex.org/C119857082",
+          "wikidata": "https://www.wikidata.org/wiki/Q2539",
+          "display_name": "Machine learning",
+          "level": 1,
+          "score": 0.8062000274658203
+        },
+        {
+          "id": "https://openalex.org/C108583219",
+          "wikidata": "https://www.wikidata.org/wiki/Q197536",
+          "display_name": "Deep learning",
+          "level": 2,
+          "score": 0.7547000050544739
+        },
+        {
+          "id": "https://openalex.org/C41008148",
+          "wikidata": "https://www.wikidata.org/wiki/Q21198",
+          "display_name": "Computer science",
+          "level": 0,
+          "score": 0.6575000286102295
+        },
+        {
+          "id": "https://openalex.org/C9652623",
+          "wikidata": "https://www.wikidata.org/wiki/Q190109",
+          "display_name": "Field (mathematics)",
+          "level": 2,
+          "score": 0.5849999785423279
+        },
+        {
+          "id": "https://openalex.org/C98045186",
+          "wikidata": "https://www.wikidata.org/wiki/Q205663",
+          "display_name": "Process (computing)",
+          "level": 2,
+          "score": 0.5758000016212463
+        },
+        {
+          "id": "https://openalex.org/C2780871342",
+          "wikidata": "https://www.wikidata.org/wiki/Q7883752",
+          "display_name": "Underpinning",
+          "level": 2,
+          "score": 0.5667999982833862
+        },
+        {
+          "id": "https://openalex.org/C50644808",
+          "wikidata": "https://www.wikidata.org/wiki/Q192776",
+          "display_name": "Artificial neural network",
+          "level": 2,
+          "score": 0.5267999768257141
+        },
+        {
+          "id": "https://openalex.org/C24138899",
+          "wikidata": "https://www.wikidata.org/wiki/Q17141258",
+          "display_name": "Instance-based learning",
+          "level": 3,
+          "score": 0.34700000286102295
+        },
+        {
+          "id": "https://openalex.org/C117270229",
+          "wikidata": "https://www.wikidata.org/wiki/Q5957539",
+          "display_name": "Hyper-heuristic",
+          "level": 5,
+          "score": 0.34619998931884766
+        },
+        {
+          "id": "https://openalex.org/C50292564",
+          "wikidata": "https://www.wikidata.org/wiki/Q2462783",
+          "display_name": "Computational learning theory",
+          "level": 3,
+          "score": 0.3402000069618225
+        },
+        {
+          "id": "https://openalex.org/C188888258",
+          "wikidata": "https://www.wikidata.org/wiki/Q7353390",
+          "display_name": "Robot learning",
+          "level": 4,
+          "score": 0.32989999651908875
+        },
+        {
+          "id": "https://openalex.org/C81363708",
+          "wikidata": "https://www.wikidata.org/wiki/Q17084460",
+          "display_name": "Convolutional neural network",
+          "level": 2,
+          "score": 0.32100000977516174
+        },
+        {
+          "id": "https://openalex.org/C56397880",
+          "wikidata": "https://www.wikidata.org/wiki/Q6044094",
+          "display_name": "Intelligent decision support system",
+          "level": 2,
+          "score": 0.3176000118255615
+        },
+        {
+          "id": "https://openalex.org/C2984842247",
+          "wikidata": "https://www.wikidata.org/wiki/Q197536",
+          "display_name": "Deep neural networks",
+          "level": 3,
+          "score": 0.30889999866485596
+        },
+        {
+          "id": "https://openalex.org/C77967617",
+          "wikidata": "https://www.wikidata.org/wiki/Q4677561",
+          "display_name": "Active learning (machine learning)",
+          "level": 2,
+          "score": 0.2793000042438507
+        },
+        {
+          "id": "https://openalex.org/C189474733",
+          "wikidata": "https://www.wikidata.org/wiki/Q917912",
+          "display_name": "Model building",
+          "level": 2,
+          "score": 0.2775000035762787
+        },
+        {
+          "id": "https://openalex.org/C32254414",
+          "wikidata": "https://www.wikidata.org/wiki/Q4724364",
+          "display_name": "Algorithmic learning theory",
+          "level": 3,
+          "score": 0.274399995803833
+        },
+        {
+          "id": "https://openalex.org/C97385483",
+          "wikidata": "https://www.wikidata.org/wiki/Q16954980",
+          "display_name": "Deep belief network",
+          "level": 3,
+          "score": 0.2669999897480011
+        },
+        {
+          "id": "https://openalex.org/C8038995",
+          "wikidata": "https://www.wikidata.org/wiki/Q1152135",
+          "display_name": "Unsupervised learning",
+          "level": 2,
+          "score": 0.2630999982357025
+        },
+        {
+          "id": "https://openalex.org/C67186912",
+          "wikidata": "https://www.wikidata.org/wiki/Q367664",
+          "display_name": "Data modeling",
+          "level": 2,
+          "score": 0.2572000026702881
+        },
+        {
+          "id": "https://openalex.org/C75684735",
+          "wikidata": "https://www.wikidata.org/wiki/Q858810",
+          "display_name": "Big data",
+          "level": 2,
+          "score": 0.2549999952316284
+        },
+        {
+          "id": "https://openalex.org/C157170001",
+          "wikidata": "https://www.wikidata.org/wiki/Q4781507",
+          "display_name": "Applications of artificial intelligence",
+          "level": 2,
+          "score": 0.2500999867916107
+        }
+      ],
+      "mesh": [],
+      "locations_count": 7,
+      "locations": [
+        {
+          "id": "doi:10.1007/s12525-021-00475-2",
+          "doi": "https://doi.org/10.1007/s12525-021-00475-2",
+          "is_oa": true,
+          "landing_page_url": "https://doi.org/10.1007/s12525-021-00475-2",
+          "pdf_url": "https://link.springer.com/content/pdf/10.1007/s12525-021-00475-2.pdf",
+          "source": {
+            "id": "https://openalex.org/S137519996",
+            "display_name": "Electronic Markets",
+            "issn_l": "1019-6781",
+            "issn": [
+              "1019-6781",
+              "1422-8890"
+            ],
+            "is_oa": false,
+            "is_in_doaj": false,
+            "is_core": true,
+            "listed_in": [
+              "abdc-a",
+              "anvur-class-a",
+              "anvur-scientific",
+              "cwts-core",
+              "fnege-3",
+              "jufo-1",
+              "norway-1",
+              "poland-140",
+              "russia-white-list-1",
+              "vabb-shw"
+            ],
+            "host_organization": "https://openalex.org/P4310319900",
+            "host_organization_name": "Springer Science+Business Media",
+            "host_organization_lineage": [
+              "https://openalex.org/P4310319900",
+              "https://openalex.org/P4310319965"
+            ],
+            "host_organization_lineage_names": [
+              "Springer Science+Business Media",
+              "Springer Nature"
+            ],
+            "type": "journal"
+          },
+          "license": "cc-by",
+          "license_id": "https://openalex.org/licenses/cc-by",
+          "version": "publishedVersion",
+          "is_accepted": true,
+          "is_published": true,
+          "raw_source_name": "Electronic Markets",
+          "raw_type": "journal-article"
+        },
+        {
+          "id": "pmh:oai:arXiv.org:2104.05314",
+          "doi": null,
+          "is_oa": true,
+          "landing_page_url": "http://arxiv.org/abs/2104.05314",
+          "pdf_url": "https://arxiv.org/pdf/2104.05314",
+          "source": {
+            "id": "https://openalex.org/S4306400194",
+            "display_name": "arXiv (Cornell University)",
+            "issn_l": "2331-8422",
+            "issn": [
+              "2331-8422"
+            ],
+            "is_oa": true,
+            "is_in_doaj": false,
+            "is_core": false,
+            "listed_in": [],
+            "host_organization": "https://openalex.org/I205783295",
+            "host_organization_name": "Cornell University",
+            "host_organization_lineage": [
+              "https://openalex.org/I205783295"
+            ],
+            "host_organization_lineage_names": [],
+            "type": "repository"
+          },
+          "license": "cc-by",
+          "license_id": "https://openalex.org/licenses/cc-by",
+          "version": "submittedVersion",
+          "is_accepted": false,
+          "is_published": false,
+          "raw_source_name": null,
+          "raw_type": "text"
+        },
+        {
+          "id": "pmh:oai:RePEc:spr:elmark:v:31:y:2021:i:3:d:10.1007_s12525-021-00475-2",
+          "doi": null,
+          "is_oa": false,
+          "landing_page_url": "http://link.springer.com/10.1007/s12525-021-00475-2",
+          "pdf_url": null,
+          "source": {
+            "id": "https://openalex.org/S4306401271",
+            "display_name": "RePEc: Research Papers in Economics",
+            "issn_l": null,
+            "issn": null,
+            "is_oa": false,
+            "is_in_doaj": false,
+            "is_core": false,
+            "listed_in": [],
+            "host_organization": "https://openalex.org/I77793887",
+            "host_organization_name": "Federal Reserve Bank of St. Louis",
+            "host_organization_lineage": [
+              "https://openalex.org/I77793887"
+            ],
+            "host_organization_lineage_names": [],
+            "type": "repository"
+          },
+          "license": null,
+          "license_id": null,
+          "version": "submittedVersion",
+          "is_accepted": false,
+          "is_published": false,
+          "raw_source_name": null,
+          "raw_type": "article"
+        },
+        {
+          "id": "pmh:oai:econstor.eu:10419/287156",
+          "doi": null,
+          "is_oa": true,
+          "landing_page_url": "https://hdl.handle.net/10419/287156",
+          "pdf_url": null,
+          "source": {
+            "id": "https://openalex.org/S4306401696",
+            "display_name": "Econstor (Econstor)",
+            "issn_l": null,
+            "issn": null,
+            "is_oa": false,
+            "is_in_doaj": false,
+            "is_core": false,
+            "listed_in": [],
+            "host_organization": null,
+            "host_organization_name": null,
+            "host_organization_lineage": [],
+            "host_organization_lineage_names": [],
+            "type": "repository"
+          },
+          "license": "cc-by",
+          "license_id": "https://openalex.org/licenses/cc-by",
+          "version": "submittedVersion",
+          "is_accepted": false,
+          "is_published": false,
+          "raw_source_name": "",
+          "raw_type": "doc-type:article"
+        },
+        {
+          "id": "pmh:oai:opus.bibliothek.uni-wuerzburg.de:27015",
+          "doi": null,
+          "is_oa": true,
+          "landing_page_url": "https://opus.bibliothek.uni-wuerzburg.de/frontdoor/index/index/docId/27015",
+          "pdf_url": null,
+          "source": {
+            "id": "https://openalex.org/S4306401635",
+            "display_name": "Online Publication Service of Würzburg University (Würzburg University)",
+            "issn_l": null,
+            "issn": null,
+            "is_oa": false,
+            "is_in_doaj": false,
+            "is_core": false,
+            "listed_in": [],
+            "host_organization": "https://openalex.org/I25974101",
+            "host_organization_name": "University of Würzburg",
+            "host_organization_lineage": [
+              "https://openalex.org/I25974101"
+            ],
+            "host_organization_lineage_names": [],
+            "type": "repository"
+          },
+          "license": "cc-by",
+          "license_id": "https://openalex.org/licenses/cc-by",
+          "version": "submittedVersion",
+          "is_accepted": false,
+          "is_published": false,
+          "raw_source_name": "",
+          "raw_type": "article"
+        },
+        {
+          "id": "pmh:oai:ub.uni-erlangen.de-opus:22263",
+          "doi": null,
+          "is_oa": true,
+          "landing_page_url": "https://opus4.kobv.de/opus4-fau/frontdoor/index/index/docId/22263",
+          "pdf_url": null,
+          "source": {
+            "id": "https://openalex.org/S4306402340",
+            "display_name": "OPUS FAU (Kooperativer Bibliotheksverbund Berlin-Brandenburg (KOBV), on behalf of the Universitätsbibliothek Erlangen-Nürnberg)",
+            "issn_l": null,
+            "issn": null,
+            "is_oa": false,
+            "is_in_doaj": false,
+            "is_core": false,
+            "listed_in": [],
+            "host_organization": null,
+            "host_organization_name": null,
+            "host_organization_lineage": [],
+            "host_organization_lineage_names": [],
+            "type": "repository"
+          },
+          "license": "cc-by",
+          "license_id": "https://openalex.org/licenses/cc-by",
+          "version": "submittedVersion",
+          "is_accepted": false,
+          "is_published": false,
+          "raw_source_name": "",
+          "raw_type": "article"
+        },
+        {
+          "id": "doi:10.48550/arxiv.2104.05314",
+          "doi": "https://doi.org/10.48550/arxiv.2104.05314",
+          "is_oa": true,
+          "landing_page_url": "https://doi.org/10.48550/arxiv.2104.05314",
+          "pdf_url": null,
+          "source": {
+            "id": "https://openalex.org/S4306400194",
+            "display_name": "arXiv (Cornell University)",
+            "issn_l": "2331-8422",
+            "issn": [
+              "2331-8422"
+            ],
+            "is_oa": true,
+            "is_in_doaj": false,
+            "is_core": false,
+            "listed_in": [],
+            "host_organization": "https://openalex.org/I205783295",
+            "host_organization_name": "Cornell University",
+            "host_organization_lineage": [
+              "https://openalex.org/I205783295"
+            ],
+            "host_organization_lineage_names": [],
+            "type": "repository"
+          },
+          "license": "cc-by",
+          "license_id": "https://openalex.org/licenses/cc-by",
+          "version": null,
+          "is_accepted": false,
+          "is_published": false,
+          "raw_source_name": null,
+          "raw_type": "article-journal"
+        }
+      ],
+      "best_oa_location": {
+        "id": "doi:10.1007/s12525-021-00475-2",
+        "doi": "https://doi.org/10.1007/s12525-021-00475-2",
+        "is_oa": true,
+        "landing_page_url": "https://doi.org/10.1007/s12525-021-00475-2",
+        "pdf_url": "https://link.springer.com/content/pdf/10.1007/s12525-021-00475-2.pdf",
+        "source": {
+          "id": "https://openalex.org/S137519996",
+          "display_name": "Electronic Markets",
+          "issn_l": "1019-6781",
+          "issn": [
+            "1019-6781",
+            "1422-8890"
+          ],
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": true,
+          "listed_in": [
+            "abdc-a",
+            "anvur-class-a",
+            "anvur-scientific",
+            "cwts-core",
+            "fnege-3",
+            "jufo-1",
+            "norway-1",
+            "poland-140",
+            "russia-white-list-1",
+            "vabb-shw"
+          ],
+          "host_organization": "https://openalex.org/P4310319900",
+          "host_organization_name": "Springer Science+Business Media",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310319900",
+            "https://openalex.org/P4310319965"
+          ],
+          "host_organization_lineage_names": [
+            "Springer Science+Business Media",
+            "Springer Nature"
+          ],
+          "type": "journal"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Electronic Markets",
+        "raw_type": "journal-article"
+      },
+      "sustainable_development_goals": [],
+      "study_designs": [],
+      "awards": [
+        {
+          "id": "https://openalex.org/G2151094965",
+          "display_name": null,
+          "funder_award_id": "DIK0143/02",
+          "funder_id": "https://openalex.org/F4320331012",
+          "funder_display_name": "Bayerische Staatsministerium für Wirtschaft, Landesentwicklung und Energie"
+        }
+      ],
+      "funders": [
+        {
+          "id": "https://openalex.org/F4320331012",
+          "display_name": "Bayerische Staatsministerium für Wirtschaft, Landesentwicklung und Energie",
+          "ror": null
+        }
+      ],
+      "has_content": {
+        "pdf": true,
+        "grobid_xml": true
+      },
+      "content_urls": {
+        "pdf": "https://content.openalex.org/works/W3153990350.pdf",
+        "grobid_xml": "https://content.openalex.org/works/W3153990350.grobid-xml"
+      },
+      "referenced_works_count": 64,
+      "referenced_works": [
+        "https://openalex.org/W822801274",
+        "https://openalex.org/W1565746575",
+        "https://openalex.org/W1901616594",
+        "https://openalex.org/W1978394996",
+        "https://openalex.org/W2022775778",
+        "https://openalex.org/W2034059032",
+        "https://openalex.org/W2059111627",
+        "https://openalex.org/W2076063813",
+        "https://openalex.org/W2096352448",
+        "https://openalex.org/W2099419573",
+        "https://openalex.org/W2106577732",
+        "https://openalex.org/W2122410182",
+        "https://openalex.org/W2151103935",
+        "https://openalex.org/W2161969291",
+        "https://openalex.org/W2164598857",
+        "https://openalex.org/W2169284845",
+        "https://openalex.org/W2251410821",
+        "https://openalex.org/W2269742369",
+        "https://openalex.org/W2557283755",
+        "https://openalex.org/W2585169518",
+        "https://openalex.org/W2670253439",
+        "https://openalex.org/W2751039952",
+        "https://openalex.org/W2796688914",
+        "https://openalex.org/W2798302089",
+        "https://openalex.org/W2800722845",
+        "https://openalex.org/W2802955324",
+        "https://openalex.org/W2803355698",
+        "https://openalex.org/W2884001105",
+        "https://openalex.org/W2888794009",
+        "https://openalex.org/W2891503716",
+        "https://openalex.org/W2892341857",
+        "https://openalex.org/W2895991254",
+        "https://openalex.org/W2900453322",
+        "https://openalex.org/W2902907165",
+        "https://openalex.org/W2915015079",
+        "https://openalex.org/W2919115771",
+        "https://openalex.org/W2921353139",
+        "https://openalex.org/W2945976633",
+        "https://openalex.org/W2953189907",
+        "https://openalex.org/W2963060590",
+        "https://openalex.org/W2963428668",
+        "https://openalex.org/W2964716450",
+        "https://openalex.org/W2969637780",
+        "https://openalex.org/W2981207549",
+        "https://openalex.org/W2989851933",
+        "https://openalex.org/W2995871253",
+        "https://openalex.org/W2999321020",
+        "https://openalex.org/W3000062802",
+        "https://openalex.org/W3005351117",
+        "https://openalex.org/W3007482644",
+        "https://openalex.org/W3021909058",
+        "https://openalex.org/W3024108791",
+        "https://openalex.org/W3025420269",
+        "https://openalex.org/W3038445625",
+        "https://openalex.org/W3094605956",
+        "https://openalex.org/W3095865939",
+        "https://openalex.org/W3118496513",
+        "https://openalex.org/W3120261410",
+        "https://openalex.org/W3123307985",
+        "https://openalex.org/W3150796314",
+        "https://openalex.org/W4210824092",
+        "https://openalex.org/W4212863985",
+        "https://openalex.org/W4212902066",
+        "https://openalex.org/W4236093597"
+      ],
+      "related_works": [
+        "https://openalex.org/W2906497090",
+        "https://openalex.org/W4388622734",
+        "https://openalex.org/W4405001225",
+        "https://openalex.org/W3166829666",
+        "https://openalex.org/W4244793913",
+        "https://openalex.org/W3088347726",
+        "https://openalex.org/W3042670699",
+        "https://openalex.org/W4309588063",
+        "https://openalex.org/W4303457083",
+        "https://openalex.org/W4412614547"
+      ],
+      "abstract_inverted_index": {
+        "Abstract": [
+          0
+        ],
+        "Today,": [
+          1
+        ],
+        "intelligent": [
+          2,
+          91,
+          128
+        ],
+        "systems": [
+          3,
+          20,
+          129
+        ],
+        "that": [
+          4,
+          123
+        ],
+        "offer": [
+          5
+        ],
+        "artificial": [
+          6,
+          48,
+          152
+        ],
+        "intelligence": [
+          7,
+          153
+        ],
+        "capabilities": [
+          8
+        ],
+        "often": [
+          9
+        ],
+        "rely": [
+          10
+        ],
+        "on": [
+          11,
+          47
+        ],
+        "machine": [
+          12,
+          43,
+          59,
+          75,
+          114
+        ],
+        "learning.": [
+          13
+        ],
+        "Machine": [
+          14
+        ],
+        "learning": [
+          15,
+          40,
+          44,
+          55,
+          60,
+          76,
+          79,
+          115
+        ],
+        "describes": [
+          16
+        ],
+        "the": [
+          17,
+          29,
+          72,
+          86,
+          106,
+          121,
+          131
+        ],
+        "capacity": [
+          18
+        ],
+        "of": [
+          19,
+          31,
+          74,
+          85,
+          89,
+          108,
+          133
+        ],
+        "to": [
+          21,
+          27,
+          80
+        ],
+        "learn": [
+          22
+        ],
+        "from": [
+          23
+        ],
+        "problem-specific": [
+          24
+        ],
+        "training": [
+          25
+        ],
+        "data": [
+          26,
+          64
+        ],
+        "automate": [
+          28
+        ],
+        "process": [
+          30,
+          107
+        ],
+        "analytical": [
+          32,
+          110
+        ],
+        "model": [
+          33,
+          111
+        ],
+        "building": [
+          34,
+          112
+        ],
+        "and": [
+          35,
+          62,
+          77,
+          103,
+          116,
+          119,
+          136,
+          145,
+          151
+        ],
+        "solve": [
+          36
+        ],
+        "associated": [
+          37
+        ],
+        "tasks.": [
+          38
+        ],
+        "Deep": [
+          39
+        ],
+        "is": [
+          41
+        ],
+        "a": [
+          42,
+          82,
+          97
+        ],
+        "concept": [
+          45
+        ],
+        "based": [
+          46
+        ],
+        "neural": [
+          49
+        ],
+        "networks.": [
+          50
+        ],
+        "For": [
+          51
+        ],
+        "many": [
+          52
+        ],
+        "applications,": [
+          53
+        ],
+        "deep": [
+          54,
+          78,
+          117
+        ],
+        "models": [
+          56,
+          61
+        ],
+        "outperform": [
+          57
+        ],
+        "shallow": [
+          58
+        ],
+        "traditional": [
+          63
+        ],
+        "analysis": [
+          65
+        ],
+        "approaches.": [
+          66
+        ],
+        "In": [
+          67,
+          93
+        ],
+        "this": [
+          68
+        ],
+        "article,": [
+          69
+        ],
+        "we": [
+          70,
+          95
+        ],
+        "summarize": [
+          71
+        ],
+        "fundamentals": [
+          73
+        ],
+        "generate": [
+          81
+        ],
+        "broader": [
+          83
+        ],
+        "understanding": [
+          84
+        ],
+        "methodical": [
+          87
+        ],
+        "underpinning": [
+          88
+        ],
+        "current": [
+          90
+        ],
+        "systems.": [
+          92
+        ],
+        "particular,": [
+          94
+        ],
+        "provide": [
+          96
+        ],
+        "conceptual": [
+          98
+        ],
+        "distinction": [
+          99
+        ],
+        "between": [
+          100
+        ],
+        "relevant": [
+          101
+        ],
+        "terms": [
+          102
+        ],
+        "concepts,": [
+          104
+        ],
+        "explain": [
+          105
+        ],
+        "automated": [
+          109
+        ],
+        "through": [
+          113
+        ],
+        "learning,": [
+          118
+        ],
+        "discuss": [
+          120
+        ],
+        "challenges": [
+          122
+        ],
+        "arise": [
+          124
+        ],
+        "when": [
+          125
+        ],
+        "implementing": [
+          126
+        ],
+        "such": [
+          127
+        ],
+        "in": [
+          130,
+          148
+        ],
+        "field": [
+          132
+        ],
+        "electronic": [
+          134
+        ],
+        "markets": [
+          135
+        ],
+        "networked": [
+          137
+        ],
+        "business.": [
+          138
+        ],
+        "These": [
+          139
+        ],
+        "naturally": [
+          140
+        ],
+        "go": [
+          141
+        ],
+        "beyond": [
+          142
+        ],
+        "technological": [
+          143
+        ],
+        "aspects": [
+          144
+        ],
+        "highlight": [
+          146
+        ],
+        "issues": [
+          147
+        ],
+        "human-machine": [
+          149
+        ],
+        "interaction": [
+          150
+        ],
+        "servitization.": [
+          154
+        ]
+      },
+      "counts_by_year": [
+        {
+          "year": 2026,
+          "cited_by_count": 635
+        },
+        {
+          "year": 2025,
+          "cited_by_count": 1062
+        },
+        {
+          "year": 2024,
+          "cited_by_count": 958
+        },
+        {
+          "year": 2023,
+          "cited_by_count": 623
+        },
+        {
+          "year": 2022,
+          "cited_by_count": 248
+        },
+        {
+          "year": 2021,
+          "cited_by_count": 35
+        },
+        {
+          "year": 2014,
+          "cited_by_count": 1
+        }
+      ],
+      "updated_date": "2026-11-12T12:28:57.059296",
+      "created_date": "2021-04-26T00:00:00"
+    }
+  ],
+  "group_by": []
+}

@@ -10,6 +10,8 @@ class Work {
   final List<String> correspondingInstitutionIds;
   final int countriesDistinctCount;
   final String? fulltextOrigin;
+  // Legacy field, absent from current OpenAlex responses.
+  @JsonKey(defaultValue: [])
   final List<Grant> grants;
   final bool hasFulltext;
   final int institutionsDistinctCount;
@@ -17,8 +19,10 @@ class Work {
   final String? license;
   final List<Location> locations;
   final int locationsCount;
+  // Legacy field, absent from current OpenAlex responses.
+  @JsonKey(defaultValue: '')
   final String ngramsUrl;
-  final Location primaryLocation;
+  final Location? primaryLocation;
   final DateTime publicationDate;
   final int publicationYear;
   final List<String> referencedWorks;
@@ -38,12 +42,17 @@ class Work {
 
   final String? title;
   final String? displayName;
+  @JsonKey(unknownEnumValue: WorkType.other)
   final WorkType type;
 
   // Open access
   @JsonKey(readValue: _readOpenAccess, name: 'is_oa')
   final bool isOpenAccess;
-  @JsonKey(readValue: _readOpenAccess, name: 'oa_status')
+  @JsonKey(
+    readValue: _readOpenAccess,
+    name: 'oa_status',
+    unknownEnumValue: OpenAccessStatus.unknown,
+  )
   final OpenAccessStatus openAccessStatus;
   @JsonKey(readValue: _readOpenAccess, name: 'oa_url')
   final String? openAccessUrl;
@@ -55,16 +64,30 @@ class Work {
   final Map<String, String?> biblio; // todo: add a model for this?
   final bool isRetracted;
   final bool isParatext;
+  @JsonKey(defaultValue: [])
   final List<ConceptDehydrated> concepts; // todo: add score
   final List<Map> mesh;
   final Map<String, List<int>>? abstractInvertedIndex;
+  // Legacy field, absent from current OpenAlex responses.
+  @JsonKey(defaultValue: '')
   final String citedByApiUrl;
   @JsonKey(name: 'counts_by_year')
   final List<YearWork> countsByYear;
   final DateTime createdDate;
   final Location? bestOaLocation;
+  @JsonKey(defaultValue: [])
+  final List<Topic> topics;
+  final Topic? primaryTopic;
+  @JsonKey(defaultValue: [])
+  final List<Funder> funders;
+  @JsonKey(defaultValue: [])
+  final List<Award> awards;
 
   Work({
+    this.topics = const [],
+    this.primaryTopic,
+    this.funders = const [],
+    this.awards = const [],
     required this.abstractInvertedIndex,
     required this.authorships,
     required this.apcList,
@@ -110,9 +133,11 @@ class Work {
     required this.openAccessUrl,
   });
 
-  static Object? _readId(Map<dynamic, dynamic> json, String key) => json['ids'][key];
+  static Object? _readId(Map<dynamic, dynamic> json, String key) =>
+      json['ids']?[key] ?? json[key];
 
-  static Object? _readOpenAccess(Map<dynamic, dynamic> json, String key) => json['open_access'][key];
+  static Object? _readOpenAccess(Map<dynamic, dynamic> json, String key) =>
+      json['open_access']?[key];
 
   factory Work.fromJson(Map<String, dynamic> json) => _$WorkFromJson(json);
 }
@@ -134,15 +159,15 @@ enum WorkType {
   erratum,
   grant,
   letter,
+  preprint,
+  review,
+  software,
+  supplementaryMaterials,
+  retraction,
+  reviewArticle,
 }
 
-enum OpenAccessStatus {
-  gold,
-  green,
-  hybrid,
-  bronze,
-  closed,
-}
+enum OpenAccessStatus { diamond, unknown, gold, green, hybrid, bronze, closed }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Location {
@@ -166,7 +191,8 @@ class Location {
     required this.isPublished,
   });
 
-  factory Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -227,11 +253,7 @@ class Apc {
 // }
 
 @JsonEnum(fieldRename: FieldRename.snake)
-enum AuthorshipPosition {
-  First,
-  Middle,
-  Last,
-}
+enum AuthorshipPosition { First, Middle, Last }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Authorship {
@@ -242,10 +264,15 @@ class Authorship {
     required this.rawAffiliationString,
   });
 
-  factory Authorship.fromJson(Map<String, dynamic> json) => _$AuthorshipFromJson(json);
+  factory Authorship.fromJson(Map<String, dynamic> json) =>
+      _$AuthorshipFromJson(json);
 
   final AuthorshipPosition authorPosition;
   final AuthorDehydrated author;
   final List<InstitutionDehydrated> institutions;
+  @JsonKey(readValue: _readAffiliation, defaultValue: '')
   final String rawAffiliationString;
+
+  static Object? _readAffiliation(Map json, String key) =>
+      json[key] ?? (json['raw_affiliation_strings'] as List?)?.join('; ');
 }

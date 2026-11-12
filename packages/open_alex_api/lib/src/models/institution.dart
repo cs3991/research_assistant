@@ -14,13 +14,15 @@ enum InstitutionType {
   Government,
   Facility,
   Other,
+  Funder,
 }
 
 abstract class InstitutionBase {
   final String id;
   final String displayName;
-  final String ror;
-  final String countryCode;
+  final String? ror;
+  final String? countryCode;
+  @JsonKey(unknownEnumValue: InstitutionType.Other)
   final InstitutionType type;
 
   InstitutionBase({
@@ -97,7 +99,7 @@ class Institution extends InstitutionBase {
   final Geo geo;
   final International international;
   final List<InstitutionDehydrated>
-      associatedInstitutions; // todo: add relationship
+  associatedInstitutions; // todo: add relationship
   final List<Year> countsByYear;
   final String worksApiUrl;
   final DateTime updatedDate;
@@ -112,7 +114,7 @@ class Geo {
   final String city;
   final String geonamesCityId;
   final String region;
-  final String countryCode;
+  final String? countryCode;
   final String country;
   final double latitude;
   final double longitude;

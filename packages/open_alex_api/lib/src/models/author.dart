@@ -5,11 +5,7 @@ import 'models.dart';
 part 'author.g.dart';
 
 abstract class AuthorBase {
-  AuthorBase({
-    required this.id,
-    required this.displayName,
-    this.orcid,
-  });
+  AuthorBase({required this.id, required this.displayName, this.orcid});
 
   final String id;
   final String displayName;
@@ -38,7 +34,8 @@ class Author extends AuthorBase {
     required this.citedByCount,
     required this.countsByYear,
     required this.worksApiUrl,
-    required this.lastKnownInstitution,
+    this.lastKnownInstitution,
+    this.lastKnownInstitutions = const [],
     required this.updatedDate,
     required this.createdDate,
     super.orcid,
@@ -48,7 +45,9 @@ class Author extends AuthorBase {
     this.scopusId,
   });
 
-  final InstitutionDehydrated lastKnownInstitution;
+  final InstitutionDehydrated? lastKnownInstitution;
+  @JsonKey(defaultValue: [])
+  final List<InstitutionDehydrated> lastKnownInstitutions;
   final List<String> displayNameAlternatives;
   final int worksCount;
   final int citedByCount;
@@ -70,7 +69,7 @@ class Author extends AuthorBase {
   final DateTime createdDate;
 
   static Object? _readId(Map<dynamic, dynamic> json, String key) =>
-      json['ids'][key];
+      json['ids']?[key];
 
   factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
 }

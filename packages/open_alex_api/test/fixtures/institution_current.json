@@ -1,0 +1,1158 @@
+{
+  "id": "https://openalex.org/I881766915",
+  "ror": "https://ror.org/01rxvg760",
+  "display_name": "Nanjing University",
+  "country_code": "CN",
+  "type": "education",
+  "type_id": "https://openalex.org/institution-types/education",
+  "lineage": [
+    "https://openalex.org/I881766915"
+  ],
+  "homepage_url": "http://www.nju.edu.cn/english/",
+  "image_url": "https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Main%20Gate%20of%20Nanjing%20University%20Gulou%20Campus%202012-11.JPG",
+  "image_thumbnail_url": "https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Main%20Gate%20of%20Nanjing%20University%20Gulou%20Campus%202012-11.JPG&width=300",
+  "display_name_acronyms": [
+    "NJU",
+    "NU"
+  ],
+  "display_name_alternatives": [
+    "Nanjing University",
+    "Nanking University",
+    "南京大学"
+  ],
+  "repositories": [],
+  "works_count": 202604,
+  "works_count_with_children": 210915,
+  "works_count_with_children_and_predecessors": 210915,
+  "cited_by_count": 20186835,
+  "summary_stats": {
+    "2yr_mean_citedness": 8.927549047013253,
+    "h_index": 889,
+    "i10_index": 330501
+  },
+  "ids": {
+    "openalex": "https://openalex.org/I881766915",
+    "ror": "https://ror.org/01rxvg760",
+    "grid": "grid.41156.37",
+    "wikipedia": "http://en.wikipedia.org/wiki/Nanjing_University",
+    "wikidata": null
+  },
+  "geo": {
+    "city": "Nanjing",
+    "geonames_city_id": "1799962",
+    "region": "Jiangsu",
+    "country_code": "CN",
+    "country": "China",
+    "latitude": 32.06167,
+    "longitude": 118.77778
+  },
+  "international": {},
+  "associated_institutions": [
+    {
+      "id": "https://openalex.org/I2799773085",
+      "ror": "https://ror.org/04kmpyd03",
+      "display_name": "Nanjing General Hospital of Nanjing Military Command",
+      "country_code": "CN",
+      "type": "healthcare",
+      "relationship": "related"
+    },
+    {
+      "id": "https://openalex.org/I4210090489",
+      "ror": "https://ror.org/00073tb80",
+      "display_name": "State Key Laboratory of Pollution Control and Resource Reuse",
+      "country_code": "CN",
+      "type": "facility",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4210111013",
+      "ror": "https://ror.org/026axqv54",
+      "display_name": "Nanjing Drum Tower Hospital",
+      "country_code": "CN",
+      "type": "healthcare",
+      "relationship": "related"
+    },
+    {
+      "id": "https://openalex.org/I4210124018",
+      "ror": "https://ror.org/038dfxb83",
+      "display_name": "Traditional Chinese Medicine Hospital of Kunshan",
+      "country_code": "CN",
+      "type": "healthcare",
+      "relationship": "related"
+    },
+    {
+      "id": "https://openalex.org/I4210140493",
+      "ror": "https://ror.org/04ttadj76",
+      "display_name": "Collaborative Innovation Center of Advanced Microstructures",
+      "country_code": "CN",
+      "type": "facility",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4210162165",
+      "ror": "https://ror.org/05ajv1r64",
+      "display_name": "Johns Hopkins University – Nanjing University Center for Chinese and American Studies",
+      "country_code": "CN",
+      "type": "education",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4391767641",
+      "ror": "https://ror.org/02k59vc26",
+      "display_name": "State Key Laboratory of Metallogenic Mechanism of Endogenous Metal Deposits",
+      "country_code": "CN",
+      "type": "facility",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4391768004",
+      "ror": "https://ror.org/05ryc2b20",
+      "display_name": "National Laboratory of Solid State Microstructures",
+      "country_code": "CN",
+      "type": "facility",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4391768045",
+      "ror": "https://ror.org/043ea4m21",
+      "display_name": "State Key Laboratory of Pharmaceutical Biotechnology",
+      "country_code": "CN",
+      "type": "facility",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4391768078",
+      "ror": "https://ror.org/04xqp3a64",
+      "display_name": "State Key Laboratory of New Technology of Computer Software",
+      "country_code": "CN",
+      "type": "facility",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4391768173",
+      "ror": "https://ror.org/01xnz3256",
+      "display_name": "State Key Laboratory of Analytical Chemistry for Life Science",
+      "country_code": "CN",
+      "type": "facility",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4391768193",
+      "ror": "https://ror.org/01v3c6w86",
+      "display_name": "State Key Laboratory of Modern Coordination Chemistry",
+      "country_code": "CN",
+      "type": "facility",
+      "relationship": "child"
+    },
+    {
+      "id": "https://openalex.org/I4405282118",
+      "ror": "https://ror.org/05bvnbj77",
+      "display_name": "Nanjing University Jinling College",
+      "country_code": "CN",
+      "type": "education",
+      "relationship": "child"
+    }
+  ],
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "works_count": 16937,
+      "oa_works_count": 10821,
+      "cited_by_count": 625744
+    },
+    {
+      "year": 2025,
+      "works_count": 20669,
+      "oa_works_count": 12570,
+      "cited_by_count": 689505
+    },
+    {
+      "year": 2024,
+      "works_count": 14459,
+      "oa_works_count": 8228,
+      "cited_by_count": 606190
+    },
+    {
+      "year": 2023,
+      "works_count": 13120,
+      "oa_works_count": 7681,
+      "cited_by_count": 520138
+    },
+    {
+      "year": 2022,
+      "works_count": 12700,
+      "oa_works_count": 7116,
+      "cited_by_count": 475356
+    },
+    {
+      "year": 2021,
+      "works_count": 10524,
+      "oa_works_count": 5235,
+      "cited_by_count": 420168
+    },
+    {
+      "year": 2020,
+      "works_count": 9641,
+      "oa_works_count": 4503,
+      "cited_by_count": 348095
+    },
+    {
+      "year": 2019,
+      "works_count": 8896,
+      "oa_works_count": 3666,
+      "cited_by_count": 283085
+    },
+    {
+      "year": 2018,
+      "works_count": 8085,
+      "oa_works_count": 3256,
+      "cited_by_count": 233649
+    },
+    {
+      "year": 2017,
+      "works_count": 7235,
+      "oa_works_count": 2943,
+      "cited_by_count": 196292
+    },
+    {
+      "year": 2016,
+      "works_count": 6855,
+      "oa_works_count": 2562,
+      "cited_by_count": 170759
+    },
+    {
+      "year": 2015,
+      "works_count": 6965,
+      "oa_works_count": 2321,
+      "cited_by_count": 144707
+    },
+    {
+      "year": 2014,
+      "works_count": 6797,
+      "oa_works_count": 1951,
+      "cited_by_count": 121623
+    },
+    {
+      "year": 2013,
+      "works_count": 6263,
+      "oa_works_count": 1556,
+      "cited_by_count": 101690
+    },
+    {
+      "year": 2012,
+      "works_count": 5878,
+      "oa_works_count": 1310,
+      "cited_by_count": 82745
+    },
+    {
+      "year": 2011,
+      "works_count": 5758,
+      "oa_works_count": 1074,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2010,
+      "works_count": 5287,
+      "oa_works_count": 810,
+      "cited_by_count": 0
+    }
+  ],
+  "roles": [
+    {
+      "role": "funder",
+      "id": "https://openalex.org/F4320324852",
+      "works_count": 23460
+    },
+    {
+      "role": "institution",
+      "id": "https://openalex.org/I881766915",
+      "works_count": 202604
+    }
+  ],
+  "topics": [
+    {
+      "id": "https://openalex.org/T10001",
+      "display_name": "Geological and Geochemical Analysis",
+      "count": 3844,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1906",
+        "display_name": "Geochemistry and Petrology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10207",
+      "display_name": "Advanced biosensing and bioanalysis techniques",
+      "count": 3282,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10275",
+      "display_name": "2D Materials and Applications",
+      "count": 3160,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10037",
+      "display_name": "Physics of Superconductivity and Magnetism",
+      "count": 3137,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3104",
+        "display_name": "Condensed Matter Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10245",
+      "display_name": "Metamaterials and Metasurfaces Applications",
+      "count": 3032,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10466",
+      "display_name": "Meteorological Phenomena and Simulations",
+      "count": 2976,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1902",
+        "display_name": "Atmospheric Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10078",
+      "display_name": "Advanced Photocatalysis Techniques",
+      "count": 2906,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2105",
+        "display_name": "Renewable Energy, Sustainability and the Environment"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/21",
+        "display_name": "Energy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10096",
+      "display_name": "Metal-Organic Frameworks: Synthesis and Applications",
+      "count": 2870,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1604",
+        "display_name": "Inorganic Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/16",
+        "display_name": "Chemistry"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10029",
+      "display_name": "Climate variability and models",
+      "count": 2842,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2306",
+        "display_name": "Global and Planetary Change"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10036",
+      "display_name": "Advanced Neural Network Applications",
+      "count": 2792,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10212",
+      "display_name": "Electrochemical sensors and biosensors",
+      "count": 2779,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1602",
+        "display_name": "Analytical Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/16",
+        "display_name": "Chemistry"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10048",
+      "display_name": "Particle physics theoretical and experimental studies",
+      "count": 2775,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3106",
+        "display_name": "Nuclear and High Energy Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10224",
+      "display_name": "Quantum Chromodynamics and Particle Interactions",
+      "count": 2682,
+      "score": 0.9990000128746033,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3106",
+        "display_name": "Nuclear and High Energy Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10607",
+      "display_name": "Magnetic and transport properties of perovskites and related materials",
+      "count": 2623,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10107",
+      "display_name": "Ferroelectric and Piezoelectric Materials",
+      "count": 2581,
+      "score": 0.9994999766349792,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10039",
+      "display_name": "Stellar, planetary, and galactic studies",
+      "count": 2564,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3103",
+        "display_name": "Astronomy and Astrophysics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11740",
+      "display_name": "Geochemistry and Elemental Analysis",
+      "count": 2522,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1906",
+        "display_name": "Geochemistry and Petrology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10030",
+      "display_name": "Electrocatalysts for Energy Conversion",
+      "count": 2514,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2105",
+        "display_name": "Renewable Energy, Sustainability and the Environment"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/21",
+        "display_name": "Energy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10464",
+      "display_name": "Crystal structures of chemical compounds",
+      "count": 2509,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1604",
+        "display_name": "Inorganic Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/16",
+        "display_name": "Chemistry"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10886",
+      "display_name": "Multiferroics and related materials",
+      "count": 2404,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11682",
+      "display_name": "Advanced Condensed Matter Physics",
+      "count": 2373,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3104",
+        "display_name": "Condensed Matter Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10657",
+      "display_name": "Topological Materials and Phenomena",
+      "count": 2369,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3104",
+        "display_name": "Condensed Matter Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10075",
+      "display_name": "Atmospheric chemistry and aerosols",
+      "count": 2325,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1902",
+        "display_name": "Atmospheric Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10049",
+      "display_name": "Magnetic properties of thin films",
+      "count": 2290,
+      "score": 0.9994999766349792,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3104",
+        "display_name": "Condensed Matter Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10347",
+      "display_name": "Atmospheric aerosols and clouds",
+      "count": 2259,
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2306",
+        "display_name": "Global and Planetary Change"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "topic_share": [
+    {
+      "id": "https://openalex.org/T13442",
+      "display_name": "Geochemistry and Geochronology of Asian Mineral Deposits",
+      "value": 0.0304171,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1906",
+        "display_name": "Geochemistry and Petrology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10657",
+      "display_name": "Topological Materials and Phenomena",
+      "value": 0.0237389,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3104",
+        "display_name": "Condensed Matter Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13203",
+      "display_name": "Environmental Changes in China",
+      "value": 0.021879,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2306",
+        "display_name": "Global and Planetary Change"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11766",
+      "display_name": "Iron-based superconductors research",
+      "value": 0.0202816,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10886",
+      "display_name": "Multiferroics and related materials",
+      "value": 0.0197161,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12302",
+      "display_name": "Advanced Nanomaterials in Catalysis",
+      "value": 0.0181473,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10207",
+      "display_name": "Advanced biosensing and bioanalysis techniques",
+      "value": 0.0165533,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10096",
+      "display_name": "Metal-Organic Frameworks: Synthesis and Applications",
+      "value": 0.0164853,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1604",
+        "display_name": "Inorganic Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/16",
+        "display_name": "Chemistry"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11323",
+      "display_name": "Gamma-ray bursts and supernovae",
+      "value": 0.0153159,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3103",
+        "display_name": "Astronomy and Astrophysics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12808",
+      "display_name": "Ferroelectric and Negative Capacitance Devices",
+      "value": 0.0152734,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2208",
+        "display_name": "Electrical and Electronic Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12529",
+      "display_name": "Ga2O3 and related materials",
+      "value": 0.0147869,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10275",
+      "display_name": "2D Materials and Applications",
+      "value": 0.0147677,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12830",
+      "display_name": "Pectus Deformity Diagnosis and Treatment",
+      "value": 0.0146395,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2746",
+        "display_name": "Surgery"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10782",
+      "display_name": "Nanoplatforms for cancer theranostics",
+      "value": 0.0146145,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2204",
+        "display_name": "Biomedical Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11262",
+      "display_name": "Quantum Mechanics and Non-Hermitian Physics",
+      "value": 0.0144385,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3107",
+        "display_name": "Atomic and Molecular Physics, and Optics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10245",
+      "display_name": "Metamaterials and Metasurfaces Applications",
+      "value": 0.0142333,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10822",
+      "display_name": "Acoustic Wave Phenomena Research",
+      "value": 0.013363,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3102",
+        "display_name": "Acoustics and Ultrasonics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12588",
+      "display_name": "Electronic and Structural Properties of Oxides",
+      "value": 0.0131868,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11483",
+      "display_name": "Tropical and Extratropical Cyclones Research",
+      "value": 0.012764,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1902",
+        "display_name": "Atmospheric Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12149",
+      "display_name": "Nanocluster Synthesis and Applications",
+      "value": 0.0123696,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12038",
+      "display_name": "Covalent Organic Framework Applications",
+      "value": 0.0122729,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10612",
+      "display_name": "Magnetism in coordination complexes",
+      "value": 0.0120609,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11169",
+      "display_name": "Silicon Nanostructures and Photoluminescence",
+      "value": 0.0119187,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11682",
+      "display_name": "Advanced Condensed Matter Physics",
+      "value": 0.011674,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3104",
+        "display_name": "Condensed Matter Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10607",
+      "display_name": "Magnetic and transport properties of perovskites and related materials",
+      "value": 0.0114928,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2504",
+        "display_name": "Electronic, Optical and Magnetic Materials"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "is_super_system": false,
+  "status": "active",
+  "works_api_url": "https://api.openalex.org/works?filter=institutions.id:I881766915",
+  "awards_count": 2967,
+  "awards_api_url": "https://api.openalex.org/awards?filter=institution_awarded.id:I881766915",
+  "updated_date": "2026-11-12T18:22:47",
+  "created_date": "2016-06-24T00:00:00"
+}

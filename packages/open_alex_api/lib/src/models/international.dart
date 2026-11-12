@@ -4,10 +4,9 @@ part 'international.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class International {
-  International({
-    required this.displayName,
-  });
+  International({required this.displayName});
 
+  @JsonKey(defaultValue: {})
   final Map<String, String> displayName;
 
   factory International.fromJson(Map<String, dynamic> json) =>

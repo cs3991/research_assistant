@@ -1,0 +1,184 @@
+{
+  "id": "https://openalex.org/T10001",
+  "display_name": "Geological and Geochemical Analysis",
+  "description": "This cluster of papers focuses on the tectonic evolution and geochronological analysis of orogenic processes, with a particular emphasis on zircon geochemistry, isotopic composition, and thermodynamic modeling. It covers topics such as subduction zones, mantle evolution, plate tectonics, and the growth of continental crust.",
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/igneous-rock",
+      "display_name": "igneous rock",
+      "score": 0.9476
+    },
+    {
+      "id": "https://openalex.org/keywords/petrology",
+      "display_name": "petrology",
+      "score": 0.7412
+    },
+    {
+      "id": "https://openalex.org/keywords/basalt",
+      "display_name": "basalt",
+      "score": 0.8033
+    },
+    {
+      "id": "https://openalex.org/keywords/rock-sample",
+      "display_name": "rock sample",
+      "score": 0.4812
+    },
+    {
+      "id": "https://openalex.org/keywords/metamorphic-rock",
+      "display_name": "metamorphic rock",
+      "score": 0.8652
+    },
+    {
+      "id": "https://openalex.org/keywords/volcanic-rock",
+      "display_name": "volcanic rock",
+      "score": 0.7549
+    },
+    {
+      "id": "https://openalex.org/keywords/zircon-u-pb-geochronology",
+      "display_name": "zircon U-Pb geochronology",
+      "score": 0.9189
+    },
+    {
+      "id": "https://openalex.org/keywords/mafic-volcanics",
+      "display_name": "mafic volcanic rock",
+      "score": 0.9549
+    },
+    {
+      "id": "https://openalex.org/keywords/ultramafic-rocks",
+      "display_name": "ultramafic rocks",
+      "score": 0.7777
+    },
+    {
+      "id": "https://openalex.org/keywords/rare-earth-elements",
+      "display_name": "rare earth elements",
+      "score": 0.2027
+    },
+    {
+      "id": "https://openalex.org/keywords/granite",
+      "display_name": "granite",
+      "score": 0.4743
+    },
+    {
+      "id": "https://openalex.org/keywords/geochronology",
+      "display_name": "geochronology",
+      "score": 0.6587
+    },
+    {
+      "id": "https://openalex.org/keywords/ore-genesis",
+      "display_name": "ore genesis",
+      "score": 0.5135
+    },
+    {
+      "id": "https://openalex.org/keywords/volcanic-glass",
+      "display_name": "volcanic glass",
+      "score": 0.782
+    },
+    {
+      "id": "https://openalex.org/keywords/fractional-crystallization",
+      "display_name": "fractional crystallization",
+      "score": 0.8225
+    },
+    {
+      "id": "https://openalex.org/keywords/tectonic-evolution",
+      "display_name": "tectonic evolution",
+      "score": 0.3786
+    },
+    {
+      "id": "https://openalex.org/keywords/geochemistry",
+      "display_name": "geochemistry",
+      "score": 0.4048
+    },
+    {
+      "id": "https://openalex.org/keywords/hydrothermal-alteration",
+      "display_name": "hydrothermal alteration",
+      "score": 0.4546
+    },
+    {
+      "id": "https://openalex.org/keywords/trace-element-geochemistry",
+      "display_name": "trace element geochemistry",
+      "score": 0.6957
+    },
+    {
+      "id": "https://openalex.org/keywords/magma-mixing",
+      "display_name": "magma mixing",
+      "score": 0.944
+    },
+    {
+      "id": "https://openalex.org/keywords/gabbro",
+      "display_name": "gabbro",
+      "score": 0.7996
+    },
+    {
+      "id": "https://openalex.org/keywords/u-pb-dating",
+      "display_name": "U-Pb geochronology",
+      "score": 0.8274
+    },
+    {
+      "id": "https://openalex.org/keywords/crustal-contamination",
+      "display_name": "crustal contamination",
+      "score": 0.9549
+    },
+    {
+      "id": "https://openalex.org/keywords/fluid-inclusions",
+      "display_name": "fluid inclusions",
+      "score": 0.4918
+    },
+    {
+      "id": "https://openalex.org/keywords/plutonic-rock",
+      "display_name": "plutonic rock",
+      "score": 0.899
+    }
+  ],
+  "legacy_keywords": "Zircon; Geochronology; Tectonics; Granitic Rocks; Isotopic Composition; Subduction Zones; Mantle Evolution; Plate Tectonics; Thermodynamic Modeling; Continental Growth",
+  "ids": {
+    "openalex": "https://openalex.org/T10001",
+    "wikipedia": "https://en.wikipedia.org/wiki/Geochronology"
+  },
+  "subfield": {
+    "id": "https://openalex.org/subfields/1906",
+    "display_name": "Geochemistry and Petrology"
+  },
+  "field": {
+    "id": "https://openalex.org/fields/19",
+    "display_name": "Earth and Planetary Sciences"
+  },
+  "domain": {
+    "id": "https://openalex.org/domains/3",
+    "display_name": "Physical Sciences"
+  },
+  "siblings": [
+    {
+      "id": "https://openalex.org/T10398",
+      "display_name": "Groundwater and Isotope Geochemistry"
+    },
+    {
+      "id": "https://openalex.org/T11740",
+      "display_name": "Geochemistry and Elemental Analysis"
+    },
+    {
+      "id": "https://openalex.org/T11852",
+      "display_name": "Clay minerals and soil interactions"
+    },
+    {
+      "id": "https://openalex.org/T12157",
+      "display_name": "Geochemistry and Geologic Mapping"
+    },
+    {
+      "id": "https://openalex.org/T12218",
+      "display_name": "Coal and Its By-products"
+    },
+    {
+      "id": "https://openalex.org/T13442",
+      "display_name": "Geochemistry and Geochronology of Asian Mineral Deposits"
+    },
+    {
+      "id": "https://openalex.org/T13443",
+      "display_name": "Mineralogy and Gemology Studies"
+    }
+  ],
+  "works_count": 803004,
+  "cited_by_count": 9327372,
+  "works_api_url": "https://api.openalex.org/works?filter=topics.id:T10001",
+  "updated_date": "2026-11-12T03:01:37",
+  "created_date": "2024-01-23T15:27:04"
+}

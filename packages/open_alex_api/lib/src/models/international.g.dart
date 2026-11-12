@@ -9,32 +9,36 @@ part of 'international.dart';
 // **************************************************************************
 
 International _$InternationalFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'International',
-      json,
-      ($checkedConvert) {
-        final val = International(
-          displayName: $checkedConvert(
-              'display_name', (v) => Map<String, String>.from(v as Map)),
-        );
-        return val;
-      },
-      fieldKeyMap: const {'displayName': 'display_name'},
-    );
+    $checkedCreate('International', json, ($checkedConvert) {
+      final val = International(
+        displayName: $checkedConvert(
+          'display_name',
+          (v) =>
+              (v as Map<String, dynamic>?)?.map(
+                (k, e) => MapEntry(k, e as String),
+              ) ??
+              {},
+        ),
+      );
+      return val;
+    }, fieldKeyMap: const {'displayName': 'display_name'});
 
 InternationalWithDescription _$InternationalWithDescriptionFromJson(
-        Map<String, dynamic> json) =>
-    $checkedCreate(
-      'InternationalWithDescription',
-      json,
-      ($checkedConvert) {
-        final val = InternationalWithDescription(
-          displayName: $checkedConvert(
-              'display_name', (v) => Map<String, String>.from(v as Map)),
-          description: $checkedConvert(
-              'description', (v) => Map<String, String>.from(v as Map)),
-        );
-        return val;
-      },
-      fieldKeyMap: const {'displayName': 'display_name'},
-    );
+  Map<String, dynamic> json,
+) => $checkedCreate('InternationalWithDescription', json, ($checkedConvert) {
+  final val = InternationalWithDescription(
+    displayName: $checkedConvert(
+      'display_name',
+      (v) =>
+          (v as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, e as String),
+          ) ??
+          {},
+    ),
+    description: $checkedConvert(
+      'description',
+      (v) => Map<String, String>.from(v as Map),
+    ),
+  );
+  return val;
+}, fieldKeyMap: const {'displayName': 'display_name'});

@@ -1,7 +1,9 @@
 export 'author.dart';
 export 'concept.dart';
+export 'funding.dart';
 export 'institution.dart';
 export 'international.dart';
 export 'source.dart';
+export 'topic.dart';
 export 'work.dart';
 export 'year.dart';
