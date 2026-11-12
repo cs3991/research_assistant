@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:research_assistant/collection/view/library_sidebar.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:research_assistant/collection/view/collection.dart';
@@ -40,11 +41,15 @@ class NavigationPage extends StatelessWidget {
             BlocProvider(create: (context) => NavigationCubit()),
             BlocProvider(create: (context) => SearchCubit()),
             BlocProvider(create: (context) => PhoneScreenCubit()),
-            BlocProvider(create: (context) => PageStackCubit(page: SearchPage(index: 0))),
+            BlocProvider(
+              create: (context) => PageStackCubit(page: SearchPage(index: 0)),
+            ),
           ],
           child: LayoutBuilder(
             builder: (context, constraints) {
-              context.read<PhoneScreenCubit>().constraintChanged(constraints.maxWidth);
+              context.read<PhoneScreenCubit>().constraintChanged(
+                constraints.maxWidth,
+              );
               return BlocBuilder<NavigationCubit, int>(
                 builder: (BuildContext context, int index) {
                   final navigationBody = NavigationBody(index: index);
@@ -52,53 +57,45 @@ class NavigationPage extends StatelessWidget {
                     builder: (context, isPhoneScreen) {
                       if (!isPhoneScreen) {
                         return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            NavigationRail(
-                              groupAlignment: 0,
-                              destinations: const [
-                                NavigationRailDestination(
-                                  icon: Icon(Icons.search_rounded),
-                                  label: Text('Rechercher'),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+                              child: SizedBox(
+                                width: 240,
+                                child: LibrarySidebar(
+                                  selectedIndex: index,
+                                  onDestinationSelected: context
+                                      .read<NavigationCubit>()
+                                      .showTabWithIndex,
                                 ),
-                                NavigationRailDestination(
-                                  icon: Icon(Icons.rss_feed_rounded),
-                                  label: Text('Nouveautés'),
-                                ),
-                                NavigationRailDestination(
-                                  icon: Icon(Icons.library_books_rounded),
-                                  label: Text('Collection'),
-                                ),
-                              ],
-                              labelType: NavigationRailLabelType.selected,
-                              selectedIndex: index,
-                              onDestinationSelected: (int newIndex) =>
-                                  BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
+                              ),
                             ),
-                            Expanded(
-                              child: navigationBody,
-                            ),
+                            Expanded(child: navigationBody),
                           ],
                         );
                       } else {
                         return Column(
                           children: [
-                            Expanded(
-                              child: navigationBody,
-                            ),
-                            Builder(builder: (BuildContext context) {
-                              final currentNavBarTheme = NavigationBarTheme.of(context);
-                              return MediaQuery(
-                                data: MediaQuery.of(context).removePadding(removeTop: true),
-                                child: NavigationBar(
-                                  destinations: const [
-                                    NavigationDestination(
-                                      icon: Icon(Icons.search_rounded),
-                                      label: 'Rechercher',
-                                    ),
-                                    NavigationDestination(
-                                      icon: Icon(Icons.rss_feed_rounded),
-                                      label: 'Nouveautés',
-                                    ),
+                            Expanded(child: navigationBody),
+                            Builder(
+                              builder: (BuildContext context) {
+                                final currentNavBarTheme =
+                                    NavigationBarTheme.of(context);
+                                return MediaQuery(
+                                  data: MediaQuery.of(
+                                    context,
+                                  ).removePadding(removeTop: true),
+                                  child: NavigationBar(
+                                    destinations: const [
+                                      NavigationDestination(
+                                        icon: Icon(Icons.search_rounded),
+                                        label: 'Rechercher',
+                                      ),
+                                      NavigationDestination(
+                                        icon: Icon(Icons.rss_feed_rounded),
+                                        label: 'Nouveautés',
+                                      ),
                                       NavigationDestination(
                                         icon: Icon(Icons.library_books_rounded),
                                         label: 'Collection',
@@ -106,7 +103,9 @@ class NavigationPage extends StatelessWidget {
                                     ],
                                     selectedIndex: index,
                                     onDestinationSelected: (int newIndex) =>
-                                        BlocProvider.of<NavigationCubit>(context).showTabWithIndex(newIndex),
+                                        BlocProvider.of<NavigationCubit>(
+                                          context,
+                                        ).showTabWithIndex(newIndex),
                                   ),
                                 );
                               },
@@ -127,10 +126,7 @@ class NavigationPage extends StatelessWidget {
 }
 
 class NavigationBody extends StatelessWidget {
-  const NavigationBody({
-    super.key,
-    required this.index,
-  });
+  const NavigationBody({super.key, required this.index});
 
   final int index;
 
@@ -138,11 +134,7 @@ class NavigationBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return IndexedStack(
       index: index,
-      children: [
-        LayoutNavigation(),
-        const NewsFeed(),
-        const Collection(),
-      ],
+      children: [LayoutNavigation(), const NewsFeed(), const Collection()],
     );
   }
 }

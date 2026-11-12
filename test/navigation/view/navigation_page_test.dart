@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:research_assistant/collection/view/collection.dart';
+import 'package:research_assistant/collection/view/library_sidebar.dart';
 import 'package:research_assistant/layout/navigation.dart';
 import 'package:research_assistant/newsfeed/view/newsfeed.dart';
 
@@ -16,7 +17,7 @@ void main() {
         addTearDown(tester.view.reset);
         await tester.pumpApp(const NavigationPage());
         expect(
-          find.byType(width < 650 ? NavigationBar : NavigationRail),
+          find.byType(width < 650 ? NavigationBar : LibrarySidebar),
           findsOneWidget,
         );
         await tester.tap(find.byIcon(Icons.library_books_rounded));
